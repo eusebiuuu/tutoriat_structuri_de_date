@@ -1,0 +1,21 @@
+- Go through the theory materials and write summary
+  - Coursuri seria 13 & 15
+  - Cormen book
+  - Programa seria 14
+- Organise the summary materials
+- Find practice exercises
+  - Cormen
+  - LeetCode?
+- Find exam exercises
+- Push the final version and announce the collaborator
+- Final reviews and modifications
+- Local lesson teaching plan: breaks, division, questions, devices etc.
+
+
+- Create GitHub repository
+- Create table of contents
+- Meeting with the colaborators
+- Add README for general description and motivation
+- Create social media channels
+- Popularisation and advertising
+- Integrate in the daily plan & email remiders
