@@ -1,23 +1,18 @@
-- Add sources (theory and exercises)
-- Meeting with the collaborators
-	- Set the workflow
-	- Set the sources
-	- Create the table of contents
-- Add README for general description and motivation
-- Create social media channels
+- Add README for general description and motivation & questions & feedback
 - Popularisation and advertising
-- Integrate in the daily plan & email remiders
 
 ---
 
 - Go through the theory materials and write summary
-  - Cursuri seria 13 & 15
   - Cormen book
-  - Cursuri si programa seria 14
+  - Cursuri (seria 13, 14, 15)
+  - C++ STL equivalents
 - Find practice exercises
   - Cormen
-  - LeetCode?
-  - Find exam exercises
+  - LeetCode
+  - Find exam exercises (seria 13, 14, 15)
 - Push the final version and announce the collaborator
 - Final reviews and modifications
+- Make announcement to **community** related to what will be taught
 - Local lesson teaching plan: breaks, division, questions, devices etc.
+- Feedback from attendees: teaching, structure, advice
