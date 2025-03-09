@@ -8,7 +8,6 @@
   - Analiza recursivitatii: metode si teorema Master
   - Analiza probabilistica: secretary problem, birthday paradox
   - Lower and Upper Bound Theory (sorting, generalisation)
-
 - Sortari
   - Quick-Sort
   - Insertion sort
@@ -23,56 +22,55 @@
   - Tim sort
   - Block sort
   - Medians and ordered statistics
-
-### Tutoriat 2
-- Heap
-  - Heapsort
-  - `std::priority_queue`
+- Heap & heapsort
 - Structuri de date elementare
   - liste (3 tipuri)
   - stive
   - cozi
   - deque
-  - arbori
 
-### Tutoriat 3
+### Tutoriat 2
 - Skip-lists
 - Hash tables
   - Perfect hashing
   - Universal hashing
   - LRU
 
-### Tutoriat 4
+### Tutoriat 3
+- Arbori: parcurgeri, reprezentare, teorie
 - Binary search trees
 - Balanced BST
 
-### Tutoriat 5
+### Tutoriat 4
 - AVL trees
 - Splay trees
 - Red-black trees
 
-### Tutoriat 7
+### Tutoriat 5
 - Arbori de intervale
 - Arbori indexati binar
-- RMQ
+- Cartesian Tree
 
-### Tutoriat 8
+### Tutoriat 6
+- RMQ
 - Tabele de dispersie. Rezolvarea coloziunilor prin inlantuire si prin adresare deschisa.
 - Algoritmul Huffman & Huffman encodings
+
+## Tutoriat 7
 - Trie
 - Suffix trees
 
-### Tutoriat 9
+### Tutoriat 8
 - Arbori partiali de cost minim: DSU & Kruskal & Prim
 
-### Tutoriat 10
+### Tutoriat 9
 - Geometry: convex hull trick, segment intersections
 - B-Trees
 - Aho-Corasick Automata
 - Suffix arrays
 
-### Tutoriat 11
+### Tutoriat 10
 Pregatire examen
 
-### Tutoriat 12
+### Tutoriat 11
 Pregatire examen
