@@ -195,7 +195,7 @@ void quickSort(std::vector<int> &t, const int left, const int right) {
 
 * ### <ins>4.7. Heap Sort</ins>
 
-![Image](images/sorting-algs/quicksort.png)
+![Image](images/sorting-algs/heapsort.png)
 
 ```cpp
 void heapify(std::vector<int> &t, const int n, const int node) {
