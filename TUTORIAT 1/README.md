@@ -1,4 +1,12 @@
-## 1. Introducere in algoritmica
+# Table of contents
+- [Introducere in algoritmica](#1---introducere-in-algoritmica)
+- [Algoritmi si complexitati](#2---algoritmi-si-complexitati)
+- [Teorema master](#3---teorema-master)
+- [Algoritmi de sortare](#4---algoritmi-de-sortare)
+
+---
+
+## 1 - Introducere in algoritmica
 - Informatica presupune in principal lucrul cu instrumente, cele mai comune fiind **limbajele de programare**
 - Limbajele de programare constau intr-o serie de instructiuni care sunt convertite, in final, intr-o sintaxa (cod masina, sir de 0 si 1) pe care calculatorul o poate intelege si executa
 - Aceste instructiuni reprezinta o serie de pasi dati calculatorului pentru a obtine un rezultat (**output**) in functie de un set de date de intrare (**input**)
@@ -8,7 +16,9 @@
 - Evident, nu exista o structura de date care poate satisface optim toate cazurile posibile, deci avem nevoie de una care sa se comporte cat mai bine pentru cazul nostru particular (si ideal sa fie cat mai robusta, adica daca volumul de date creste, complexitatea ei sa creasca liniar cu acesta sau sa ramana constanta); pentru aceasta putem fie sa cream una noi insine de la $0$ (bazandu-ne pe un suport teoretic sau nu - research position), fie sa le folosim pe cele existente care sunt implementate deja in limbajele de programare
 - In cele ce urmeaza, pana la finalul semestrului, vom analiza teoria si implementarile din spatele celor mai comune structuri de date; dar pana atunci, inca putina algoritmica :)
 
-## 2. Algoritmi si complexitati
+---
+
+## 2 - Algoritmi si complexitati
 - Structurile de date se bazeaza si ele pe diversi algoritmi, deci pentru a le putea analiza pe ele, trebuie mai intai sa stim cum analizam algoritmii
 - Cele mai comune metrici sunt timpul de executie si memoria utilizata, ce se transpun in complexitate de timp si, respectiv, complexitate de spatiu ocupat
 - Pentru inceput, pentru un algoritm fie $f(n)$ numarul de operatii necesare terminarii algoritmului dandu-se un input de marime $n$
@@ -41,7 +51,10 @@
 - In exemplul prezentat, Insertion Sort va fi in $\Omega(n)$ si in $O(n^2)$, care reprezinta si limitele cele mai stranse (the most tight bounds)
 - **Exercitiu:** Dati exemplu de un algoritm aflat in $\Theta(n ^ 3)$
 - Complexitate de spatiu ocupat se face similar si este intuitiva dupa ce ati inteles-o pe cea de timp, de multe ori fiind cea mai usoara de aflat; un exemplu ar fi ca daca in cadrul programului avem o matrice de dimensiune $n ^ 2$ si un vector de dimensiune $10n$ atunci algoritmul va fi in $O(n ^ 2)$, chiar $\Theta(n ^ 2)$; daca sirul avea dimensiunea $m$ atunci complexitate finala era $O(n ^ 2 + m)$, la fel ca la timp ;)
-## 3. Teorema master
+
+---
+
+## 3 - Teorema master
 - Algoritmii se clasifica in 2 clase: cei iterativi si cei recursivi
 - Pentru cei iterativi deseori nu este complicat sa aflam complexitatile, mai ales ca sunt mai usor de urmarit
 - Pentru cei recursivi insa, trebuie sa tinem cont de mai multi factori, inclusiv de cate apeluri sunt facute si de ce complexitate au operatiile efective
@@ -58,3 +71,238 @@
   - stive
   - cozi
   - deque
+ 
+---
+
+## 4 - Algoritmi de sortare
+
+* ### <ins>4.1. Bubble Sort</ins>
+
+![Image](images/sorting-algs/bubblesort.png)
+
+```cpp
+void bubbleSort(std::vector<int> &t) {
+    const int n = t.size();
+    for (int i = 0; i < n - 1; ++i) {
+        bool ok = false;
+        for (int j = 0; j < n - i - 1; ++j) {
+            if (t[j] > t[j + 1]) {
+                std::swap(t[j], t[j + 1]);
+                ok = true;
+            }
+        }
+        if (!ok) {
+            return;
+        }
+    }
+}
+```
+
+* ### <ins>4.2. Count Sort<ins> 
+
+![Image](images/sorting-algs/countsort.png)
+
+```cpp
+void countSort(std::vector<int> &t) {
+    const int n = t.size();
+    int maxValue = t[0];
+    for (int i = 1; i < n; ++i) {
+        if (t[i] > maxValue) {
+            maxValue = t[i];
+        }
+    }
+
+    std::vector count(maxValue + 1, 0);
+    for (const auto &x: t) {
+        ++count[x];
+    }
+
+    for (int i = 1; i <= maxValue; ++i) {
+        count[i] += count[i - 1];
+    }
+
+    std::vector<int> aux(n);
+    for (int i = n - 1; i >= 0; --i) {
+        aux[count[t[i]] - 1] = t[i];
+        --count[t[i]];
+    }
+    t = aux;
+}
+```
+
+* ### <ins>4.3. Select Sort</ins>
+
+![Image](images/sorting-algs/selectsort.png)
+
+```cpp
+void selectSort(std::vector<int> &t) {
+    const int n = t.size();
+    for (int i = 0; i < n - 1; ++i) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (t[j] < t[minIndex]) {
+                minIndex = j;
+            }
+        }
+        std::swap(t[i], t[minIndex]);
+    }
+}
+```
+
+
+* ### <ins>4.4. Insert Sort</ins>
+
+
+* ### <ins>4.5. Quick Sort (discutie pe pivot)</ins>
+
+![Image](images/sorting-algs/quicksort.png)
+
+```cpp
+int medianThree(std::vector<int> &t, const int i, const int j, const int k) {
+    // XOR TRICK
+    if ((t[i] > t[j]) ^ (t[i] > t[k]))
+        return i;
+    if ((t[j] < t[i]) ^ (t[j] < t[k]))
+        return j;
+    return k;
+}
+
+int partition(std::vector<int> &t, const int left, const int right) {
+    const int middle = (right - left) / 2 + left; // anti overflow
+    const int pivot = medianThree(t, left, right, middle);
+    std::swap(t[pivot], t[right]);
+
+    int i = left - 1;
+    for (int j = left; j < right; ++j) {
+        if (t[j] < t[right]) {
+            std::swap(t[++i], t[j]);
+        }
+    }
+    std::swap(t[i + 1], t[right]);
+    return i + 1;
+}
+
+void quickSort(std::vector<int> &t, const int left, const int right) {
+    if (left < right) {
+        const int index = partition(t, left, right);
+        quickSort(t, left, index);
+        quickSort(t, left + 1, right);
+    }
+}
+```
+
+* ### <ins>4.6. Merge Sort (+varianta in-place)</ins>
+
+* ### <ins>4.7. Heap Sort</ins>
+
+![Image](images/sorting-algs/quicksort.png)
+
+```cpp
+void heapify(std::vector<int> &t, const int n, const int node) {
+    int largest = node;
+    const int left = 2 * node + 1;
+    const int right = 2 * node + 2;
+
+    if (left < n && t[left] > t[largest]) {
+        largest = left;
+    }
+    if (right < n && t[right] > t[largest]) {
+        largest = right;
+    }
+    if (largest != node) {
+        std::swap(t[largest], t[node]);
+        heapify(t, n, largest);
+    }
+}
+
+void heapSort(std::vector<int> &t) {
+    const int n = t.size();
+    for (int i = n / 2 - 1; i >= 0; --i) {
+        heapify(t, n, i);
+    }
+    for (int i = n - 1; i > 0; --i) {
+        std::swap(t[0], t[i]);
+        heapify(t, i, 0);
+    }
+}
+```
+
+
+* ### <ins>4.8. Bucket Sort</ins>
+
+![Image](images/sorting-algs/bucketsort.png)
+
+```cpp
+void bucketSort(std::vector<double> &t) {
+    std::vector<std::vector<double> > buckets(10);
+
+    double maxValue = t[0];
+    for (int i = 1; i < t.size(); ++i) {
+        if (t[i] > maxValue) {
+            maxValue = t[i];
+        }
+    }
+
+    for (const auto &x: t) {
+        buckets[static_cast<int>((x * 10) / maxValue) - 1].push_back(x);
+    }
+
+    // aici poate intra orice algoritm de sortare stabil
+    for (int i = 0; i < 10; ++i) {
+        std::ranges::sort(buckets[i]);
+    }
+
+    int j = 0;
+    for (int i = 0; i < 10; ++i) {
+        for (const auto &x: buckets[i]) {
+           t[j++] = x;
+        }
+    }
+}
+```
+
+* ### <ins>4.9. Radix Sort (MSD/LSD)</ins>
+
+![Image](images/sorting-algs/radixsort.png)
+
+```cpp
+void countSortAux(std::vector<int> &t, int &n, const int exp) {
+    std::vector count(10, 0);
+    std::vector<int> aux(n);
+
+    for (const auto &x: t) {
+        ++count[(x / exp) % 10];
+    }
+
+    for (int i = 1; i < 10; ++i) {
+        count[i] += count[i - 1];
+    }
+
+    for (int i = t.size() - 1; i >= 0; --i) {
+        aux[count[(t[i] / exp) % 10] - 1] = t[i];
+        --count[(t[i] / exp) % 10];
+    }
+    t = aux;
+}
+
+void radixSort(std::vector<int> &t) {
+    int maxValue = t[0];
+    for (const auto &x: t) {
+        if (x > maxValue) {
+            maxValue = x;
+        }
+    }
+    int n = t.size();
+    for (int exp = 1; maxValue / exp > 0; exp *= 10) {
+        countSortAux(t, n, exp);
+    }
+}
+```
+
+* ### <ins>4.10. Block Sort</ins>
+
+* ### <ins>4.11. Shell Sort</ins>
+
+* ### <ins>4.12. Intro Sort</ins>
+
+* ### <ins>4.13. Tim Sort</ins>
