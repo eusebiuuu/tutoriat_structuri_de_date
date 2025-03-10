@@ -152,6 +152,21 @@ void selectSort(std::vector<int> &t) {
 
 * ### <ins>4.4. Insert Sort</ins>
 
+![Image](images/sorting-algs/insertsort.png)
+
+```cpp 
+void insertSort(std::vector<int> &t) {
+    for (int i = 1; i < t.size(); ++i) {
+        int j = i - 1;
+        const int aux = t[i];
+        while (j >= 0 && aux <= t[j]) {
+            t[j + 1] = t[j];
+            --j;
+        }
+        t[j + 1] = aux;
+    }
+}
+```
 
 * ### <ins>4.5. Quick Sort (discutie pe pivot)</ins>
 
@@ -191,7 +206,48 @@ void quickSort(std::vector<int> &t, const int left, const int right) {
 }
 ```
 
-* ### <ins>4.6. Merge Sort (+varianta in-place)</ins>
+* ### <ins>4.6. Merge Sort</ins>
+
+![Image](images/sorting-algs/mergesort.png)
+
+```cpp 
+void merge(std::vector<int> &t, const int left, const int mid, const int right) {
+    const int n1 = mid - left + 1; // include mijlocul
+    const int n2 = right - mid;
+    std::vector<int> leftArray, rightArray;
+
+    for (int i = 0; i < n1; ++i) {
+        leftArray.push_back(t[left + i]);
+    }
+    for (int j = 0; j < n2; ++j) {
+        rightArray.push_back(t[j + mid + 1]);
+    }
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (leftArray[i] <= rightArray[j]) {
+            t[k++] = leftArray[i++];
+        } else {
+            t[k++] = rightArray[j++];
+        }
+    }
+    while (i < n1) {
+        t[k++] = leftArray[i++];
+    }
+    while (j < n2) {
+        t[k++] = rightArray[j++];
+    }
+}
+
+void mergeSort(std::vector<int> &t, const int left, const int right) {
+    if (left < right) {
+        const int mid = (right - left) / 2 + left;
+        mergeSort(t, left, mid);
+        mergeSort(t, mid + 1, right);
+        merge(t, left, mid, right);
+    }
+}
+```
 
 * ### <ins>4.7. Heap Sort</ins>
 
@@ -302,6 +358,24 @@ void radixSort(std::vector<int> &t) {
 * ### <ins>4.10. Block Sort</ins>
 
 * ### <ins>4.11. Shell Sort</ins>
+
+![Image](images/sorting-algs/shellsort.png)
+
+```cpp
+void shellSort(std::vector<int>& t) {
+    const int n = t.size();
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+        for (int i = gap; i < n; ++i) {
+            const int aux = t[i];
+            int j;
+            for (j = i; j >= gap && t[j - gap] > aux; j -= gap) {
+                t[j] = t[j - gap];
+            }
+            t[j] = aux;
+        }
+    }
+}
+```
 
 * ### <ins>4.12. Intro Sort</ins>
 

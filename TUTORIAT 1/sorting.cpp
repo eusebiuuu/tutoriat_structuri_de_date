@@ -262,12 +262,12 @@ void radixSort(std::vector<int> &t) {
 // 11. SHELL SORT
 void shellSort(std::vector<int>& t) {
     const int n = t.size();
-    for (int interval = n / 2; interval > 0; interval /= 2) {
-        for (int i = interval; i < n; ++i) {
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+        for (int i = gap; i < n; ++i) {
             const int aux = t[i];
             int j;
-            for (j = i; j >= interval && t[j - interval] > aux; j -= interval) {
-                t[j] = t[j - interval];
+            for (j = i; j >= gap && t[j - gap] > aux; j -= gap) {
+                t[j] = t[j - gap];
             }
             t[j] = aux;
         }
