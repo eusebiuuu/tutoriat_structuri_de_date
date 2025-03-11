@@ -380,3 +380,10 @@ void shellSort(std::vector<int>& t) {
 * ### <ins>4.12. Intro Sort</ins>
 
 * ### <ins>4.13. Tim Sort</ins>
+
+---
+
+#### Notes 
+* <b>Seria 13</b>: Algoritmi de sortare (Merge Sort, Insert Sort, Heap Sort, Quick Sort, Select Sort; Comparison Sorts), Heaps (implementare ca Array; Heapify(), BuildHeap()), Priority Queues (insert, pop), Decision Trees, Arrays, Vectors, Stacks (+array-based implementation), Queues, Deques, Linked Lists, Skip Lists, Hash Tables (Chaining, Open Addressing, Double Hashing, Perfect Hashing), Bloom Filters.
+* <b>Seria 14</b>: Algoritmi de sortare (Merge Sort, Quick Sort), clase de complexitati, teorema master, probabilitati (birthday paradox, secretary problem).
+* <b>Seria 15</b>: Algoritmi de sortare (Merge Sort + in-place, Heap Sort, Quick Sort, Count Sort, Bucket Sort, Radix Sort, Block Sort, Intro Sort, Tim Sort), clase de complexitati, Heaps, Arrays, Vectors, Linked Lists.
