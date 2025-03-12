@@ -4,10 +4,12 @@
   - [2 - Algoritmi si complexitati](#2---algoritmi-si-complexitati)
   - [3 - Teorema master](#3---teorema-master)
   - [4 - Algoritmi de sortare](#4---algoritmi-de-sortare)
-  - [4 - Analiza probabilistica](#4---analiza-probabilistica)
-  - [5 - Stiva](#5---stiva)
-  - [6 - Coada](#6---coada)
-  - [7 - Deque](#7---deque)
+  - [5 - Analiza probabilistica](#5---analiza-probabilistica)
+  - [6 - Stiva](#6---stiva)
+  - [7 - Coada](#7---coada)
+  - [8 - Deque](#8---deque)
+  - [9 - Heap](#9---heap)
+  - [10 - Exercitii](#10---exercitii)
       - [Notes](#notes)
 
 ---
@@ -388,7 +390,9 @@ void shellSort(std::vector<int>& t) {
 
 * ### <ins>4.13. Tim Sort</ins>
 
-## 4 - Analiza probabilistica
+---
+
+## 5 - Analiza probabilistica
 - Deseori, analiza de tip **worst case scenario** nu ne ofera informatii prea realiste cu privire la complexitatea pe care o sa o aiba un algoritm in practica, de cele mai multe ori
 - De aceea, dorim sa analizam un algoritm si avand in vedere **average running time**-ul lui, iar acest lucru se face deseori tinand cont de anumite probabilitati ale formatului inputului
 - Ca exemplu, o problema clasica este **hiring assistant problem**: aveti la dispozitie $n$ posibili angajati. Voi ii luati la rand si, in momentul in care cel curent este mai bun decat toti ceilalti, il dati afara pe cel existent si il angajati pe cel curent, insa la fiecare noua angajare platiti un cost $m$. Intrebarea importanta este cat va fi costul pe care trebuie sa-l platiti dupa ce ati procesat toti cei $n$ angajati (worst case este $nm$, dar este foarte improbabil caci avem $n!$ permutari din care putem alege)
@@ -398,8 +402,9 @@ void shellSort(std::vector<int>& t) {
 - In cazul in care distributia inputului nu este random, de exemplu stim ca este mereu sortat sau aproape sortat, putem sa generam random o permutare si astfel sa obtinem un nou input pe care complexitatea sa fie, in medie, mai buna. Astfel, adaugand aceasta reordonare, am obtinut un **algoritm randomizat**
 - Alte probleme de analiza probabilistica cu rezultate neintuitive: **secretary problem**, **birthday paradox**
 
+---
 
-## 5 - Stiva
+## 6 - Stiva
 - Stiva este o structura de date care aranjeaza elementele dupa principiul **LIFO (Last In First Out)** (ganditi-va la cum se comporta o stiva de farfurii - puteti adauga sau extrage elemente doar din varf)
 - Operatia de adaugare a unui element se numeste **PUSH**, cea de stergere din varful stivei **POP**, iar cea de aflare a elementului din varful **TOP** / **PEEK**
 - Complexitatea de timp a adaugarii unui element este $O(1)$, iar a stergerii unui anumit element este $O(n)$
@@ -502,7 +507,9 @@ int main() {
 }
 ```
 
-## 6 - Coada
+---
+
+## 7 - Coada
 - Coada este o structura de date ce organizeaza datele pe care le primeste, in ordine, dupa principiul **FIFO**
 - Coada are 2 componente: capul (pe unde se extrag elementele) si coada (tail, pe unde se adauga elementele)
 - Operatia de adaugare a unui element se numeste **ENQUEUE**, cea de stergere **DEQUEUE**, iar cea de aflare a elementului din cap **TOP** / **PEEK**, toate avand complexitatea de $O(1)$
@@ -543,13 +550,22 @@ int main() {
 
 ```
 
-## 7 - Deque
+---
+
+## 8 - Deque
 - Deque-ul este o structura de date foarte utila (desi de multe ori nu este necesara) care combina functionalitatile stivei si cozii; numele ei vine de la **Double Ended QUEue**
 - Ea realizeaza stocarea inputului in ordinea data intr-un sir, insa permite modificarea datelor la ambele capete ale sirului: stergere + adaugare la inceput si stergere + adaugare la final
 - In STL, este implementata de `std::deque` cu metode foarte similare celor 2 structuri descrise mai sus
 
+---
 
-Exercitii:
+## 9 - Heap
+
+![Image](images/data-structures/heap.png)
+
+---
+
+## 10 - Exercitii
 1. Explain how to implement two stacks in one array $A[1 .. n]$ in such a way that neither stack overﬂows unless the total number of elements in both stacks together is $n$. The **PUSH** and **POP** operations should run in $O(1)$ time.
 2. Given an array, find the next greater element for each element.
 3. Given an array and window size k, find the maximum element in each window of size k.
