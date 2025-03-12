@@ -1,5 +1,6 @@
 - Ask for latest lessons
-- **Go through the theory materials and write summary**
+- Go through the theory materials and write summary
+  - Add table of contents
   - Cormen book
   - Cursuri (seria 13, 14, 15)
   - C++ STL equivalents
@@ -11,5 +12,8 @@
 - Push the final version and announce the collaborator
 - Final reviews and modifications
 - Make announcement to **community** about what will be taught next
-- Local lesson teaching plan: breaks, division, questions, devices, update the materials with asked questions etc.
+- Local lesson teaching plan
+  - Overview
+  - Ask for taught lessons lately
+  - breaks, division, questions, update the materials with asked questions etc.
 - Foile de prezenta

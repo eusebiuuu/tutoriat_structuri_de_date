@@ -1,8 +1,14 @@
 # Table of contents
-- [Introducere in algoritmica](#1---introducere-in-algoritmica)
-- [Algoritmi si complexitati](#2---algoritmi-si-complexitati)
-- [Teorema master](#3---teorema-master)
-- [Algoritmi de sortare](#4---algoritmi-de-sortare)
+- [Table of contents](#table-of-contents)
+  - [1 - Introducere in algoritmica](#1---introducere-in-algoritmica)
+  - [2 - Algoritmi si complexitati](#2---algoritmi-si-complexitati)
+  - [3 - Teorema master](#3---teorema-master)
+  - [4 - Algoritmi de sortare](#4---algoritmi-de-sortare)
+  - [4 - Analiza probabilistica](#4---analiza-probabilistica)
+  - [5 - Stiva](#5---stiva)
+  - [6 - Coada](#6---coada)
+  - [7 - Deque](#7---deque)
+      - [Notes](#notes)
 
 ---
 
@@ -23,24 +29,26 @@
 - Cele mai comune metrici sunt timpul de executie si memoria utilizata, ce se transpun in complexitate de timp si, respectiv, complexitate de spatiu ocupat
 - Pentru inceput, pentru un algoritm fie $f(n)$ numarul de operatii necesare terminarii algoritmului dandu-se un input de marime $n$
 - Pentru a analiza complexitatea timpului de executie, exista 3 moduri de a le descrie 9:
-  1. **Big $O$**
+1. **Big $O$**
     - fiind data o functie $g(n)$, $f(n) \in O(g(n))$ daca si numai daca $\exists c, n_0 \gt 0 \space astfel \space incat \space 0 \le f(n) \le cg(n), \forall n \ge n_0$
 ![](./images/bigO.png)
     - cu alte cuvinte, de la un $n_0$ incolo functia $g$ va fi mai mare decat $f$ (de cele mai multe ori cu o constanta in fata)
     - de exemplu $\frac{1}{2}n ^ 3 + 100n + 100000 \in O(n ^ 3)$, adica este marginita superior de $O(n ^ 3)$ de la un n incolo
     - de asemenea, avem si ca $n ^ 2 \in O(n ^ 3)$
     - in cazul in care limita nu este stransa, adica in cazul de mai sus, se va nota $o(n)$; **Atentie: chiar daca $n ^ 2 \in o(n^3)$, $n ^ 2 \notin o(n ^ 2)$!!! $f$ trebuie sa fie strict mai mica**
-  1. **Big $\Omega$**
+2. **Big $\Omega$**
     - fiind data o functie $g(n)$, $f(n) \in \Omega(g(n))$ daca si numai daca $\exists c, n_0 \gt 0 \space astfel \space incat \space 0 \le cg(n) \le f(n), \forall n \ge n_0$
 ![](./images/bigOmega.png)
     - cu alte cuvinte, de la un $n_0$ incolo functia $g$ va fi mai mica decat $f$ (de cele mai multe ori cu o constanta in fata)
     - de exemplu $\frac{4}{11}n ^ 3 + 4n ^ 2 \in \Omega(n ^ 3)$, adica este marginita inferior de $O(n ^ 3)$ de la un $n$ incolo
     - de asemenea, avem si ca $n ^ 2 \in \Omega(n)$
     - in cazul in care limita nu este stransa, adica in cazul de mai sus, se va nota $\omega(n)$; **Atentie: chiar daca $n ^ 2 \in \omega(n)$, $n ^ 2 \notin \omega(n^2)$!!! $f$ trebuie sa fie strict mai mare**
-  1. **Big $\Theta$**
+3. **Big $\Theta$**
     - fiind data o functie $g(n)$, $f(n) \in \Theta(g(n))$ daca si numai daca $\exists c_1, c_2, n_0 \gt 0 \space astfel \space incat \space c_1g(n) \le f(n) \le c_2g(n), \forall n \ge n_0$
     - in alte cuvinte, clasa de functii $\Theta$ reprezinta toate functiile $f$ care sunt marginite si superior si inferior de functia $g$ (deseori folosindu-se constante in fata)
     - de exemplu, $100n ^ 3 + 4n ^ 2 + 1000 \in \Theta(n ^ 3)$, dar $100n ^ 3 + 4n ^ 2 + 1000 \notin \Theta(n ^ 4) \space sau \space \Theta(n ^ 2)$
+
+- Exercitiu: Este adevarat ca $2 ^ {n + 1} \in O(2 ^ n)$? Dar $2 ^ {2n} \in O(2 ^ n)$?
 
 ![](./images/bigTheta.png)
 
@@ -52,27 +60,26 @@
 - **Exercitiu:** Dati exemplu de un algoritm aflat in $\Theta(n ^ 3)$
 - Complexitate de spatiu ocupat se face similar si este intuitiva dupa ce ati inteles-o pe cea de timp, de multe ori fiind cea mai usoara de aflat; un exemplu ar fi ca daca in cadrul programului avem o matrice de dimensiune $n ^ 2$ si un vector de dimensiune $10n$ atunci algoritmul va fi in $O(n ^ 2)$, chiar $\Theta(n ^ 2)$; daca sirul avea dimensiunea $m$ atunci complexitate finala era $O(n ^ 2 + m)$, la fel ca la timp ;)
 
----
 
 ## 3 - Teorema master
 - Algoritmii se clasifica in 2 clase: cei iterativi si cei recursivi
 - Pentru cei iterativi deseori nu este complicat sa aflam complexitatile, mai ales ca sunt mai usor de urmarit
-- Pentru cei recursivi insa, trebuie sa tinem cont de mai multi factori, inclusiv de cate apeluri sunt facute si de ce complexitate au operatiile efective
-- 
+- Pentru cei recursivi insa, trebuie sa tinem cont de mai multi factori, inclusiv de cate apeluri sunt facute si de ce complexitate au operatiile efective; pentru aceasta este foarte utila **Teorema Master**, invatata la Programarea Algoritmilor din semestrul I
+- Pe scurt, pentru a afla numarul de pasi pe care ii realizeaza algoritmul in functie de inputul dat, se va folosi formula urmatoare: $T(n) = aT(\frac{n}{b}) + f(n)$, unde $a$ reprezinta numarul maxim de subprobleme apelate la un pas din recursivitate, $b$ reprezinta numarul de subprobleme egale in care este impartita problema la un pas din recursivitate, iar $f(n)$ este complexitatea, in functie de inputul $n$ al unui apel al functiei, fara a considera subapelurile; de asemenea, **$a$ si $b$ trebuie sa fie constante, daca nu sunt nu merge aplicata teorema**
+- De aici, puteti fie sa folositi in continuare teorema ce va fi prezentata mai jos, fie faceti de mana toate calculele si obtineti o forma finala din care reiese complexitatea; exemplu:
+- Pe baza formulei de mai sus, in functie de diferiti factori, se disting 3 cazuri (vom considera $\alpha = \log_b a$):
+1. Cazul 1
+    - Daca $f(n) = O(n ^ c), \space c < \alpha$ atunci $T(n) = \Theta(n ^ \alpha)$
+    - De exemplu, pentru $T(n) = 8T(n / 2) + 1000 n ^ 2$ avem ca $T(n) \in \Theta(n ^ 3)$
+2. Cazul 2
+    - Daca $f(n) \in \Theta(n ^ \alpha (\log n) ^ k)$ atunci $T(n) = \Theta(n ^ \alpha (\log n) ^ {k + 1})$
+    - De exemplu, $T(n) = 2T(\frac{n}{2}) + 10n$, avem ca $T(n) \in \Theta(n \log n)$
+3. Cazul 3
+    - Daca $f(n) = \Omega(n ^ c), \space c > \alpha$ atunci $T(n) \in \Theta(f(n))$
+    - De exemplu, daca avem $T(n) = 2T(\frac{n}{2}) + n ^ 2$, atunci $T(n) \in \Theta(n ^ 2)$
 
-- Algoritmi si complexitati
-  - Analiza recursivitatii: metode si teorema Master
-  - Analiza probabilistica: secretary problem, birthday paradox
-  - Lower and Upper Bound Theory (sorting, generalisation)
+- Din cate se poate observa, cele 3 cazuri **nu acopera toate posibilitatile**, deoarece intre cazul 1 si cazul 2 si cazul 2 si cazul 3, diferentele dintre complexitati trebuie sa fie polinomiale (adica sa fie de forma $n ^ d$ (luati $k = 0$ in cazul 2)); deci daca am avea $f(n) = O(n ^ c + m)$ atunci nu am intra in niciun caz, deci nu  putem rezolva problema cu teorema Master
 
-- Structuri de date elementare
-  - C++ equivalents and OOP
-  - liste (3 tipuri) & implementare OOP
-  - stive
-  - cozi
-  - deque
- 
----
 
 ## 4 - Algoritmi de sortare
 
@@ -381,9 +388,176 @@ void shellSort(std::vector<int>& t) {
 
 * ### <ins>4.13. Tim Sort</ins>
 
+## 4 - Analiza probabilistica
+- Deseori, analiza de tip **worst case scenario** nu ne ofera informatii prea realiste cu privire la complexitatea pe care o sa o aiba un algoritm in practica, de cele mai multe ori
+- De aceea, dorim sa analizam un algoritm si avand in vedere **average running time**-ul lui, iar acest lucru se face deseori tinand cont de anumite probabilitati ale formatului inputului
+- Ca exemplu, o problema clasica este **hiring assistant problem**: aveti la dispozitie $n$ posibili angajati. Voi ii luati la rand si, in momentul in care cel curent este mai bun decat toti ceilalti, il dati afara pe cel existent si il angajati pe cel curent, insa la fiecare noua angajare platiti un cost $m$. Intrebarea importanta este cat va fi costul pe care trebuie sa-l platiti dupa ce ati procesat toti cei $n$ angajati (worst case este $nm$, dar este foarte improbabil caci avem $n!$ permutari din care putem alege)
+- Acum, in functie de ce distributie are inputul, putem aplica analiza probabilistica sau nu. De exemplu, daca stim ca numerele corespunzatoare rank-urilor angajatilor sunt sortate crescator in majoritatea timpului, atunci este costul va fi $nm$ sau pe aproape, si nu putem folosi probabilistica. Daca inputul are o distributie aleatoare atunci putem, caci putem folosi putin din teoria probabilitatilor despre care veti invata in anul 2 sem 1
+- Pentru a rezolva problema in continuare in mod probabilistic, presupunem ca inputul a fost generat random. Astfel, mai departem vom introduce o variabila $X_i$ ce reprezinta cati angajati ne asteptam sa avem cand procesam candidatul $i$; evident sunt fie 0 sau 1. Inmultind ambele numere cu probabilitatea ca acest candidat $i$ sa fie angajat (cum avem de ales din $i$ candidati dintre care exista un singur maxim, avem ca probabilitatea este $\frac{1}{i}$), obtinem ca $X_i$ = $\frac{1}{i}$. Aici am aplicat conceptul de **expected value** (exemplu aruncare moneda sau zar). La final, pentru fiecare $i$ adunam valorile lui $X_i$ si obtinem costul ca fiind exact $m\ln n$
+- **Important de observat**: problema poate fi modificata astfel incat complexitatea de timp sa fie cea pe care dorim sa o aflam: inlocuind costul $m$ cu executia unui program de complexitate $O(m)$ atunci cand se angajeaza cineva. In acest mod, putem observa cum analiza probabilistica are relevanta in practica, desi nu este descrie toate cazurile. De exemplu, complexitatea in acest caz a algoritmului nu ar fi fost $O(nm)$ cu $O(n \log n)$
+- In cazul in care distributia inputului nu este random, de exemplu stim ca este mereu sortat sau aproape sortat, putem sa generam random o permutare si astfel sa obtinem un nou input pe care complexitatea sa fie, in medie, mai buna. Astfel, adaugand aceasta reordonare, am obtinut un **algoritm randomizat**
+- Alte probleme de analiza probabilistica cu rezultate neintuitive: **secretary problem**, **birthday paradox**
+
+
+## 5 - Stiva
+- Stiva este o structura de date care aranjeaza elementele dupa principiul **LIFO (Last In First Out)** (ganditi-va la cum se comporta o stiva de farfurii - puteti adauga sau extrage elemente doar din varf)
+- Operatia de adaugare a unui element se numeste **PUSH**, cea de stergere din varful stivei **POP**, iar cea de aflare a elementului din varful **TOP** / **PEEK**
+- Complexitatea de timp a adaugarii unui element este $O(1)$, iar a stergerii unui anumit element este $O(n)$
+- Pentru a lucra cu stive eficient in C++, fie se va creati voi una (un exemplu este dat mai jos), fie se va folosi implementarea deja existenta din **STL**, si anume `std::stack` despre care puteti afla mai multe lucruri de [aici](https://en.cppreference.com/w/cpp/container/stack)
+- **STL** este colectie de structuri de date, fiecare cu biblioteca ei ce trebuie importata, care are implementari abstracte (de exemplu, se pot defini pe diferite tipuri de date) pentru toate structurile de date uzuale
+- Implementare STL pentru stiva:
+```cpp
+#include <iostream>
+#include <stack>
+
+int main() {
+    std::stack<int> stack;
+
+    // Push elements
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    std::cout << "Elements pushed to stack.\n";
+
+    // Get top element
+    std::cout << "Top element: " << stack.top() << "\n";
+
+    // Pop elements
+    std::cout << "Popped element: " << stack.top() << "\n";
+    stack.pop();
+    
+    std::cout << "Top element after pop: " << stack.top() << "\n";
+    
+    // Check if stack is empty
+    if (stack.empty()) {
+        std::cout << "Stack is empty.\n";
+    } else {
+        std::cout << "Stack is not empty.\n";
+    }
+    
+    return 0;
+}
+```
+- Implementare OOP pentru stiva:
+```cpp
+#include <iostream>
+
+int const MAX_SIZE = 100; // max size of stack
+
+class Stack {
+private:
+    int top;
+    int arr[MAX_SIZE];
+
+public:
+    Stack() {
+        top = -1; // Constructor to initialize stack
+    }
+
+    bool isEmpty() {
+        return (top == -1);
+    }
+
+    bool isFull() {
+        return (top == MAX_SIZE - 1);
+    }
+
+    void push(int value) {
+        if (isFull()) {
+            std::cout << "Stack Overflow!\n";
+            return;
+        }
+        arr[++top] = value;
+        std::cout << value << " pushed to stack\n";
+    }
+
+    int pop() {
+        if (isEmpty()) {
+            std::cout << "Stack Underflow!\n";
+            return -1;
+        }
+        return arr[top--];
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            std::cout << "Stack is empty!\n";
+            return -1;
+        }
+        return arr[top];
+    }
+};
+
+int main() {
+    Stack stack;
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    
+    std::cout << "Top element: " << stack.peek() << "\n";
+    std::cout << "Popped element: " << stack.pop() << "\n";
+    std::cout << "Top element after pop: " << stack.peek() << "\n";
+    
+    return 0;
+}
+```
+
+## 6 - Coada
+- Coada este o structura de date ce organizeaza datele pe care le primeste, in ordine, dupa principiul **FIFO**
+- Coada are 2 componente: capul (pe unde se extrag elementele) si coada (tail, pe unde se adauga elementele)
+- Operatia de adaugare a unui element se numeste **ENQUEUE**, cea de stergere **DEQUEUE**, iar cea de aflare a elementului din cap **TOP** / **PEEK**, toate avand complexitatea de $O(1)$
+- Pentru a lucra cu cozi eficient in C++, fie se va creati voi una (un exemplu este dat mai jos), fie se va folosi implementarea deja existenta din **STL**, si anume `std::queue` despre care puteti afla mai multe lucruri de [aici](https://en.cppreference.com/w/cpp/container/queue)
+- Implementare STL pentru coada:
+```cpp
+#include <iostream>
+#include <queue>
+
+int main() {
+    std::queue<int> q;
+
+    // Enqueue elements
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    std::cout << "Elements pushed to queue.\n";
+
+    // Get front and back elements
+    std::cout << "Front element: " << q.front() << "\n";
+    std::cout << "Back element: " << q.back() << "\n";
+
+    // Dequeue elements
+    std::cout << "Dequeued element: " << q.front() << "\n";
+    q.pop();
+    
+    std::cout << "Front element after dequeue: " << q.front() << "\n";
+    
+    // Check if queue is empty
+    if (q.empty()) {
+        std::cout << "Queue is empty.\n";
+    } else {
+        std::cout << "Queue is not empty.\n";
+    }
+    
+    return 0;
+}
+
+```
+
+## 7 - Deque
+- Deque-ul este o structura de date foarte utila (desi de multe ori nu este necesara) care combina functionalitatile stivei si cozii; numele ei vine de la **Double Ended QUEue**
+- Ea realizeaza stocarea inputului in ordinea data intr-un sir, insa permite modificarea datelor la ambele capete ale sirului: stergere + adaugare la inceput si stergere + adaugare la final
+- In STL, este implementata de `std::deque` cu metode foarte similare celor 2 structuri descrise mai sus
+
+
+Exercitii:
+1. Explain how to implement two stacks in one array $A[1 .. n]$ in such a way that neither stack overﬂows unless the total number of elements in both stacks together is $n$. The **PUSH** and **POP** operations should run in $O(1)$ time.
+2. Given an array, find the next greater element for each element.
+3. Given an array and window size k, find the maximum element in each window of size k.
+4. Implement a stack using 2 queues (then try with 1 queue)
+
 ---
 
 #### Notes 
-* <b>Seria 13</b>: Algoritmi de sortare (Merge Sort, Insert Sort, Heap Sort, Quick Sort, Select Sort; Comparison Sorts), Heaps (implementare ca Array; Heapify(), BuildHeap()), Priority Queues (insert, pop), Decision Trees, Arrays, Vectors, Stacks (+array-based implementation), Queues, Deques, Linked Lists, Skip Lists, Hash Tables (Chaining, Open Addressing, Double Hashing, Perfect Hashing), Bloom Filters.
+* <b>Seria 13</b>: Algoritmi de sortare (Merge Sort, Insert Sort, Heap Sort, Quick Sort, Select Sort; Comparison Sorts), Heaps (implementare ca Array; Heapify(), BuildHeap()), Priority Queues (insert, pop), Decision Trees, Arrays, Vectors, Stacks (+array-based implementation), Queues, Deques.
 * <b>Seria 14</b>: Algoritmi de sortare (Merge Sort, Quick Sort), clase de complexitati, teorema master, probabilitati (birthday paradox, secretary problem).
 * <b>Seria 15</b>: Algoritmi de sortare (Merge Sort + in-place, Heap Sort, Quick Sort, Count Sort, Bucket Sort, Radix Sort, Block Sort, Intro Sort, Tim Sort), clase de complexitati, Heaps, Arrays, Vectors, Linked Lists.

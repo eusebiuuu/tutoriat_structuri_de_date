@@ -21,17 +21,18 @@
   - Intro sort
   - Tim sort
   - Block sort
-  - Medians and ordered statistics
 - Heap & heapsort
 - Structuri de date elementare
-  - liste (3 tipuri)
   - stive
   - cozi
   - deque
 
 ### Tutoriat 2
+- Liste: simplu inlantuite, dublu inlantuite, circulare
 - Skip-lists
+- Bloom filters
 - Hash tables
+  - Chaining, Open Addressing, Double Hashing, Perfect Hashing
   - Perfect hashing
   - Universal hashing
   - LRU
