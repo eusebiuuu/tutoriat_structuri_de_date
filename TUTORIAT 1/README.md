@@ -567,10 +567,10 @@ int main() {
 
 ## 10 - Exercitii
 1. Valid parantheses problem.
-1. Explain how to implement two stacks in one array $A[1 .. n]$ in such a way that neither stack overﬂows unless the total number of elements in both stacks together is $n$. The **PUSH** and **POP** operations should run in $O(1)$ time.
-2. Given an array, find the next greater element for each element.
-3. Given an array and window size k, find the maximum element in each window of size k.
-4. Implement a stack using 2 queues (then try with 1 queue)
+2. Explain how to implement two stacks in one array $A[1 .. n]$ in such a way that neither stack overﬂows unless the total number of elements in both stacks together is $n$. The **PUSH** and **POP** operations should run in $O(1)$ time.
+3. Given an array, find the next greater element for each element.
+4. Given an array and window size k, find the maximum element in each window of size k.
+5. Implement a stack using 2 queues (then try with 1 queue)
 
 ---
 
