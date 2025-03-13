@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
 // SORTING ALGORITHMS
 // Bubble, Count, Select, Insert, Quick, Merge, Heap, Bucket, Radix, Shell, Block, Intro, Tim
@@ -162,6 +163,43 @@ void mergeSort(std::vector<int> &t, const int left, const int right) {
 
 // 7. MERGE SORT (IN-PLACE)
 
+void mergeInPlace(std::vector<int> &t, const int left, int mid, const int right) {
+    // daca e deja sortat
+    if (t[mid] <= t[mid + 1]) {
+        return;
+    }
+
+    int p1 = left;
+    int p2 = mid + 1;
+    while (p1 <= mid && p2 <= right) {
+        // elementul de la p1 este deja pozitionat corect
+        if (t[p1] <= t[p2]) {
+            p1++;
+        } else {
+            int auxIndex = p2;
+            const int auxValue = t[p2];
+            // mutam totul in fata cu o pozitie si il plasam pe p2
+            while (auxIndex != p1) {
+                t[auxIndex] = t[auxIndex - 1];
+                --auxIndex;
+            }
+            t[p1] = auxValue;
+            ++p1;
+            ++p2;
+            ++mid;
+        }
+    }
+}
+
+void mergeSortInPlace(std::vector<int> &t, const int left, const int right) {
+    if (left < right) {
+        const int mid = (right - left) / 2 + left;
+        mergeSortInPlace(t, left, mid);
+        mergeSortInPlace(t, mid + 1, right);
+        mergeInPlace(t, left, mid, right);
+    }
+}
+
 
 // 8. HEAP SORT
 // time O(nlogn), space O(1), unstable
@@ -218,7 +256,7 @@ void bucketSort(std::vector<double> &t) {
     int j = 0;
     for (int i = 0; i < 10; ++i) {
         for (const auto &x: buckets[i]) {
-           t[j++] = x;
+            t[j++] = x;
         }
     }
 }
@@ -260,7 +298,7 @@ void radixSort(std::vector<int> &t) {
 
 
 // 11. SHELL SORT
-void shellSort(std::vector<int>& t) {
+void shellSort(std::vector<int> &t) {
     const int n = t.size();
     for (int gap = n / 2; gap > 0; gap /= 2) {
         for (int i = gap; i < n; ++i) {
@@ -276,6 +314,36 @@ void shellSort(std::vector<int>& t) {
 
 
 // 12. BLOCK SORT
+void blockSort(std::vector<int> &t) {
+    const int blockSize = 3;
+    const int n = t.size();
+    std::vector<std::vector<int> > blocks;
+    for (int i = 0; i < n; i += blockSize) {
+        std::vector<int> auxBlock;
+        for (int j = i; j < i + blockSize && j < n; ++j) {
+            auxBlock.push_back(t[j]);
+        }
+        // aici intra orice sortare
+        std::ranges::sort(auxBlock);
+        blocks.push_back(auxBlock);
+    }
+    int m = blocks.size();
+    int j = 0;
+    while (!blocks.empty()) {
+        int minIndex = 0;
+        for (int i = 1; i < m; ++i) {
+            if (blocks[i][0] < blocks[minIndex][0]) {
+                minIndex = i;
+            }
+        }
+        t[j++] = blocks[minIndex][0];
+        blocks[minIndex].erase(blocks[minIndex].begin());
+        if (blocks[minIndex].empty()) {
+            blocks.erase(blocks.begin() + minIndex);
+            --m;
+        }
+    }
+}
 
 
 // 13. INTRO SORT
@@ -294,10 +362,12 @@ int main() {
     // insertSort(v);
     // quickSort(v, 0, v.size() - 1);
     // mergeSort(v, 0, v.size() - 1);
+    // mergeSortInPlace(v, 0, v.size() - 1);
     // heapSort(v);
     // radixSort(v);
     // bucketSort(v);
-    shellSort(v);
+    // shellSort(v);
+    blockSort(v);
 
     for (const auto &x: v) {
         std::cout << x << " ";
