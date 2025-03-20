@@ -23,6 +23,8 @@
 
 ## 4 - Bloom Filters
 
+![Image](images/bloomfilters.png)
+
 ---
 
 #### Notes 
