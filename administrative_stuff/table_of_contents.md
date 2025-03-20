@@ -38,7 +38,7 @@
   - LRU
 
 ### Tutoriat 3
-- Arbori: parcurgeri, reprezentare, teorie
+- Arbori: representing rooted trees, parcurgeri, reprezentare, teorie
 - Binary search trees
 - Balanced BST
 

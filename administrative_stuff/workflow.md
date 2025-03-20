@@ -1,5 +1,5 @@
-- Ask for latest lessons
-- Go through the theory materials and write summary
+- **Go through the theory materials**
+  - indications: practical examples, intuition, drawings
   - Add table of contents
   - Cormen book
   - Cursuri (seria 13, 14, 15)
@@ -12,8 +12,14 @@
 - Push the final version and announce the collaborator
 - Final reviews and modifications
 - Make announcement to **community** about what will be taught next
-- Local lesson teaching plan
+- Teaching plan recap
+  - Prepare the presentation devices:
+    - writing board
+    - video proiector
+  - Materials recap
+  - Foile de prezenta
   - Overview
   - Ask for taught lessons lately
-  - breaks, division, questions, update the materials with asked questions etc.
-- Foile de prezenta
+  - Update the materials with asked questions
+  - Presentation based on written materials & examples & continuous feedback & continuous talk
+  - Individual work after presentation
