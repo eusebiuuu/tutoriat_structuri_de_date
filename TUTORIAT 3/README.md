@@ -10,3 +10,6 @@
 ---
 
 #### Notes 
+- <b>Seria 13</b>: BSTs (Binary Search Trees).
+- <b>Seria 14</b>: Sortari in timp liniar (Count Sort, Bucket Sort, Radix Sort; toate discutate la Tutoriat 1), limite inferioare pentru sortare.
+- <b>Seria 15</b>: Hash Tables (discutate la Tutoriat 2)
