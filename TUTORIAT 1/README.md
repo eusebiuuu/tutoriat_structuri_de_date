@@ -366,6 +366,41 @@ void radixSort(std::vector<int> &t) {
 
 * ### <ins>4.10. Block Sort</ins>
 
+![Image](images/sorting-algs/blocksort.png)
+
+```cpp
+void blockSort(std::vector<int> &t) {
+    const int blockSize = 3;
+    const int n = t.size();
+    std::vector<std::vector<int> > blocks;
+    for (int i = 0; i < n; i += blockSize) {
+        std::vector<int> auxBlock;
+        for (int j = i; j < i + blockSize && j < n; ++j) {
+            auxBlock.push_back(t[j]);
+        }
+        // aici intra orice sortare
+        std::ranges::sort(auxBlock);
+        blocks.push_back(auxBlock);
+    }
+    int m = blocks.size();
+    int j = 0;
+    while (!blocks.empty()) {
+        int minIndex = 0;
+        for (int i = 1; i < m; ++i) {
+            if (blocks[i][0] < blocks[minIndex][0]) {
+                minIndex = i;
+            }
+        }
+        t[j++] = blocks[minIndex][0];
+        blocks[minIndex].erase(blocks[minIndex].begin());
+        if (blocks[minIndex].empty()) {
+            blocks.erase(blocks.begin() + minIndex);
+            --m;
+        }
+    }
+}
+```
+
 * ### <ins>4.11. Shell Sort</ins>
 
 ![Image](images/sorting-algs/shellsort.png)

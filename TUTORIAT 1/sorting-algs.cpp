@@ -314,6 +314,7 @@ void shellSort(std::vector<int> &t) {
 
 
 // 12. BLOCK SORT
+// timp O(nlogn), spatiu O(1), stabil
 void blockSort(std::vector<int> &t) {
     const int blockSize = 3;
     const int n = t.size();
