@@ -2,14 +2,18 @@
 
 > Tutori: Costescu Mihail, Rîmboi Eusebiu
 
-## Table of contents
-- [TUTORIAT STRUCTURI DE DATE (SERIILE 13, 14 si 15)](#tutoriat-structuri-de-date-seriile-13-14-si-15)
-  - [Table of contents](#table-of-contents)
-  - [1 - Informatii generale](#1---informatii-generale)
-  - [2 - Continutul tutoriatului](#2---continutul-tutoriatului)
-    - [Tutoriat 1](#tutoriat-1)
+![Image](administrative_stuff/images/bestpicever.png)
 
-## 1 - Informatii generale
+---
+
+## Table of contents
+  - [Informatii generale](#informatii-generale)
+  - [Continutul tutoriatului](#continutul-tutoriatului)
+    - [Tutoriat 1](#tutoriat-1)
+    - [Tutoriat 2](#tutoriat-2)
+    - [Tutoriat 3](#tutoriat-3)
+
+## Informatii generale
 * Materialele pe care le vom discuta vor include **toata materia** de la **toate cele 3 serii**.
 * Pentru mai multe informatii aruncati, un ochi peste cuprinsul tutoriatului [aici](./administrative_stuff/table_of_contents.md).
 * In caz ca aveti intrebari si / sau completari pentru structura tutoriatului, adresati-le pe grupul de WhatsApp.
@@ -20,8 +24,14 @@
 
 ---
 
-## 2 - Continutul tutoriatului
+## Continutul tutoriatului
 ### Tutoriat 1
 * <b>Clase de complexitati, Teorema Master, analiza probabilistica</b>.
 * <b>Algoritmi de sortare</b>: Count Sort, Select Sort, Insert Sort, Quick Sort (<b>DISCUTIE PE PIVOT</b>), Merge Sort (<b>+VARIANTA IN-PLACE</b>), Heap Sort, Bucket Sort, Radix Sort (<b>MSD/LSD</b>), Block Sort, Intro Sort, Tim Sort.
 * <b>Structuri de date</b>: Arrays, Vectors, Stacks, Queues, Deques, Heaps, Priority Queues.
+
+### Tutoriat 2
+* <b>Structuri de date</b>: Linked Lists, Skip Lists, Hash Tables, Bloom Filters.
+
+### Tutoriat 3
+* <b>Structuri de date</b>: Binary Search Trees (BSTs).
