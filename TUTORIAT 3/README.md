@@ -1,6 +1,6 @@
 # Table of contents
 - [Binary Search Trees](#1---binary-search-trees)
-- [Exercitii de examen](#2---exercitii-examen)
+- [Exercitii examen](#2---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 14](#seria-14)
     - [Seria 15](#seria-15)
@@ -13,7 +13,7 @@
 
 ---
 
-## 2 - Exercitii de examen
+## 2 - Exercitii examen
 
 ###  Seria 13
 
@@ -63,11 +63,13 @@
     - Al optulea nod.
     - Raspunsurile de mai sus nu sunt corecte.
 11. Se da o expresie aritmetica reprezentata ca un arbore sintactic (imagine). Care este ordinea in care sunt evaluate nodurile pentru a calcula valoarea expresiei?
-![Image](images/expression_tree.png)
     - <b>a,+,b,*,c,root(+),7</b>.
     - <b>7,a,b,c,+,*,root(+)</b>.
     - <b>a,b,+,c,*7,root(+)</b>.
     - Raspunsurile de mai sus nu sunt corecte.
+    
+![Image](images/expression_tree.png)
+
 12. Pentru algoritmul <b>Heap Sort</b>, numarul minim de swap-uri de elemente se atinge cand:
     - Secventa initiala este sortata crescator.
     - Secventa initiala este sortata descrescator.
