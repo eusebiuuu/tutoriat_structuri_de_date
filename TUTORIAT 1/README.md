@@ -1,16 +1,14 @@
 # Table of contents
-- [Table of contents](#table-of-contents)
-  - [1 - Introducere in algoritmica](#1---introducere-in-algoritmica)
-  - [2 - Algoritmi si complexitati](#2---algoritmi-si-complexitati)
-  - [3 - Teorema master](#3---teorema-master)
-  - [4 - Algoritmi de sortare](#4---algoritmi-de-sortare)
-  - [5 - Analiza probabilistica](#5---analiza-probabilistica)
-  - [6 - Stiva](#6---stiva)
-  - [7 - Coada](#7---coada)
-  - [8 - Deque](#8---deque)
-  - [9 - Heap](#9---heap)
-  - [10 - Exercitii](#10---exercitii)
-      - [Notes](#notes)
+- [1 - Introducere in algoritmica](#1---introducere-in-algoritmica)
+- [2 - Algoritmi si complexitati](#2---algoritmi-si-complexitati)
+- [3 - Teorema master](#3---teorema-master)
+- [4 - Algoritmi de sortare](#4---algoritmi-de-sortare)
+- [5 - Analiza probabilistica](#5---analiza-probabilistica)
+- [6 - Stiva](#6---stiva)
+- [7 - Coada](#7---coada)
+- [8 - Deque](#8---deque)
+- [9 - Heap](#9---heap)
+- [10 - Exercitii](#10---exercitii)
 
 ---
 
@@ -422,6 +420,26 @@ void shellSort(std::vector<int>& t) {
 ```
 
 * ### <ins>4.12. Intro Sort</ins>
+
+Este algoritmul de sortare folosit de <b>C++</b> (si alte limbaje). Este un <b>algoritm hibrid</b>, deoarece combina <b>Quick Sort</b>, <b>Heap Sort</b> si <b>Insertion Sort</b>, in functie de caz.
+
+Fiecare dintre cei 3 algoritmi de mai sus exceleaza in anumite cazuri. Felul in care se alege o sortare este urmatoarea:
+
+1. Se incepe cu <b>Quick Sort</b> si se creeaza o partitie. Daca exista o posibilitate ca partitionarea respectiva sa conduca la un anumit numar ridicat de apeluri recursive (<b>2*logn</b>), se utilizeaza <b>Heap Sort</b>.
+2. Daca partitiile sunt prea mici (<b>16</b> elemente), se trece pe <b>Insert Sort</b>.
+3. Altfel, continuam cu <b>Quick Sort</b>.
+
+#### De ce se foloseste Insert Sort?
+
+Este cel mai optim algoritm de sortare, atunci cand sunt putine valori.
+
+#### De ce se foloseste Heap Sort?
+
+Se pune accent pe faptul ca foloseste <b>O(1)</b> spatiu.
+
+#### De ce s-au ales acele 2 limite pentru apeluri recursive si numar de elemente?
+
+Dupa multe studii si teste practice, s-a ajuns la concluzia ca <b>Intro Sort</b> se descurca cel mai bine pe aceste valori.
 
 * ### <ins>4.13. Tim Sort</ins>
 
