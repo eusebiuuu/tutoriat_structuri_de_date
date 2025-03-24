@@ -32,10 +32,10 @@
 - Skip-lists
 - Bloom filters
 - Hash tables
-  - Chaining, Open Addressing, Double Hashing, Perfect Hashing
-  - Perfect hashing
-  - Universal hashing
+  - Collisions management
+  - Hash function: Open Addressing, Double Hashing, Perfect Hashing, Universal hashing
   - LRU
+  
 
 ### Tutoriat 3
 - Arbori: representing rooted trees, parcurgeri, reprezentare, teorie

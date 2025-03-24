@@ -2,7 +2,6 @@
   - indications: practical examples, intuition, drawings
   - Add table of contents
   - Cormen book
-  - Cursuri (seria 13, 14, 15)
   - C++ STL equivalents
   - Implementari OOP
 - Find practice exercises for the created materials
@@ -12,14 +11,21 @@
 - Push the final version and announce the collaborator
 - Final reviews and modifications
 - Make announcement to **community** about what will be taught next
-- Teaching plan recap
+- Teaching plan:
   - Prepare the presentation devices:
     - writing board
     - video proiector
   - Materials recap
   - Foile de prezenta
-  - Overview
-  - Ask for taught lessons lately
-  - Update the materials with asked questions
-  - Presentation based on written materials & examples & continuous feedback & continuous talk
-  - Individual work after presentation
+  - Presentation based on written materials & continuous feedback & continuous talk
+
+---
+
+- Teaching plan:
+  - Prepare the presentation devices:
+    - writing board
+    - video proiector
+  - Materials recap
+  - Foile de prezenta
+  - Tutoriat 2
+  - Presentation based on written materials & clarity & feedback
