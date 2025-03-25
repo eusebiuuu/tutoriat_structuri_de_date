@@ -11,6 +11,8 @@
       - [1. Chaining](#1-chaining)
       - [2. Open addressing](#2-open-addressing)
       - [3. Perfect hashing](#3-perfect-hashing)
+    - [Implementari C++](#implementari-c)
+  - [Exercitiu: Least recently used algorithm (LRU)](#exercitiu-least-recently-used-algorithm-lru)
   - [4 - Bloom Filters](#4---bloom-filters)
   - [](#)
       - [Notes](#notes)
@@ -256,15 +258,92 @@ int main() {
 #### 3. Perfect hashing
 - Totusi, o limitare la **open addressing** reprezinta situatia in care tabelul se va umple, caz in care nu mai putem face nimic
 - Ca urmare, cum ambele variante de mai sus au beneficii si dezavantaje, folosite individual, ce-ar fi sa le combinam sa le minimizam dezavantajele?
-- Altfel spus, ce-ar fi sa avem un hash table care gestioneaza coliziunile in stil **chaining** in care fiecare slot reprezinta un alt hash table in care fiecare coliziunile se gestioneaza in stil **open address**, iar functiile hash ale amandurora sa fie aproape de **uniform hashing**. In acest fel avem optimizarea memoriei fata de simplul chaining, dar si prevenirea blocajelor (atunci cand se umple tabelul) si timpul prea mare de cautare in anumite situatii de la **open addressing** (coliziunile din fiecare hash table de pe nivelul 2 sunt prevenite generandu-se dimensiuni speciale pentru hash table-uri; ele sunt bazate pe demonstratii matematice astfel incat sa nu creeaze probleme cu memoria si, in acelasi timp, sa previna cu adevarat coliziunile)
+- Intrebari: care sunt dezavantajele chaining-ului? Dar ale open addressing-ului?
+- Altfel spus, ce-ar fi sa avem un hash table care gestioneaza coliziunile in stil **chaining** in care fiecare slot reprezinta un alt hash table in care fiecare coliziunile se gestioneaza in stil **open address**, iar functiile hash ale amandurora sa fie aproape de **uniform hashing**? In acest fel avem optimizarea memoriei alocate dar si timpul de accesare fata de simplul chaining, dar si prevenirea blocajelor (atunci cand se umple tabelul) si timpul prea mare de cautare in anumite situatii de la **open addressing** (coliziunile din fiecare hash table de pe nivelul 2 sunt prevenite generandu-se dimensiuni speciale pentru hash table-uri; ele sunt bazate pe demonstratii matematice astfel incat sa nu creeze probleme cu memoria si, in acelasi timp, sa previna cu adevarat coliziunile)
 
-- Hash tables
-  - Hash function: Open Addressing, Double Hashing, Perfect Hashing
-  - LRU
-  - C++ STL equivalents
-  - Implementari OOP
+### Implementari C++
+- In C++, hash table-ul este implementat sub numele de `std::unordered_map`. Mai multe detalii [aici](https://en.cppreference.com/w/cpp/container/unordered_map)
 
----
+## Exercitiu: Least recently used algorithm (LRU)
+- Problema: dorim sa simulam cat mai bine un cache, adica sa cream un algoritm care sa foloseasca anumite structuri de date ce imita cat mai bine functionalitatile unui cache: atunci cand cautam un element, fie il gasim si punem elementul la inceput, fie nu il gasim, caz in care il adaugam si stergem cel mai nefolosit element daca se depaseste dimensiunea fixa a cache-ului.
+- **Incercari si intuitie**
+- Solutie: se va folosi o lista simplu inlantuita de dimensiune fixa pentru a reprezenta cache-ul efectiv si pentru a avea O(1) la stergere efectiva + inserare la inceput. De asemenea, se va mai folosi un hash table pentru a stoca ca valori pointerii din lista inlantuita pentru a putea fi accesati in $O(1)$ atunci cand dorim sa stergem un element.
+- **Intrebare: de ce nu putem folosi doar hash table-ul?**
+- Implementare C++:
+```cpp
+#include <iostream>
+#include <unordered_map>
+#include <list>
+
+class LRUCache {
+private:
+    int capacity;
+    std::list<std::pair<int, int>> cacheList; // Doubly Linked List (stores {key, value})
+    std::unordered_map<int, std::list<std::pair<int, int>>::iterator> cacheMap; // HashMap for O(1) lookup
+
+public:
+    LRUCache(int cap) {
+        capacity = cap;
+    }
+
+    int get(int key) {
+        if (cacheMap.find(key) == cacheMap.end()) {
+            return -1; // Key not found
+        }
+
+        // Move the accessed item to the front (most recently used)
+        auto it = cacheMap[key];
+        int value = it->second;
+        cacheList.erase(it);
+        cacheList.push_front({key, value});
+        cacheMap[key] = cacheList.begin(); // Update map
+
+        return value;
+    }
+
+    void put(int key, int value) {
+        if (cacheMap.find(key) != cacheMap.end()) {
+            // Key already exists, update value and move to front
+            auto it = cacheMap[key];
+            cacheList.erase(it);
+        } else if (cacheList.size() >= capacity) {
+            // Cache is full, remove the least recently used item (from the back)
+            auto last = cacheList.back();
+            cacheMap.erase(last.first); // Remove from map
+            cacheList.pop_back();
+        }
+
+        // Insert the new key-value pair at the front
+        cacheList.push_front({key, value});
+        cacheMap[key] = cacheList.begin();
+    }
+
+    void display() {
+        for (auto& pair : cacheList) {
+            std::cout << pair.first << ":" << pair.second << " ";
+        }
+        std::cout << "\n";
+    }
+};
+
+int main() {
+    LRUCache cache(3); // Capacity 3
+
+    cache.put(1, 10);
+    cache.put(2, 20);
+    cache.put(3, 30);
+    cache.display(); // 3:30 2:20 1:10
+
+    cache.get(2); // Access key 2, move it to front
+    cache.display(); // 2:20 3:30 1:10
+
+    cache.put(4, 40); // Adds 4, removes least recently used (1)
+    cache.display(); // 4:40 2:20 3:30
+
+    return 0;
+}
+
+```
 
 ## 4 - Bloom Filters
 
