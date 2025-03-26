@@ -2,8 +2,11 @@
 - [Binary Search Trees](#1---binary-search-trees)
 - [Exercitii examen](#2---exercitii-examen)
     - [Seria 13](#seria-13)
+    - [Seria 13 (rezolvari)](#seria-13---rezolvari)
     - [Seria 14](#seria-14)
+    - [Seria 14 (rezolvari)](#seria-14---rezolvari)
     - [Seria 15](#seria-15)
+    - [Seria 15 (rezolvari)](#seria-15---rezolvari)
 
 ---
 
@@ -15,7 +18,7 @@
 
 ## 2 - Exercitii examen
 
-###  Seria 13
+###  <ins>Seria 13</ins>
 
 1. Traversarea in <b>postordine</b> a unui arbore binar de cautare este <b>15, 10, 23, 25, 20, 35, 42, 39, 30</b>. Care este traversarea in <b>inordine</b> pentru acelasi arbore?
 2. Urmatoarele numere sunt inserate succesiv intr-un arbor binar de cautare gol: <b>1, 3, 5, 10, 15, 12, 16</b>. Care este inaltimea arborelui la final?
@@ -128,7 +131,37 @@ void f(struct node* head) {
 }
 ```
 
-### Seria 14
+### <ins>Seria 13 - rezolvari</ins>
+1. Deoarece este un arbore binar de cautare, traversarea in <b>inordine</b> mereu va genera valorile in ordine crescatoare. Astfel, informatia despre <b>postordine</b> este irelevanta, iar raspunsul este: <b>{10, 15, 20, 23, 25, 30, 35, 39, 42}</b>.
+2. Inaltimea este <b>5</b>.
+3. Analizam fiecare raspuns:
+    - <b>1471</b> si <b>6171</b> produc o coliziune: <b>ADEVARAT</b>, deoarece <b>1471 % 100 = 71</b> si <b>6171 % 100 = 71</b>.
+    - <b>9679</b>, <b>1989</b> si <b>4199</b> se mapeaza pe aceeasi valoare: <b>FALS</b>, deoarece <b>9679 mod 100 = 79</b> si <b>1989 mod 100 = 89</b>.
+    - Toate elementele se mapeaza pe valori distincte: <b>FALS</b>, deoarece se contrazice cu prima varianta de raspuns, care este adevarata.
+    - Incarcarea tabelei este de <b>7%</b>: <b>ADEVARAT</b>; aplicam functia pe fiecare element si vom vedea ca se ocupa slot-urile cu indecsii <b>{22, 34, 71, 79, 89, 73, 99}</b>. Functia este <b>mod 100</b> => avem indecsii de la <b>0</b> la <b>99</b> (<b>100</b> slot-uri) => <b>load factor-ul</b> este <b>7 / 100 = 7%</b>.
+4. Prima varianta este o parcurgere in <b>inordine</b>, iar celelalte 2 sunt aleatoare. Asadar, toate cele 3 raspunsuri sunt corecte. Am atasat rezolvarea:
+
+![Image](images/seria13ex4.png)
+
+5. Ultima varianta.
+6. Load factor-ul este <b>x</b>. Se tripleaza numarul de slot-uri => devine <b>x/3</b>. Se dubleaza numarul de elemente => devine <b>2x/3</b> => al doilea raspuns.
+7. Prima si a treia varianta.
+9. Raspunsurile nu sunt corecte. Am atasat rezolvarea:
+
+![Image](images/seria13ex9.png)
+
+10. Raspunsurile nu sunt corecte (ar fi al 5-lea nod).
+11. A treia varianta.
+13. In <b>3</b> moduri. Am atasat rezolvarea:
+
+![Image](images/seria13ex13.png)
+
+14. A doua varianta.
+15. A doua varianta.
+16. Probabilitatea ca un nod sa aiba un singur pointer (sa fie pe primul nivel) este de <b>100%</b>. Probabilitatea sa ajunga pe urmatorul nivel este de <b>1/2</b>, adica <b>50%</b>; asadar, prima varianta e gresita. A doua varianta este corecta, deoarece Skip List-urile sunt mereu sortate crescator. a treia varianta nu prea stiu ce inseamna?? :) 
+21. Afiseaza toate valorile listei in ordine inversa (a doua varianta). 
+
+### <ins>Seria 14</ins>
 
 1. Exprimati functiile urmatoare in notatie Θ:
     - <b>log(sqrt(n))</b>.
@@ -162,7 +195,9 @@ void f(struct node* head) {
 19. Fie <b>T</b> un arbore binar de cautare si <b>x</b> un nod care are doi copii. Demonstrati ca succesorul lui <b>x</b> nu are fiu stang, iar predecesorul lui <b>x</b> nu are fiu drept.
 20. Scrieti un algoritm in pseudocod care sa rezolve urmatoarea problema: se da o multime <b>S</b> ce contine <b>n</b> numere naturale distincte si un numar natural <b>x</b>. Decideti daca numarul <b>x</b> poate fi exprimat ca suma de 2 numere distincte din <b>S</b>. Pentru un algoritm <b>O(n<sup>2</sup>)</b>, se primesc 0,25p; pentru <b>O(nlogn)</b> sau <b>O(n)</b>, se primeste punctaj intreg.
 
-### Seria 15
+### <ins>Seria 14 - rezolvari</ins>
+
+### <ins>Seria 15</ins>
 
 1. Dintre inserare, cautare si stergerea minimului, ce operatie are complexitatea cea mai mare intr-un <b>min-heap</b> si ce complexitate are? Explicati cum se face aceasta operatie si daca este uzuala pentru heap-uri.
 2. Intr-un arbore binar de cautare, se fac urmatoarele operatii: <b>{I(5), I(3), I(14), I(11), I(31), del(3), I(7), del(11), I(9), I(8), I(16), I(17), del(14)}</b>. Aratati arborele dupa fiecare 2 operatii.
@@ -184,6 +219,67 @@ void f(struct node* head) {
 18. Se da un arbore binar. Gasiti suma maxima a unor elemente care nu se invecineaza.
 19. Cat ne costa sa aflam al doilea cel mai mic element dintr-un <b>Min-Heap</b>?
 20. Se da un vector cu valori intregi. Eliminati duplicatele.
+
+### <ins>Seria 15 - rezolvari</ins>
+1. <b>(Heap-urile au fost facute in Tutoriatul 2)</b> Inserarea are complexitate <b>O(logn)</b>, cautarea are complexitate <b>O(n)</b> si stergerea minimului are complexitate <b>O(logn)</b>. Asadar, cea mai costisitoare operatie este <b>cautarea</b>. Proprietatile Heap-urilor nu permit cautare eficienta - daca, de exemplu, avem un <b>Min-Heap</b> cu radacina <b>10</b> si copiii <b>5</b> si <b>8</b>, nu stim in ce subarbore trebuie sa mergem ca sa gasim valoarea <b>3</b>, deci ar trebui sa verificam toate valorile. Totusi, exista un mic truc pentru eficientizare: daca ar trebui sa cautam valoarea <b>7</b>, evident nu o sa fie in subarborele stang (nu poate fi in subarborele lui <b>5</b>, pentru ca <b>7</b> e mai mare).
+2. Am atasat rezolvarea:
+
+![Image](images/seria15ex2.png)
+
+4. Inaltimea minima si cea maxima coincid. Pe fiecare nivel <b>k</b> avem <b>2<sup>k</sup></b> noduri => <b>1 + 2 + 4 + 8 + 15 = 30</b> noduri; ultimul nivel este <b>4</b>.
+6. Verificati exemplul grafic de la <b>Merge Sort</b> din <b>Tutoriatul 1</b>!
+7. Am atasat rezolvarea: 
+
+![Image](images/seria15ex7.png)
+
+9. Complexitatea este <b>O(n)</b>, deoarece trebuie sa trecem prin toate elementele ca sa gasim minimul. Elementele dintr-un <b>Deque</b> nu au vreo proprietate/ordine care sa ne ajute la cautare.
+10. Am atasat rezolvarea:
+
+![Image](images/seria15ex10.png)
+
+12. Am atasat rezolvarea:
+
+![Image](images/seria15ex12.png)
+
+13. Am atasat rezolvare:
+
+![Image](images/seria15ex13.png)
+
+15. EXPLICATIE: ne folosim de o <b>stiva</b>, in care punem ultimul element din vector. Apoi, trecem prin celelalte elemente (de la indexul <b>n-2</b> la <b>0</b>): cat timp elementul curent este mai mic decat varful stivei, afisam perechea (dintre element si varful stivei) si scoatem un element de pe stiva. Odata ce stiva devine goala sau elementul curent devine mai mare, il adaugam pe stiva si trecem la urmatorul element. La final, este posibil sa fi ramas elemente in plus pe stiva, care nu au un element mai mic spre stanga; le scoatem si le afisam cu <b>-1</b> sau orice alta valoare sugestiva.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <stack>
+
+int main() {
+    const std::vector t = {3, 5, 1, 8, 10, 6, 4, 9, 2, 0};
+    const int n = t.size();
+    std::stack<int> s;
+    s.push(t[n - 1]);
+    for (int i = n - 2; i >= 1; --i) {
+        while (!s.empty() && t[i] < s.top()) {
+            std::cout << "(" << s.top() << "," << t[i] << ") ";
+            s.pop();
+        }
+        s.push(t[i]);
+    }
+    while (!s.empty()) {
+        std::cout << "(" << s.top() << "," << -1 << ") ";
+        s.pop();
+    }
+    return 0;
+}
+```
+
+17. Proprietatea arborilor binari: orice nod are maxim <b>2</b> copii. Daca vrem un arbore de inaltime <b>maxima</b>, vrem sa folosim toate nodurile sa mergem cat mai mult in jos => inaltimea maxima este <b>23</b>. Daca vrem un arbore de inaltime <b>minima</b>, punem cat mai multe noduri pe fiecare nivel. Pe nivelul <b>i</b> exista <b>2<sup>i</sup></b> noduri; <b>2<sup>0</sup> + 2<sup>1</sup> + 2<sup>2</sup> + 2<sup>3</sup> < 23 < 2<sup>0</sup> + 2<sup>1</sup> + 2<sup>2</sup> + 2<sup>3</sup> + 2<sup>4</sup></b> => inaltimea minima este <b>4</b>.
+20. In <b>C++</b>, se poate folosi <b>std::unordered_set</b> (multimile nu au duplicate). <b>Atentie</b>: e posibil ca ordinea initiala a elementelor sa nu se pastreze!
+
+```cpp
+std::vector<int> t = {1, 4, 2, 6, 0, 13, 5};
+std::unordered_set<int> aux(t.begin(), t.end());
+t = std::vector<int>(aux.begin(), aux.end());
+```
 
 ---
 
