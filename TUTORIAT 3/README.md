@@ -1,9 +1,10 @@
 # Table of contents
-- [Grafuri](#1---grafuri)
-    - [Introducere](#11---introducere)
-    - [Arbori binari si binomiali](#12---arbori-binari-si-binomiali)
-- [Binary Search Trees](#2---binary-search-trees)
-- [Exercitii examen](#3---exercitii-examen)
+- [Limite inferioare pentru sortare](#1---limite-inferioare-pentru-sortare)
+- [Grafuri](#2---grafuri)
+    - [Introducere](#21---introducere)
+    - [Arbori binari si binomiali](#22---arbori-binari-si-binomiali)
+- [Binary Search Trees](#3---binary-search-trees)
+- [Exercitii examen](#4---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 (rezolvari)](#seria-13---rezolvari)
     - [Seria 14](#seria-14)
@@ -13,9 +14,15 @@
 
 ---
 
-## 1 - Grafuri
+## 1 - Limite inferioare pentru sortare
 
-### 1.1 - Introducere
+![Image](images/lower_bound_sorting.png)
+
+---
+
+## 2 - Grafuri
+
+### 2.1 - Introducere
 
 Un graf este format dintr-o multime de noduri <b>V</b> si o multime de muchii/arce <b>E</b>. Grafurile <b>neorientate</b> contin muchii (sunt bidirectionale), iar cele <b>orientate</b> contin arce (un arc este unidirectional).
 
@@ -25,7 +32,7 @@ Un <b>graf neorientat</b> se numeste <b>conex</b>, daca exista un lant de la ori
 
 ![Image](images/grafuri.png)
 
-### 1.2 - Arbori binari si binomiali
+### 2.2 - Arbori binari si binomiali
 Un arbore este un <b>graf conex aciclic</b>; astfel, un arbore cu <b>N</b> noduri va avea mereu <b>N-1</b> muchii. Arborii au o <b>radacina</b> - un nod din care pleaca toate drumurile; putem alege orice nod sa fie radacina, iar in functie de nodul pe care il alegem, inaltimea arborelui variaza (<b>inaltimea unui arbore</b> = numarul maxim de muchii de pe un lant de la radacina la orice frunza).
 
 Un <b>arbore binar</b> este un arbore in care fiecare nod are maxim <b>2</b> copii - <b>left child(L), right child(R)</b>. Un arbore binar se numeste <b>complet</b> daca fiecare nivel este complet (are numar maxim de noduri), in afara de ultimul nivel (care, de obicei, este completat de la stanga la dreapta).
@@ -38,13 +45,13 @@ Un <b>arbore binomial</b> de ordin <b>0</b> este un singur nod (radacina). Un ar
 
 ---
 
-## 2 - Binary Search Trees
+## 3 - Binary Search Trees
 
 ![Image](images/bst.png)
 
 ---
 
-## 3 - Exercitii examen
+## 4 - Exercitii examen
 
 ###  <ins>Seria 13</ins>
 
