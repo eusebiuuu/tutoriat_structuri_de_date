@@ -1,6 +1,9 @@
 # Table of contents
-- [Binary Search Trees](#1---binary-search-trees)
-- [Exercitii examen](#2---exercitii-examen)
+- [Grafuri](#1---grafuri)
+    - [Introducere](#11---introducere)
+    - [Arbori binari si binomiali](#12---arbori-binari-si-binomiali)
+- [Binary Search Trees](#2---binary-search-trees)
+- [Exercitii examen](#3---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 (rezolvari)](#seria-13---rezolvari)
     - [Seria 14](#seria-14)
@@ -10,13 +13,38 @@
 
 ---
 
-## 1 - Binary Search Trees
+## 1 - Grafuri
+
+### 1.1 - Introducere
+
+Un graf este format dintr-o multime de noduri <b>V</b> si o multime de muchii/arce <b>E</b>. Grafurile <b>neorientate</b> contin muchii (sunt bidirectionale), iar cele <b>orientate</b> contin arce (un arc este unidirectional).
+
+Un <b>lant</b> intr-un <b>graf neorientat</b> este o succesiune de noduri unite prin muchii. Lanturile pot fi <b>simple</b>(nu se repeta muchii)/<b>compuse</b>(se pot repeta muchii) si <b>elementare</b>(nu se repeta varfuri)/<b>neelementare</b>(se pot repeta varfuri). Un <b>ciclu</b> este un <b>lant simplu</b>, in care nodul final coincide cu nodul de start; acestea pot fi, la randul lor, <b>elementare</b> sau <b>neelementare</b>. Un <b>drum</b> intr-un <b>graf orientat</b> este ca un lant intr-un graf neorientat, dar in loc de muchii avem arce (drumurile pot fi <b>simple/compuse/elementare/neelementare</b>). Un <b>circuit</b> este un <b>drum simplu</b>, in care primul si ultimul nod coincid (circuitele pot fi <b>elementare/neelementare</b>).
+
+Un <b>graf neorientat</b> se numeste <b>conex</b>, daca exista un lant de la orice nod <b>X</b> la orice nod <b>Y</b>. Definitia echivalenta pentru <b>grafuri orientate</b> este <b>tare conexitatea</b>, unde trebuie sa existe un drum de la orice nod <b>X</b> la orice nod <b>Y</b>. De asemenea, la grafuri orientate exista si notiunea de <b>slab conexitate</b> - daca inlocuim toate arcele cu muchii si obtinem un <b>graf neorientat conex</b>, atunci graful orientat respectiv este <b>slab conex</b>.
+
+![Image](images/grafuri.png)
+
+### 1.2 - Arbori binari si binomiali
+Un arbore este un <b>graf conex aciclic</b>; astfel, un arbore cu <b>N</b> noduri va avea mereu <b>N-1</b> muchii. Arborii au o <b>radacina</b> - un nod din care pleaca toate drumurile; putem alege orice nod sa fie radacina, iar in functie de nodul pe care il alegem, inaltimea arborelui variaza (<b>inaltimea unui arbore</b> = numarul maxim de muchii de pe un lant de la radacina la orice frunza).
+
+Un <b>arbore binar</b> este un arbore in care fiecare nod are maxim <b>2</b> copii - <b>left child(L), right child(R)</b>. Un arbore binar se numeste <b>complet</b> daca fiecare nivel este complet (are numar maxim de noduri), in afara de ultimul nivel (care, de obicei, este completat de la stanga la dreapta).
+
+Un <b>arbore binar balansat</b> (<b>AVL Trees</b>, vom face in Tutoriatul 4) este un arbore binar, unde, pentru orice nod, diferenta de inaltime dintre subarborele stang si subarborele drept este de maxim un nod.
+
+Un <b>arbore binomial</b> de ordin <b>0</b> este un singur nod (radacina). Un arbore binomial de ordin <b>K</b> este o reuniune a doi arbori binomiali de ordin <b>K-1</b>, unde unul din arborii respectivi este fiul stang al celuilalt arbore. Un arbore binomial are exact <b>2<sup>K</sup></b> noduri si inaltimea <b>k</b>. Arborii binomiali sunt folositi la <b>heapuri binomiale</b>, pe care le vom discuta in Tutoriatul 4.
+
+![Image](images/arbori.png)
+
+---
+
+## 2 - Binary Search Trees
 
 ![Image](images/bst.png)
 
 ---
 
-## 2 - Exercitii examen
+## 3 - Exercitii examen
 
 ###  <ins>Seria 13</ins>
 
@@ -48,24 +76,19 @@
     - Parcurgem arborele in <b>preordine</b> punand nodurile intr-o coada. La sfarsit, le printam pe masura ce le scoatem din coada.
     - Parcurgem arborele recursiv cu ordinea <b>RIGHT-VERTEX-LEFT</b>.
     - Raspunsurile de mai sus nu sunt corecte.
-8. Care este complexitatea gasirii <b>elementului median</b> intr-o lista dublu inlantuita data prin pointerul head?
-    - Θ(n).
-    - Θ(nlogn).
-    - Θ(n<sup>2</sup>).
-    - Raspunsurile de mai sus nu sunt corecte.
-9. Vrem sa reprezentam multimea <b>S = {1, 2, 3}</b> cu un arbore binar de cautare. In cate moduri distincte putem face acest lucru?
+8. Vrem sa reprezentam multimea <b>S = {1, 2, 3}</b> cu un arbore binar de cautare. In cate moduri distincte putem face acest lucru?
     - <b>1</b> mod.
     - <b>2</b> moduri.
     - <b>3</b> moduri.
     - <b>8</b> moduri.
     - Raspunsurile de mai sus nu sunt corecte.
-10. Un skip list are elementele <b>1, 2, 3, 5, 8, 13, 21, 44</b>. In al catalea nod vom gasi elementul <b>8</b>?
+9. Un skip list are elementele <b>1, 2, 3, 5, 8, 13, 21, 44</b>. In al catalea nod vom gasi elementul <b>8</b>?
     - Primul nod.
     - Al doilea nod.
     - Al patrulea nod.
     - Al optulea nod.
     - Raspunsurile de mai sus nu sunt corecte.
-11. Se da o expresie aritmetica reprezentata ca un arbore sintactic (imagine). Care este ordinea in care sunt evaluate nodurile pentru a calcula valoarea expresiei?
+10. Se da o expresie aritmetica reprezentata ca un arbore sintactic (imagine). Care este ordinea in care sunt evaluate nodurile pentru a calcula valoarea expresiei?
     - <b>a,+,b,*,c,root(+),7</b>.
     - <b>7,a,b,c,+,*,root(+)</b>.
     - <b>a,b,+,c,*7,root(+)</b>.
@@ -73,49 +96,48 @@
     
 ![Image](images/expression_tree.png)
 
-12. Pentru algoritmul <b>Heap Sort</b>, numarul minim de swap-uri de elemente se atinge cand:
+11. Pentru algoritmul <b>Heap Sort</b>, numarul minim de swap-uri de elemente se atinge cand:
     - Secventa initiala este sortata crescator.
     - Secventa initiala este sortata descrescator.
     - Secventa este una aleatoare.
     - Raspunsurile de mai sus nu sunt corecte.
-13. In cate moduri putem pune numerele <b>1,2,3,4</b> intr-un vector, astfel incat vectorul rezultat sa poata fi vazut drept un min-heap?
+12. In cate moduri putem pune numerele <b>1,2,3,4</b> intr-un vector, astfel incat vectorul rezultat sa poata fi vazut drept un min-heap?
     - <b>2</b> moduri.
     - <b>3</b> moduri.
     - <b>7</b> moduri.
     - Raspunsurile de mai sus nu sunt corecte.
-14. Sa presupunem ca numerele <b>7,5,1,8,3,6,0,9,4,2</b> sunt inserate in aceasta ordine intr-un arbore binar de cautare. Care este lista elementelor in postordine?
+13. Sa presupunem ca numerele <b>7,5,1,8,3,6,0,9,4,2</b> sunt inserate in aceasta ordine intr-un arbore binar de cautare. Care este lista elementelor in postordine?
     - <b>7 5 1 0 3 2 4 6 8 9</b>.
     - <b>0 2 4 3 1 6 5 9 8 7</b>.
     - <b>0 1 2 3 4 5 6 7 8 9</b>.
     - <b>9 8 6 4 2 3 0 1 5 7</b>.
-15. Pentru a efectua o stergere intr-un arbore binar de cautare pentru un nod cu 2 copii, trebuie sa ii gasim succesorul (in inordine). Care dintre urmatoarele afirmatii este adevarata?
+14. Pentru a efectua o stergere intr-un arbore binar de cautare pentru un nod cu 2 copii, trebuie sa ii gasim succesorul (in inordine). Care dintre urmatoarele afirmatii este adevarata?
     - Succesorul este intotdeauna un nod frunza.
     - Succesorul este intotdeauna fie un nod frunza, fie un nod fara copil stang.
     - Succesorul poate fi un stramos al nodului.
     - Succesorul este intotdeauna fie un nod frunza, fie un nod fara copil drept.
-16. Care dintre urmatoarele afirmatii sunt adevarate intr-un <b>Skip List</b>?
+15. Care dintre urmatoarele afirmatii sunt adevarate intr-un <b>Skip List</b>?
     - Probabilitatea ca un nod sa aiba cel putin doi pointeri este exact <b>1/4</b>.
     - Elementele sunt sortate in ordine crescatoare.
     - Nivelurile sunt spatiate in mod egal.
     - Raspunsurile de mai sus nu sunt corecte.
-17. Presupunem ca avem arborele binar de cautare de la exercitiul 14. Care este elementul median?
-18. Sa presupunem ca modificam algoritmul de parcurgere in latime (<b>BFS</b>) a unui arbore binar in felul urmator: in loc de o coada, folosim o coada dubla (<b>deque</b>); cand scoatem primul nod din coada, mai intai il vizitam, iar vecinii nodului respectiv ii adaugam in varful cozii duble. Modificarea astfel descrisa este echivalenta cu o parcurgere a arborelui:
+16. Sa presupunem ca modificam algoritmul de parcurgere in latime (<b>BFS</b>) a unui arbore binar in felul urmator: in loc de o coada, folosim o coada dubla (<b>deque</b>); cand scoatem primul nod din coada, mai intai il vizitam, iar vecinii nodului respectiv ii adaugam in varful cozii duble. Modificarea astfel descrisa este echivalenta cu o parcurgere a arborelui:
     - In preordine.
     - In inordine.
     - In postordine.
     - In adancime.
     - Raspunsurile de mai sus nu sunt corecte.
-19. Sa presupunem ca modificam un <b>Skip List</b> ca sa putem face salturi inainte si inapoi, folosind intuitiv liste dublu inlantuite pe fiecare nivel. Ne vom limita la patru nivele de pointeri. Nivelul unui nod va fi ales in mod obisnuit. Numarul total mediu de pointeri in aceasta varianta de implementare este:
+17. Sa presupunem ca modificam un <b>Skip List</b> ca sa putem face salturi inainte si inapoi, folosind intuitiv liste dublu inlantuite pe fiecare nivel. Ne vom limita la patru nivele de pointeri. Nivelul unui nod va fi ales in mod obisnuit. Numarul total mediu de pointeri in aceasta varianta de implementare este:
     - Θ(n).
     - Θ(nlogn).
     - Θ(n<sup>2</sup>).
     - Raspunsurile de mai sus nu sunt corecte.
-20. Sa consideram o schema de double hashing care mapeaza elementele unui univers <b>U</b> pe multimea de indecsi <b>{0, 1, ..., m-1}</b> via functia <b>h(x,i) = (h1(x) + i * h2(x)) (mod m)</b>, unde <b>m</b> este marimea tabelei, iar <b>h1</b> si <b>h2</b> sunt niste functii de hashing. Sa consideram functiile <b>H1(x,i) = (h2(x) + i * h1(x)) (mod m)</b> si <b>H2(x,i) = (h2(x) - 1 + i * (h1(x) + 1)) (mod m)</b>. Care dintre functiile <b>H1, H2</b> sunt potrivite, in principiu, in loc de <b>h</b> pentru <b>double hashing</b>?
+18. Sa consideram o schema de double hashing care mapeaza elementele unui univers <b>U</b> pe multimea de indecsi <b>{0, 1, ..., m-1}</b> via functia <b>h(x,i) = (h1(x) + i * h2(x)) (mod m)</b>, unde <b>m</b> este marimea tabelei, iar <b>h1</b> si <b>h2</b> sunt niste functii de hashing. Sa consideram functiile <b>H1(x,i) = (h2(x) + i * h1(x)) (mod m)</b> si <b>H2(x,i) = (h2(x) - 1 + i * (h1(x) + 1)) (mod m)</b>. Care dintre functiile <b>H1, H2</b> sunt potrivite, in principiu, in loc de <b>h</b> pentru <b>double hashing</b>?
     - Doar <b>H1</b>.
     - Doar <b>H2</b>.
     - <b>H1</b> si <b>H2</b>.
     - Niciuna.
-21. Ce face urmatorul cod?
+19. Ce face urmatorul cod?
     - Printeaza toate valorile listei.
     - Printeaza toate valorile listei in ordine inversa.
     - Printeaza valorile cu index par ale listei.
@@ -146,20 +168,20 @@ void f(struct node* head) {
 5. Ultima varianta.
 6. Load factor-ul este <b>x</b>. Se tripleaza numarul de slot-uri => devine <b>x/3</b>. Se dubleaza numarul de elemente => devine <b>2x/3</b> => al doilea raspuns.
 7. Prima si a treia varianta.
-9. Raspunsurile nu sunt corecte. Am atasat rezolvarea:
+8. Raspunsurile nu sunt corecte. Am atasat rezolvarea:
 
-![Image](images/seria13ex9.png)
+![Image](images/seria13ex8.png)
 
-10. Raspunsurile nu sunt corecte (ar fi al 5-lea nod).
-11. A treia varianta.
-13. In <b>3</b> moduri. Am atasat rezolvarea:
+9. Raspunsurile nu sunt corecte (ar fi al 5-lea nod).
+10. A treia varianta.
+12. In <b>3</b> moduri. Am atasat rezolvarea:
 
-![Image](images/seria13ex13.png)
+![Image](images/seria13ex12.png)
 
+13. A doua varianta.
 14. A doua varianta.
-15. A doua varianta.
-16. Probabilitatea ca un nod sa aiba un singur pointer (sa fie pe primul nivel) este de <b>100%</b>. Probabilitatea sa ajunga pe urmatorul nivel este de <b>1/2</b>, adica <b>50%</b>; asadar, prima varianta e gresita. A doua varianta este corecta, deoarece Skip List-urile sunt mereu sortate crescator. a treia varianta nu prea stiu ce inseamna?? :) 
-21. Afiseaza toate valorile listei in ordine inversa (a doua varianta). 
+15. Probabilitatea ca un nod sa aiba un singur pointer (sa fie pe primul nivel) este de <b>100%</b>. Probabilitatea sa ajunga pe urmatorul nivel este de <b>1/2</b>, adica <b>50%</b>; asadar, prima varianta e gresita. A doua varianta este corecta, deoarece Skip List-urile sunt mereu sortate crescator. a treia varianta nu prea stiu ce inseamna?? :) 
+19. Afiseaza toate valorile listei in ordine inversa (a doua varianta). 
 
 ### <ins>Seria 14</ins>
 
@@ -196,6 +218,15 @@ void f(struct node* head) {
 20. Scrieti un algoritm in pseudocod care sa rezolve urmatoarea problema: se da o multime <b>S</b> ce contine <b>n</b> numere naturale distincte si un numar natural <b>x</b>. Decideti daca numarul <b>x</b> poate fi exprimat ca suma de 2 numere distincte din <b>S</b>. Pentru un algoritm <b>O(n<sup>2</sup>)</b>, se primesc 0,25p; pentru <b>O(nlogn)</b> sau <b>O(n)</b>, se primeste punctaj intreg.
 
 ### <ins>Seria 14 - rezolvari</ins>
+4. Am atasat rezolvarea:
+
+![Image](images/seria14ex4.png)
+
+5. Am atasat rezolvarea:
+
+![Image](images/seria14ex5.png)
+
+10. Un heap este un <b>arbore binar complet</b> => pe nivelul <b>k</b> avem maxim <b>2<sup>k</sup></b> noduri, si minim <b>1</b> nod. Daca heap-ul este de inaltime <b>H</b>, atunci pana la nivelul <b>H</b> o sa avem <b>2<sup>0</sup> + 2<sup>1</sup> + ... + 2<sup>H-1</sup> = 2<sup>H</sup> - 1</b> noduri. Daca vrem numar <b>minim</b> de noduri, consideram ca avem un singur nod pe nivelul <b>H</b> => <b>2<sup>H</sup> - 1 + 1 = 2<sup>H</sup></b> noduri in total; altfel, daca vrem numar <b>maxim</b> de noduri, o sa avem <b>2<sup>H</sup></b> noduri pe ultimul nivel => <b>2<sup>H</sup> - 1 + 2<sup>H</sup> = 2 * 2<sup>H</sup> - 1 = 2<sup>H+1</sup></b> noduri in total.
 
 ### <ins>Seria 15</ins>
 
@@ -276,7 +307,7 @@ int main() {
 20. In <b>C++</b>, se poate folosi <b>std::unordered_set</b> (multimile nu au duplicate). <b>Atentie</b>: e posibil ca ordinea initiala a elementelor sa nu se pastreze!
 
 ```cpp
-std::vector<int> t = {1, 4, 2, 6, 0, 13, 5};
+std::vector<int> t = {1, 4, 2, 2, 4, 1, 5, 6, 1};
 std::unordered_set<int> aux(t.begin(), t.end());
 t = std::vector<int>(aux.begin(), aux.end());
 ```
@@ -286,4 +317,4 @@ t = std::vector<int>(aux.begin(), aux.end());
 #### Notes 
 - <b>Seria 13</b>: BSTs (Binary Search Trees).
 - <b>Seria 14</b>: Sortari in timp liniar (Count Sort, Bucket Sort, Radix Sort; toate discutate la Tutoriat 1), limite inferioare pentru sortare.
-- <b>Seria 15</b>: Hash Tables (discutate la Tutoriat 2).
+- <b>Seria 15</b>: Hash Tables (discutate la Tutoriat 2), introducere in grafuri (notiuni de baza + arbori binari si binomiali).
