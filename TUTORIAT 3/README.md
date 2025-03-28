@@ -203,7 +203,7 @@ void f(struct node* head) {
 3. Cate muchii are un arbore binar complet cu <b>n</b> noduri?
 4. Sa se construiasca un <b>min-heap</b> obtinut prin insertia pe rand a urmatoarelor chei: <b>{40, 22, 2, 18, 19, 5, 3}</b>. Apoi, sa se extraga radacina din heap-ul rezultat.
 5. Sa se construiasca arborele binar obtinut prin insertia pe rand a urmatoarelor chei: <b>{15, 22, 2, 18, 19, 40, 30, 16, 50}</b>. Sa se stearga nodul <b>22</b>.
-6. Demonstrati ca orice algoritm de sortare bazat pe comparatii intre chei are timp de rulare <b>Ω(nlogn)</b>.
+6. Demonstrati ca orice algoritm de sortare bazat pe comparatii intre chei efectueaza <b>Ω(nlogn)</b> comparatii.
 7. Rezolvati urmatoarele recurente si demonstrati: 
     - <b>T(n) = T(n/4) + T(3n/4) + logn</b>.
     - <b>T(n) = T(n/100) + T(99n/100) + n</b>.
