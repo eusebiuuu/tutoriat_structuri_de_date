@@ -181,6 +181,7 @@ void f(struct node* head) {
 
 9. Raspunsurile nu sunt corecte (ar fi al 5-lea nod).
 10. A treia varianta.
+11. .
 12. In <b>3</b> moduri. Am atasat rezolvarea:
 
 ![Image](images/seria13ex12.png)
@@ -188,6 +189,9 @@ void f(struct node* head) {
 13. A doua varianta.
 14. A doua varianta.
 15. Probabilitatea ca un nod sa aiba un singur pointer (sa fie pe primul nivel) este de <b>100%</b>. Probabilitatea sa ajunga pe urmatorul nivel este de <b>1/2</b>, adica <b>50%</b>; asadar, prima varianta e gresita. A doua varianta este corecta, deoarece Skip List-urile sunt mereu sortate crescator. a treia varianta nu prea stiu ce inseamna?? :) 
+16. .
+17. .
+18. .
 19. Afiseaza toate valorile listei in ordine inversa (a doua varianta). 
 
 ### <ins>Seria 14</ins>
@@ -225,6 +229,15 @@ void f(struct node* head) {
 20. Scrieti un algoritm in pseudocod care sa rezolve urmatoarea problema: se da o multime <b>S</b> ce contine <b>n</b> numere naturale distincte si un numar natural <b>x</b>. Decideti daca numarul <b>x</b> poate fi exprimat ca suma de 2 numere distincte din <b>S</b>. Pentru un algoritm <b>O(n<sup>2</sup>)</b>, se primesc 0,25p; pentru <b>O(nlogn)</b> sau <b>O(n)</b>, se primeste punctaj intreg.
 
 ### <ins>Seria 14 - rezolvari</ins>
+1. Rezolvari pe scurt:
+    - <b>log(sqrt(n))</b> = 1/2 * log(n), eliminam constanta => <b>Θ(log(n))</b>.
+    - <b>(n + 2<sup>200</sup>)<sup>500</sup></b>, eliminam constanta <b>2<sup>200</sup></b> => <b>Θ(n<sup>500</sup>)</b>.
+    - <b>n<sup>4</sup> - n<sup>4</sup>/2 + 10000 * n + 10</b>, termenul dominant este <b>n<sup>4</sup></b> => <b>Θ(n<sup>4</sup>)</b>.
+    - <b>ln(ln n) + ln n</b>: stim ca n > ln n => ln n > ln(ln n) => termenul dominant este <b>ln n</b> => <b>Θ(logn)</b>.
+    - <b>n<sup>3</sup>/2000 + n<sup>2</sup> * 2<sup>100000</sup> + 10000 * n + 10</b>: termenul dominant este <b>n<sup>3</sup></b> => <b>Θ(n<sup>3</sup>)</b>.
+    - <b>ln<sup>2</sup>n + sqrt(n)</b>: termenul dominant este <b>sqrt(n)</b> (se poate verifica cu limita) => <b>Θ(n<sup>1/2</sup>)</b>.
+2. 
+3. Faptul ca este <b>binar</b> si <b>complet</b> este irelevant. Fiind un arbore, este un graf conex aciclic => are <b>N-1</b> muchii.
 4. Am atasat rezolvarea:
 
 ![Image](images/seria14ex4.png)
@@ -233,7 +246,87 @@ void f(struct node* head) {
 
 ![Image](images/seria14ex5.png)
 
+6. Am facut demonstratia [aici](#1---limite-inferioare-pentru-sortare).
+7. .
+8. .
+9. Avem 2 solutii bune, care ruleaza amandoua in timp <b>O(n)</b>:
+    - <b>Interval de valori</b>: fiecare nod din arbore are un interval posibil de valori. De exemplu, radacina poate lua valori in intervalul <b>[-inf,+inf]</b>; nodul din dreapta radacinii poate lua <b>[radacina+1,+inf]</b>, iar cel din stanga acestui nod poate lua <b>[radacina+1,nod-1]</b>, etc. Asadar, folosim o functie recursiva cu 3 parametri <b>verify(node, minVal, maxVal)</b>. Verificam ca valoarea nodului curent sa fie <b>minVal <= node->key <= maxVal</b>, si apoi <b>return verify(node->left, minVal, node->key - 1) and verify(node->right, node->key + 1, maxVal)</b>.
+    - <b>Traversare in inordine</b>: parcurgem arborele in inordine. Daca ar fi fost un arbore binar de cautare, atunci aceasta parcurgere ar fi generat cheile sortate crescator; verificam acest lucru.
+
+```cpp
+// Solutia 1
+bool verify(Node* node, const int minVal, const int maxVal) {
+    if (!node) {
+        return true;
+    }
+    
+    if (node->key < minVal || node->key > maxVal) {
+        return false;
+    }
+    
+    return verify(node->left, minVal, node->key - 1) && 
+           verify(node->right, node->key + 1, maxVal);
+}
+
+
+// Solutia 2
+bool inorder(Node* node, int& prev) {
+    if (!node) {
+        return true;
+    }
+    
+    if (!inorder(node->left, prev)) {
+        return false;
+    }
+    
+    if (prev >= node->key) {
+        return false;
+    }
+    
+    prev = node->key;
+    
+    return inorder(node->right, prev);
+}
+```
+
 10. Un heap este un <b>arbore binar complet</b> => pe nivelul <b>k</b> avem maxim <b>2<sup>k</sup></b> noduri, si minim <b>1</b> nod. Daca heap-ul este de inaltime <b>H</b>, atunci pana la nivelul <b>H</b> o sa avem <b>2<sup>0</sup> + 2<sup>1</sup> + ... + 2<sup>H-1</sup> = 2<sup>H</sup> - 1</b> noduri. Daca vrem numar <b>minim</b> de noduri, consideram ca avem un singur nod pe nivelul <b>H</b> => <b>2<sup>H</sup> - 1 + 1 = 2<sup>H</sup></b> noduri in total; altfel, daca vrem numar <b>maxim</b> de noduri, o sa avem <b>2<sup>H</sup></b> noduri pe ultimul nivel => <b>2<sup>H</sup> - 1 + 2<sup>H</sup> = 2 * 2<sup>H</sup> - 1 = 2<sup>H+1</sup></b> noduri in total.
+11. .
+12. .
+13. .
+14. .
+15. .
+16. .
+17. .
+18. Sunt doar calcule cu <b>formula lui Stirling</b>; am facut ceva similar in demonstratia pentru limita inferioara a sortarilor prin comparatii.
+19. Demonstratii scurte:
+    - <b>Succesorul lui X nu are fiu stang</b>: ca sa ii gasim succesorul (cel mai mic nod mai mare decat X), mergem in nodul din dreapta si gasim cea mai mica valoare din subarborele stang. Prin definitie, cel mai mic nod din subarborele stang este cel mai din stanga nod => vom merge in stanga pana cand nu mai putem => succesorul nu va avea fiu stang.
+    - <b>Predecesorul lui X nu are fiu drept</b>: ca sa ii gasim predecesorul (cel mai mare nod mai mic decat X), mergem in nodul din stanga si gasim cea mai mare valoare din subarborele drept. Prin definitie, cel mai mare nod din subarborele drept este cel mai din dreapta nod => vom merge in dreapta pana cand nu mai putem => predecesorul nu va avea fiu drept.
+20. Pentru o solutie in timp liniar: trecem prin vectorul de numere. Pentru elementul curent <b>nums[i]</b>, il stocam intr-o structura de date care permite cautari rapide (<b>std::unordered_set</b>, <b>std::unordered_map</b>). Stim ca mai avem nevoie de numarul <b>target - nums[i]</b> ca sa putem avea suma respectiva; verificam daca am gasit pana acum elementul <b>target - nums[i]</b> (facem un search in structura noastra de date).
+
+```cpp
+std::vector<int> twoSum(std::vector<int>& nums, int target) {
+        std::unordered_map<int, int> t;
+        std::vector<int> result(2);
+        
+        for (int i = 0; i < nums.size(); ++i) {
+            // exemplu: target-ul este 10 si elementul curent este 3
+            // mai avem nevoie de elementul target-nums[i] = 10-3 = 7
+            const int aux = target - nums[i];
+            
+            // daca avem elementul respectiv, afisam indicii celor 2 elemente
+            if (t.contains(aux)) {
+                result[0] = t[aux];
+                result[1] = i;
+                break;
+            }
+            
+            // nu am avut elementul respectiv; stocam indicele elementului curent
+            t[nums[i]] = i;
+        }
+        
+        return result;
+    }
+```
 
 ### <ins>Seria 15</ins>
 
@@ -264,17 +357,21 @@ void f(struct node* head) {
 
 ![Image](images/seria15ex2.png)
 
+3. .
 4. Inaltimea minima si cea maxima coincid. Pe fiecare nivel <b>k</b> avem <b>2<sup>k</sup></b> noduri => <b>1 + 2 + 4 + 8 + 15 = 30</b> noduri; ultimul nivel este <b>4</b>.
+5. .
 6. Verificati exemplul grafic de la <b>Merge Sort</b> din <b>Tutoriatul 1</b>!
 7. Am atasat rezolvarea: 
 
 ![Image](images/seria15ex7.png)
 
+8. .
 9. Complexitatea este <b>O(n)</b>, deoarece trebuie sa trecem prin toate elementele ca sa gasim minimul. Elementele dintr-un <b>Deque</b> nu au vreo proprietate/ordine care sa ne ajute la cautare.
 10. Am atasat rezolvarea:
 
 ![Image](images/seria15ex10.png)
 
+11. .
 12. Am atasat rezolvarea:
 
 ![Image](images/seria15ex12.png)
@@ -283,6 +380,7 @@ void f(struct node* head) {
 
 ![Image](images/seria15ex13.png)
 
+14. .
 15. EXPLICATIE: ne folosim de o <b>stiva</b>, in care punem ultimul element din vector. Apoi, trecem prin celelalte elemente (de la indexul <b>n-2</b> la <b>0</b>): cat timp elementul curent este mai mic decat varful stivei, afisam perechea (dintre element si varful stivei) si scoatem un element de pe stiva. Odata ce stiva devine goala sau elementul curent devine mai mare, il adaugam pe stiva si trecem la urmatorul element. La final, este posibil sa fi ramas elemente in plus pe stiva, care nu au un element mai mic spre stanga; le scoatem si le afisam cu <b>-1</b> sau orice alta valoare sugestiva.
 
 ```cpp
@@ -310,7 +408,10 @@ int main() {
 }
 ```
 
+16. .
 17. Proprietatea arborilor binari: orice nod are maxim <b>2</b> copii. Daca vrem un arbore de inaltime <b>maxima</b>, vrem sa folosim toate nodurile sa mergem cat mai mult in jos => inaltimea maxima este <b>23</b>. Daca vrem un arbore de inaltime <b>minima</b>, punem cat mai multe noduri pe fiecare nivel. Pe nivelul <b>i</b> exista <b>2<sup>i</sup></b> noduri; <b>2<sup>0</sup> + 2<sup>1</sup> + 2<sup>2</sup> + 2<sup>3</sup> < 23 < 2<sup>0</sup> + 2<sup>1</sup> + 2<sup>2</sup> + 2<sup>3</sup> + 2<sup>4</sup></b> => inaltimea minima este <b>4</b>.
+18. .
+19. .
 20. In <b>C++</b>, se poate folosi <b>std::unordered_set</b> (multimile nu au duplicate). <b>Atentie</b>: e posibil ca ordinea initiala a elementelor sa nu se pastreze!
 
 ```cpp
