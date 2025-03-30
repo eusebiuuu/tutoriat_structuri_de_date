@@ -27,7 +27,7 @@
 ## Continutul tutoriatului
 ### Tutoriat 1
 * <b>Clase de complexitati, Teorema Master, analiza probabilistica</b>.
-* <b>Algoritmi de sortare</b>: Count Sort, Select Sort, Insert Sort, Quick Sort (<b>DISCUTIE PE PIVOT</b>), Merge Sort (<b>+VARIANTA IN-PLACE</b>), Heap Sort, Bucket Sort, Radix Sort (<b>MSD/LSD</b>), Block Sort, Intro Sort, Tim Sort.
+* <b>Algoritmi de sortare</b>: Count Sort, Select Sort, Insert Sort, Quick Sort (<b>DISCUTIE PE PIVOT</b>), Merge Sort (<b>+VARIANTA IN-PLACE</b>), Heap Sort, Bucket Sort, Radix Sort (<b>MSD/LSD</b>), Shell Sort, Block Sort, Intro Sort, Tim Sort.
 * <b>Structuri de date</b>: Arrays, Vectors, Stacks, Queues, Deques, Heaps, Priority Queues.
 
 ### Tutoriat 2
@@ -35,3 +35,9 @@
 
 ### Tutoriat 3
 * <b>Structuri de date</b>: Binary Search Trees (BSTs).
+* <b>Grafuri</b>: notiuni introductive, arbori binari/binomiali.
+* <b>Limite inferioare pentru sortare</b>.
+
+### Tutoriat 4 
+* <b>Structuri de date</b>: AVL Trees, Splay Trees, Binomial Heaps, Fibonacci Heaps.
+* <b>RMQ</b> (Range Minimum Queries).
