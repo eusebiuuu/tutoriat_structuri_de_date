@@ -9,6 +9,34 @@
 
 ## 1 - AVL Trees 
 
+### <ins>1.1 - Ce este un AVL Tree?</ins>
+- Un <b>AVL Tree</b> este un <b>Binary Search Tree</b> cu o proprietate in plus: pentru orice nod, diferenta dintre inaltimea subarborelui stang si inaltimea subarborelui drept este de maxim un nod. Aceasta proprietate asigura faptul ca inaltimea arborelui ramane mereu aproximativ <b>logn</b> => operatiile de <b>insert/search/delete</b> o sa aiba complexitate <b>O(logn)</b>.
+- Inserarea si stergerea de noduri pot afecta aceasta proprietate, deoarece se modifica inaltimea subarborelui; asadar, ne folosim de <b>rotatii</b> ca sa corectam diferentele de inaltime dintre subarbori.
+
+![Image](images/avl/avl-example.png)
+
+### <ins>1.2 - Rotatii</ins>
+- Rotatiile inseamna schimbarea pozitionarii nodurilor, astfel incat sa fie indeplinita din nou proprietatea de arbore echilibrat. 
+- Exista <b>4</b> cazuri de dezechilibru in structura arborilor, care pot fi rezolvate cu rotatii, si pe care le-am ilustrat in poza.
+
+![Image](images/avl/rotations.png)
+
+### <ins>1.3 - Search</ins>
+- Nu exista nimic in plus de explicat; cautarea este <b>exact la fel</b> ca la BST-uri (vezi <b>Tutoriat 3</b>).
+- <b>Complexitate O(logn)</b>.
+
+### <ins>1.4 - Insert</ins>
+- <b>Pasul 1</b>: inseram nodul ca la un BST normal (vezi <b>Tutoriat 3</b>).
+- <b>Pasul 2</b>: incepand de la nodul inserat anterior, mergem in sus spre radacina, cautand primul nod care este dezechilibrat, pe care il vom nota cu <b>A</b>. Odata ce l-am localizat pe <b>A</b>, obtinem fiul, pe care il notam cu <b>B</b>, care se afla in drum spre nodul inserat. Apoi, obtinem fiul lui <b>B</b>, pe care il notam cu <b>C</b>, care se afla in drum spre nodul inserat (important sa nu ne abatem de la drum).
+- <b>Pasul 3</b>: Odata ce am obtinut nodurile <b>A</b>, <b>B</b> si <b>C</b>, determinam cazul in care ne aflam si aplicam rotatiile necesare. Ne folosim de inaltimile subarborilor lui <b>A</b>:
+    - <b>left_subtree_height - right_subtree_height > 1</b>: ne aflam in <b>Left-Left</b> sau <b>Left-Right</b>. Ca sa ne dam seama, comparam valoarea nodului inserat cu valoarea lui <b>B</b>.
+    - <b>left_subtree_height - right_subtree_height < -1</b>: ne aflam in <b>Right-Right</b> sau <b>Right-Left</b>. Ca sa ne dam seama, comparam valoarea nodului inserat cu valoarea lui <b>B</b>.
+- <b>Pasul 4</b>: am identificat cazul; aplicam una sau doua rotatii (in functie de caz), iar arborele devine din nou echilibrat.
+
+### <ins>1.5 - Delete</ins>
+
+### <ins>1.6 - Alte operatii</ins>
+
 ---
 
 ## 2 - Splay Trees 
