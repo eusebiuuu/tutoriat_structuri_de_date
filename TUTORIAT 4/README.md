@@ -13,13 +13,13 @@
 - Un <b>AVL Tree</b> este un <b>Binary Search Tree</b> cu o proprietate in plus: pentru orice nod, diferenta dintre inaltimea subarborelui stang si inaltimea subarborelui drept este de maxim un nod. Aceasta proprietate asigura faptul ca inaltimea arborelui ramane mereu aproximativ <b>logn</b> => operatiile de <b>insert/search/delete</b> o sa aiba complexitate <b>O(logn)</b>.
 - Inserarea si stergerea de noduri pot afecta aceasta proprietate, deoarece se modifica inaltimea subarborelui; asadar, ne folosim de <b>rotatii</b> ca sa corectam diferentele de inaltime dintre subarbori.
 
-![Image](images/avl/avl-example.png)
+![Image](images/avl-trees/example.png)
 
 ### <ins>1.2 - Rotatii</ins>
 - Rotatiile inseamna schimbarea pozitionarii nodurilor, astfel incat sa fie indeplinita din nou proprietatea de arbore echilibrat. 
 - Exista <b>4</b> cazuri de dezechilibru in structura arborilor, care pot fi rezolvate cu rotatii, si pe care le-am ilustrat in poza.
 
-![Image](images/avl/rotations.png)
+![Image](images/avl-trees/rotations.png)
 
 ### <ins>1.3 - Search</ins>
 - Nu exista nimic in plus de explicat; cautarea este <b>exact la fel</b> ca la BST-uri (vezi <b>Tutoriat 3</b>).
