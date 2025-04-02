@@ -8,7 +8,14 @@
 - [7 - Coada](#7---coada)
 - [8 - Deque](#8---deque)
 - [9 - Heap](#9---heap)
-- [10 - Exercitii](#10---exercitii)
+- [10 - Exercitii generale](#10---exercitii-generale)
+- [11 - Exercitii examen](#10---exercitii)
+    - [Seria 13](#seria-13)
+    - [Seria 13 (rezolvari)](#seria-13---rezolvari)
+    - [Seria 14](#seria-14)
+    - [Seria 14 (rezolvari)](#seria-14---rezolvari)
+    - [Seria 15](#seria-15)
+    - [Seria 15 (rezolvari)](#seria-15---rezolvari)
 
 ---
 
@@ -627,7 +634,149 @@ int main() {
 
 ---
 
+## 11 - Exercitii examen
+
+### <ins>Seria 13</ins>
+1. Care din urmatoarele secvente de operatii este <b>imposibila</b> intr-o stiva cu <b>4</b> elemente?
+    - PUSH, POP, POP, POP, POP, PUSH.
+    - PUSH, POP, POP, POP, PUSH, POP, POP.
+    - PUSH, POP, POP, POP, POP, POP, PUSH, POP.
+    - PUSH, PUSH, PUSH, PUSH, PUSH, PUSH.
+    - POP, POP, POP, POP, POP, POP, POP.
+2. Pentru algoritmul <b>Heap Sort</b>, numarul minim de swap-uri de elemente se atinge cand:
+    - Secventa initiala este sortata crescator.
+    - Secventa initiala este sortata descrescator.
+    - Secventa este una aleatoare.
+    - Raspunsurile de mai sus nu sunt corecte.
+3. In cate moduri putem pune numerele <b>1,2,3,4</b> intr-un vector, astfel incat vectorul rezultat sa poata fi vazut drept un min-heap?
+    - <b>2</b> moduri.
+    - <b>3</b> moduri.
+    - <b>7</b> moduri.
+    - Raspunsurile de mai sus nu sunt corecte.
+
+### <ins>Seria 13 - rezolvari</ins>
+1. Ultima varianta.
+2. Prima varianta.
+3. Raspunsurile nu sunt corecte. Am atasat rezolvarea:
+
+![Image](images/seria13ex3.png)
+
+### <ins>Seria 14</ins>
+1. Exprimati functiile urmatoare in notatie Θ:
+    - <b>log(sqrt(n))</b>.
+    - <b>(n + 2<sup>200</sup>)<sup>500</sup></b>.
+    - <b>n<sup>4</sup> - n<sup>4</sup>/2 + 10000 * n + 10</b>.
+    - <b>ln(ln n) + ln n</b>.
+    - <b>n<sup>3</sup>/2000 + n<sup>2</sup> * 2<sup>100000</sup> + 10000 * n + 10</b>.
+    - <b>ln<sup>2</sup>n + sqrt(n)</b>.
+2. <b>o(f(n)) INTERSECT ω(f(n))</b> = ?
+3. Sa se construiasca un <b>min-heap</b> obtinut prin insertia pe rand a urmatoarelor chei: <b>{40, 22, 2, 18, 19, 5, 3}</b>. Apoi, sa se extraga radacina din heap-ul rezultat.
+4. Rezolvati urmatoarele recurente si demonstrati: 
+    - <b>T(n) = T(n/4) + T(3n/4) + logn</b>.
+    - <b>T(n) = T(n/100) + T(99n/100) + n</b>.
+    - <b>T(n) = T(n - 1) + n</b>.
+5. Demonstrati ca <b>logn = o(sqrt(n))</b>.
+6. Care este numarul minim si numarul maxim de noduri intr-un <b>Heap</b> de inaltime <b>h</b>?
+7. Este adevarat ca <b>f(n) + g(n) = Θ(max{f(n), g(n)})</b>? Demonstrati.
+8. Cum se poate implementa o <b>coada</b> folosind un <b>heap</b>? Dar o <b>stiva</b>?
+9. Cum putem sorta <b>n</b> numere in intervalul <b>[0..(n<sup>3</sup> - 1)]</b> in timp <b>O(n)</b>?
+10. Se dau urmatoarele structuri de date: o stiva <b>S</b> si doua cozi <b>C1, C2</b> ce contin caractere. Cele trei structuri sunt initial vide si se considera de capacitate infinita. Cozile se considera cu capatul pentru inserare in dreapta si cel pentru stergere in stanga, iar stiva are capatul pentru inserare si stergere in dreapta. Se considera urmatoarele operatii: <b>(1)</b> daca <b>S</b> e nevida, se extrage un element si se introduce <b>C1</b>; altfel, nu se face nimic. <b>(2)</b> Daca <b>S</b> e nevida, se extrage un element si se introduce <b>C2</b>; altfel, nu se face nimic. <b>(3)</b> Daca <b>C1</b> e nevida, se extrage un element si se introduce in <b>C2</b>; altfel, nu se face nimic. <b>(4)</b> Daca <b>C2</b> e nevida, se extrage un element si se introduce in <b>S</b>; altfel, nu se face nimic.
+    - Sa se scrie continutul stivei <b>S</b> si al cozilor <b>C1, C2</b> dupa executarea urmatoarei secvente de operatii: <b>C 1 3 K 2 S T A Q U 1 2 U N 1 1 E U 2 2 4 4</b>.
+    - Sa se scrie o secventa de operatii care are ca rezultat cuvantul <b>"ROSU"</b> in stiva <b>S</b>, cuvantul <b>VERDE</b> in coada <b>C2</b>, iar <b>C1</b> este vida.
+11. Demonstrati ca <b>ln(n!) = Θ(n * ln n)</b>.
+
+### <ins>Seria 14 - rezolvari </ins>
+1. Rezolvari pe scurt:
+    - <b>log(sqrt(n))</b> = 1/2 * log(n), eliminam constanta => <b>Θ(log(n))</b>.
+    - <b>(n + 2<sup>200</sup>)<sup>500</sup></b>, eliminam constanta <b>2<sup>200</sup></b> => <b>Θ(n<sup>500</sup>)</b>.
+    - <b>n<sup>4</sup> - n<sup>4</sup>/2 + 10000 * n + 10</b>, termenul dominant este <b>n<sup>4</sup></b> => <b>Θ(n<sup>4</sup>)</b>.
+    - <b>ln(ln n) + ln n</b>: stim ca n > ln n => ln n > ln(ln n) => termenul dominant este <b>ln n</b> => <b>Θ(logn)</b>.
+    - <b>n<sup>3</sup>/2000 + n<sup>2</sup> * 2<sup>100000</sup> + 10000 * n + 10</b>: termenul dominant este <b>n<sup>3</sup></b> => <b>Θ(n<sup>3</sup>)</b>.
+    - <b>ln<sup>2</sup>n + sqrt(n)</b>: termenul dominant este <b>sqrt(n)</b> (se poate verifica cu limita) => <b>Θ(n<sup>1/2</sup>)</b>.
+2. TODO
+3. Am atasat rezolvarea:
+
+![Image](images/seria14ex3.png)
+
+4. TODO
+5. TODO
+6. Un heap este un <b>arbore binar complet</b> => pe nivelul <b>k</b> avem maxim <b>2<sup>k</sup></b> noduri, si minim <b>1</b> nod. Daca heap-ul este de inaltime <b>H</b>, atunci pana la nivelul <b>H</b> o sa avem <b>2<sup>0</sup> + 2<sup>1</sup> + ... + 2<sup>H-1</sup> = 2<sup>H</sup> - 1</b> noduri. Daca vrem numar <b>minim</b> de noduri, consideram ca avem un singur nod pe nivelul <b>H</b> => <b>2<sup>H</sup> - 1 + 1 = 2<sup>H</sup></b> noduri in total; altfel, daca vrem numar <b>maxim</b> de noduri, o sa avem <b>2<sup>H</sup></b> noduri pe ultimul nivel => <b>2<sup>H</sup> - 1 + 2<sup>H</sup> = 2 * 2<sup>H</sup> - 1 = 2<sup>H+1</sup></b> noduri in total.
+7. TODO
+8. TODO
+9. TODO
+10. TODO
+11. TODO
+
+### <ins>Seria 15</ins>
+1. Dintre inserare, cautare si stergerea minimului, ce operatie are complexitatea cea mai mare intr-un <b>min-heap</b> si ce complexitate are? Explicati cum se face aceasta operatie si daca este uzuala pentru heap-uri.
+2. Ce inaltime poate sa aiba un heap cu <b>30</b> de elemente? Desenati schita arborelui de inaltime minima si schita pentru cel de inaltime maxima.
+3. Exemplificati cum functioneaza <b>Merge Sort</b> pe vectorul <b>{16, 14, 9, 23, 3, 141, 19, 11}</b>.
+4. Exemplificati cum functioneaza <b>Radix Sort (MSD)</b> in baza 10 pe vectorul <b>{16, 14, 39, 23, 3, 141, 19, 911, 151, 91, 209, 49, 206}</b>.
+5. Daca vrem sa sortam <b>10<sup>6</sup></b> numere reale mai mici sau egale cu <b>245859</b>, ce algoritm ar fi bine sa folosim? De ce?
+6. Cat ne costa sa gasim cel mai mic element dintr-un <b>Deque</b>? Cum il gasim?
+7. Desenati un <b>Max-Heap</b> in care un element aflat la distanta <b>3</b> fata de radacina este mai mare decat un element aflat la distanta <b>1</b> fata de radacina.
+8. Exemplificati cum functioneaza <b>cautarea binara</b> pe un vector de 8 elemente, ales de voi.
+9. Rezolvati (in pseudocod): se da un vector. Pentru fiecare element, spuneti care este primul element din stanga mai mare decat el.
+10. Rezolvati (in pseudocod): se da un vector; pentru fiecare element, spuneti cate elemente din dreapta sa sunt mai mici decat el.
+11. Cat ne costa sa aflam al doilea cel mai mic element dintr-un <b>Min-Heap</b>?
+12. Se da un vector cu valori intregi. Eliminati duplicatele.
+
+### <ins>Seria 15 - rezolvari</ins>
+1. Inserarea are complexitate <b>O(logn)</b>, cautarea are complexitate <b>O(n)</b> si stergerea minimului are complexitate <b>O(logn)</b>. Asadar, cea mai costisitoare operatie este <b>cautarea</b>. Proprietatile Heap-urilor nu permit cautare eficienta - daca, de exemplu, avem un <b>Max-Heap</b> cu radacina <b>10</b> si copiii <b>5</b> si <b>8</b>, nu stim in ce subarbore trebuie sa mergem ca sa gasim valoarea <b>3</b>, deci ar trebui sa verificam toate valorile. Totusi, exista un mic truc pentru eficientizare: daca ar trebui sa cautam valoarea <b>7</b>, evident nu o sa fie in subarborele stang (nu poate fi in subarborele lui <b>5</b>, pentru ca <b>7</b> e mai mare decat <b>5</b>).
+2. Inaltimea minima si cea maxima coincid. Pe fiecare nivel <b>k</b> avem <b>2<sup>k</sup></b> noduri => <b>1 + 2 + 4 + 8 + 15 = 30</b> noduri.
+3. Verificati exemplul grafic de la <b>Merge Sort</b> de mai devreme.
+4. Am atasat rezolvarea: 
+
+![Image](images/seria15ex4.png)
+
+5. TODO
+6. Complexitatea este <b>O(n)</b>, deoarece trebuie sa trecem prin toate elementele ca sa gasim minimul. Elementele dintr-un <b>Deque</b> nu au vreo proprietate/ordine care sa ne ajute la cautare.
+7. Am atasat rezolvarea:
+
+![Image](images/seria15ex7.png)
+
+8. Am atasat rezolvarea:
+
+![Image](images/seria15ex8.png)
+
+9. EXPLICATIE: ne folosim de o <b>stiva</b>, in care punem ultimul element din vector. Apoi, trecem prin celelalte elemente (de la indexul <b>n-2</b> la <b>0</b>): cat timp elementul curent este mai mic decat varful stivei, afisam perechea (dintre element si varful stivei) si scoatem un element de pe stiva. Odata ce stiva devine goala sau elementul curent devine mai mare, il adaugam pe stiva si trecem la urmatorul element. La final, este posibil sa fi ramas elemente in plus pe stiva, care nu au un element mai mic spre stanga; le scoatem si le afisam cu <b>-1</b> sau orice alta valoare sugestiva.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <stack>
+
+int main() {
+    const std::vector t = {3, 5, 1, 8, 10, 6, 4, 9, 2, 0};
+    const int n = t.size();
+    std::stack<int> s;
+    s.push(t[n - 1]);
+    for (int i = n - 2; i >= 1; --i) {
+        while (!s.empty() && t[i] < s.top()) {
+            std::cout << "(" << s.top() << "," << t[i] << ") ";
+            s.pop();
+        }
+        s.push(t[i]);
+    }
+    while (!s.empty()) {
+        std::cout << "(" << s.top() << "," << -1 << ") ";
+        s.pop();
+    }
+    return 0;
+}
+```
+
+10. TODO (la fel ca la 9).
+11. TODO
+12. In <b>C++</b>, se poate folosi <b>std::unordered_set</b> (multimile nu au duplicate). <b>Atentie</b>: e posibil ca ordinea initiala a elementelor sa nu se pastreze! O alternative este <b>std::set</b>. TODO continue explanations
+
+```cpp
+std::vector<int> t = {1, 4, 2, 2, 4, 1, 5, 6, 1};
+std::unordered_set<int> aux(t.begin(), t.end());
+t = std::vector<int>(aux.begin(), aux.end());
+```
+
 #### Notes 
-* <b>Seria 13</b>: Algoritmi de sortare (Merge Sort, Insert Sort, Heap Sort, Quick Sort, Select Sort; Comparison Sorts), Heaps (implementare ca Array; Heapify(), BuildHeap()), Priority Queues (insert, pop), Decision Trees, Arrays, Vectors, Stacks (+array-based implementation), Queues, Deques.
+* <b>Seria 13</b>: Algoritmi de sortare (Merge Sort, Insert Sort, Heap Sort, Quick Sort, Select Sort; Comparison Sorts), Heaps (implementare ca Array; Heapify(), BuildHeap()), Priority Queues (insert, pop), Arrays, Vectors, Stacks (+array-based implementation), Queues, Deques.
 * <b>Seria 14</b>: Algoritmi de sortare (Merge Sort, Quick Sort), clase de complexitati, teorema master, probabilitati (birthday paradox, secretary problem).
-* <b>Seria 15</b>: Algoritmi de sortare (Merge Sort + in-place, Heap Sort, Quick Sort, Count Sort, Bucket Sort, Radix Sort, Block Sort, Intro Sort, Tim Sort), clase de complexitati, Heaps, Arrays, Vectors, Linked Lists.
+* <b>Seria 15</b>: Algoritmi de sortare (Merge Sort + in-place, Heap Sort, Quick Sort, Count Sort, Bucket Sort, Radix Sort, Block Sort, Intro Sort, Tim Sort), clase de complexitati, Heaps, Arrays, Vectors.

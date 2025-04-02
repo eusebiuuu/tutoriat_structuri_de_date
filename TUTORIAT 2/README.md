@@ -1,21 +1,26 @@
 # Table of contents
-- [Table of contents](#table-of-contents)
-  - [1 - Linked Lists](#1---linked-lists)
-      - [Lista simplu inlantuita](#lista-simplu-inlantuita)
-      - [Listele dublu inlantuite](#listele-dublu-inlantuite)
-      - [Listele circulare](#listele-circulare)
-  - [2 - Skip Lists](#2---skip-lists)
-  - [3 - Hash Tables](#3---hash-tables)
+- [1 - Linked Lists](#1---linked-lists)
+    - [Lista simplu inlantuita](#lista-simplu-inlantuita)
+    - [Listele dublu inlantuite](#listele-dublu-inlantuite)
+    - [Listele circulare](#listele-circulare)
+- [2 - Skip Lists](#2---skip-lists)
+- [3 - Hash Tables](#3---hash-tables)
+    - [Introducere](#introducere)
     - [Functia de hash](#functia-de-hash)
     - [Coliziunile](#coliziunile)
-      - [1. Chaining](#1-chaining)
-      - [2. Open addressing](#2-open-addressing)
-      - [3. Perfect hashing](#3-perfect-hashing)
+        - [Chaining](#1-chaining)
+        - [Open addressing](#2-open-addressing)
+        - [Perfect hashing](#3-perfect-hashing)
     - [Implementari C++](#implementari-c)
-  - [Exercitiu: Least recently used algorithm (LRU)](#exercitiu-least-recently-used-algorithm-lru)
-  - [4 - Bloom Filters](#4---bloom-filters)
-  - [](#)
-      - [Notes](#notes)
+    - [Exercitiu: Least recently used algorithm (LRU)](#exercitiu-least-recently-used-algorithm-lru)
+- [4 - Bloom Filters](#4---bloom-filters)
+- [5 - Exercitii examen](#5---exercitii-examen)
+    - [Seria 13](#seria-13)
+    - [Seria 13 - rezolvari](#seria-13---rezolvari)
+    - [Seria 14](#seria-14)
+    - [Seria 14 - rezolvari](#seria-14---rezolvari)
+    - [Seria 15](#seria-15)
+    - [Seria 15 - rezolvari](#seria-15---rezolvari)
 
 ---
 
@@ -220,13 +225,14 @@ int main() {
 ---
 
 ## 3 - Hash Tables
+### <ins>Introducere</ins>
 - Un **hash table** este o structura de date ce consta in perechi (key, value) si care permite accesarea, stergerea si inserarea elementelor, foarte eficient, intr-un mod similar unui dictionar
 - Informal, ea reprezinta o generalizare a vectorilor in sensul ca, in loc sa se acceseze cu indexul pozitiei la care se afla, elementele sunt acesate in functie de o cheie, care poate fi un numar, un simbol sau chiar o alta structura de date, pastrandu-se, in general, complexitatile de accesare; deci, se poate observa ca au o aplicabilitate mult mai larga decat vectorii, desi vin la pachet cu anumite probleme, care le fac utilizabile doar in anumite cazuri, pe care le vom analiza mai jos
 - O prima idee de a implementa o astfel de structura de date ar fi sa estimam care ar putea fi toate valorile posibile de chei si sa cream un tabel suficient de mare sa incapa toate; evident, nu este prea practica aceasta metoda, caci de multe ori spatiul teoretic este mult prea mare si nu este necesar a fi folosit tot mereu, deci avem si **memory waste**
 - Ca urmare, suntem nevoiti sa cream un spatiu in care se vor afla cheile mai mic ca sa nu avem memory waste, dar indeajuns de mare, astfel incat sa stim ca, **in medie**, sa nu avem problemele legate de complexitate, asta deoarece vom avea un set de elemente din **universul cheilor** care vor avea acelasi loc alocat
 - Ca sa fie eficienta, aceasta procedura trebuie sa tina cont de 2 lucruri: managementul coliziunilor si functia de hash
 
-### Functia de hash
+### <ins>Functia de hash</ins>
 - **Functia de hash** reprezinta functia care se ocupa cu gasirea unui slot pentru un element dat astfel incat sa se minimizeze spatiul ocupat (deci sa gaseasca un loc liber) si sa se minimizeze si timpul de accesare (sa aiba complexitatea cat mai mica)
 - De exemplu, cea mai simpla functie de hash este cea care cauta primul loc liber in tabel si il returneaza; evident nu este prea eficienta
 - Alta ar fi ceva random, insa asa nu putem garanta ca pentru acelasi element avem acelasi hash, ceea ce nu este util mai ales ca vrem sa si cautam elemente, nu doar sa le inseram
@@ -237,14 +243,15 @@ int main() {
 - **Universal hashing**: Desi destul de eficiente, metodele prezentate mai sus au o problema: daca s-ar afla functia de hash, atunci o persoana rau intentionata ar putea genera un input care sa faca operatiile pe hash table sa ruleze in $O(n)$, incetinind foarte mult aplicatia. Pentru aceasta, vom folosi randomizarea: se va alege o multime de $K$ functii hash asemanatoare cu cele de mai sus astfel incat probabilitatea de coliziune a unei perechi de chei $(s, t)$ este $\approx \frac{1}{M}$ (se demonstreaza matematic); multimea de functii de hash se va alege dupa forma urmatoare:
 ![](./images/universal_hashing.png)
 
-### Coliziunile
-- O problema care apare atunci cand vom adauga un element este ca, fie functia de adaugare va returna un mesaj ca nu exista loc liber pentru el, fie pe locul care va fi gasit de **functia de hash** se va afla un alt element, deci va aparea o **coliziune**
-#### 1. Chaining
+### <ins>Coliziunile</ins>
+- O problema care apare atunci cand vom adauga un element este ca, fie functia de adaugare va returna un mesaj ca nu exista loc liber pentru el, fie pe locul care va fi gasit de **functia de hash** se va afla un alt element, deci va aparea o **coliziune**.
+
+#### <ins>Chaining</ins>
 - Un prim mod de a gestiona aceste coliziuni, este sa reprezentam fiecare slot din tabel in care se afla cheile ca un **pointer** la o **lista simplu inlantuita**; deci, atunci cand dorim sa adaugam un element si avem coliziune, vom parcurge lista de la pozitia la care a avut loc ultima coliziune si vom pune elementul la inceputul / finalul listei respective
 - Complexitatea unei astfel de abordari depinde de modul in care este implementata functia de hash, insa, daca presupunem ca, teoretic, avem **uniform hashing**, atunci vom avea complexitatea de $O(1 + \alpha)$, unde $\alpha = \frac{n}{m}$, deci foarte aproape de constant
 - Totusi, acest mod de a rezolva coliziunile este dependenta foarte mult de felul cum este implementata functia de hash
 
-#### 2. Open addressing
+#### <ins>Open addressing</ins>
 - De multe ori, insa, stim ca niciodata nu vom avea mai multe chei decat marimea hash table-ului, ca urmare putem evita chaining-ul. Totusi, aceasta procedura in care fiecare element din hash table este fie `NULL` fie are un singur element, care se numeste **open addressing**, implica o cautare secventiala eficienta a slot-urilor libere pentru chei, cautare care se mai numeste **probing**, pe care se bazeaza atat inserarile cat si accesarile efective ale elementelor tinandu-se cont de pozitiile curente (**exemplificare**).
 - De aceea, o problema cu aceste open address hash table-uri este ca nu se poate sterge un element pur si simplu punandu-se `NULL` pe pozitia lui, caci acest lucru ar perturba accesarile si va da un **false negative** (adica elementul este in tabel, insa nu este gasit), ci se va marca elementul ca **DELETED** (**exemplificare**)
 - Cum pentru fiecare cheie este nevoie de o secventa de probe, ideal ar fi sa avem **uniform hashing** pentru a genera secventa in mod aleator, insa nu se poate implementa eficient acest lucru, deoarece avem nevoie de o permutare de $m$ elemente. Ca urmare, au fost create niste metode de **probing** implementabile ce incearca sa se apropie de ea:
@@ -255,13 +262,13 @@ int main() {
   - De ce nu putem folosi ceva random?
   - De ce facem cautare secventiala?
 
-#### 3. Perfect hashing
+#### <ins>Perfect hashing<ins>
 - Totusi, o limitare la **open addressing** reprezinta situatia in care tabelul se va umple, caz in care nu mai putem face nimic
 - Ca urmare, cum ambele variante de mai sus au beneficii si dezavantaje, folosite individual, ce-ar fi sa le combinam sa le minimizam dezavantajele?
 - Intrebari: care sunt dezavantajele chaining-ului? Dar ale open addressing-ului?
 - Altfel spus, ce-ar fi sa avem un hash table care gestioneaza coliziunile in stil **chaining** in care fiecare slot reprezinta un alt hash table in care fiecare coliziunile se gestioneaza in stil **open address**, iar functiile hash ale amandurora sa fie aproape de **uniform hashing**? In acest fel avem optimizarea memoriei alocate dar si timpul de accesare fata de simplul chaining, dar si prevenirea blocajelor (atunci cand se umple tabelul) si timpul prea mare de cautare in anumite situatii de la **open addressing** (coliziunile din fiecare hash table de pe nivelul 2 sunt prevenite generandu-se dimensiuni speciale pentru hash table-uri; ele sunt bazate pe demonstratii matematice astfel incat sa nu creeze probleme cu memoria si, in acelasi timp, sa previna cu adevarat coliziunile)
 
-### Implementari C++
+### <ins>Implementari C++</ins>
 - In C++, hash table-ul este implementat sub numele de `std::unordered_map`. Mai multe detalii [aici](https://en.cppreference.com/w/cpp/container/unordered_map)
 
 ## Exercitiu: Least recently used algorithm (LRU)
@@ -347,10 +354,120 @@ int main() {
 
 ## 4 - Bloom Filters
 
-![](./images/bloomfilters.png)
+![Image](images/bloomfilters.png)
+
 ---
+
+## 5 - Exercitii examen
+
+### <ins>Seria 13</ins>
+1. Se considera urmatoarele elemente: <b>(4322, 1334, 1471, 9679, 1989, 6171, 6173, 4199)</b> si functia de hash <b>h(x) = x mod 100</b>. Care dintre urmatoarele afirmatii sunt adevarate?
+    -  <b>1471, 6171</b> produc o coliziune.
+    -  <b>9679, 1989, 4199</b> se mapeaza pe aceeasi valoare.
+    -  Toate elementele se mapeaza pe valori distincte.
+    -  Incarcarea tabelei este de <b>7%</b>.
+2. Cand numarul de slot-uri intr-un hash table se tripleaza, iar numarul de elemente se dubleaza, ce se intampla cu load factor-ul ei?
+    - Creste la <b>3/2</b> din cel initial.
+    - Scade la <b>2/3</b> din cel initial.
+    - Ramane la fel.
+    - Raspunsurile de mai sus nu sunt corecte.
+3. Un skip list are elementele <b>1, 2, 3, 5, 8, 13, 21, 44</b>. In al catalea nod vom gasi elementul <b>8</b>?
+    - Primul nod.
+    - Al doilea nod.
+    - Al patrulea nod.
+    - Al optulea nod.
+    - Raspunsurile de mai sus nu sunt corecte.
+4. Care dintre urmatoarele afirmatii sunt adevarate intr-un <b>Skip List</b>?
+    - Probabilitatea ca un nod sa aiba cel putin doi pointeri este exact <b>1/4</b>.
+    - Elementele sunt sortate in ordine crescatoare.
+    - Nivelurile sunt spatiate in mod egal.
+    - Raspunsurile de mai sus nu sunt corecte.
+5. Sa presupunem ca modificam un <b>Skip List</b> ca sa putem face salturi inainte si inapoi, folosind intuitiv liste dublu inlantuite pe fiecare nivel. Ne vom limita la patru nivele de pointeri. Nivelul unui nod va fi ales in mod obisnuit. Numarul total mediu de pointeri in aceasta varianta de implementare este:
+    - Θ(n).
+    - Θ(nlogn).
+    - Θ(n<sup>2</sup>).
+    - Raspunsurile de mai sus nu sunt corecte.
+6. Sa consideram o schema de double hashing care mapeaza elementele unui univers <b>U</b> pe multimea de indecsi <b>{0, 1, ..., m-1}</b> via functia <b>h(x,i) = (h1(x) + i * h2(x)) (mod m)</b>, unde <b>m</b> este marimea tabelei, iar <b>h1</b> si <b>h2</b> sunt niste functii de hashing. Sa consideram functiile <b>H1(x,i) = (h2(x) + i * h1(x)) (mod m)</b> si <b>H2(x,i) = (h2(x) - 1 + i * (h1(x) + 1)) (mod m)</b>. Care dintre functiile <b>H1, H2</b> sunt potrivite, in principiu, in loc de <b>h</b> pentru <b>double hashing</b>?
+    - Doar <b>H1</b>.
+    - Doar <b>H2</b>.
+    - <b>H1</b> si <b>H2</b>.
+    - Niciuna.
+7. Ce face urmatorul cod?
+    - Printeaza toate valorile listei.
+    - Printeaza toate valorile listei in ordine inversa.
+    - Printeaza valorile cu index par ale listei.
+    - Printeaza valorile cu index par ale listei in ordine inversa.
+
+```cpp
+void f(struct node* head) {
+    if (!head) {
+        return;
+    }
+    f(head->next);
+    std::cout<<head->data;
+}
+```
+
+### <ins>Seria 13 - rezolvari</ins>
+1. Analizam fiecare raspuns:
+    - <b>1471</b> si <b>6171</b> produc o coliziune: <b>ADEVARAT</b>, deoarece <b>1471 % 100 = 71</b> si <b>6171 % 100 = 71</b>.
+    - <b>9679</b>, <b>1989</b> si <b>4199</b> se mapeaza pe aceeasi valoare: <b>FALS</b>, deoarece <b>9679 mod 100 = 79</b> si <b>1989 mod 100 = 89</b>.
+    - Toate elementele se mapeaza pe valori distincte: <b>FALS</b>, deoarece se contrazice cu prima varianta de raspuns, care este adevarata.
+    - Incarcarea tabelei este de <b>7%</b>: <b>ADEVARAT</b>; aplicam functia pe fiecare element si vom vedea ca se ocupa slot-urile cu indecsii <b>{22, 34, 71, 79, 89, 73, 99}</b>. Functia este <b>mod 100</b> => avem indecsii de la <b>0</b> la <b>99</b> (<b>100</b> slot-uri) => <b>load factor-ul</b> este <b>7 / 100 = 7%</b>.
+2. Load factor-ul este <b>x</b>. Se tripleaza numarul de slot-uri => devine <b>x/3</b>. Se dubleaza numarul de elemente => devine <b>2x/3</b> => al doilea raspuns.
+3. Raspunsurile nu sunt corecte (ar fi al 5-lea nod).
+4. Probabilitatea ca un nod sa aiba un singur pointer (sa fie pe primul nivel) este de <b>100%</b>. Probabilitatea sa ajunga pe urmatorul nivel este de <b>1/2</b>, adica <b>50%</b>; asadar, prima varianta e gresita. A doua varianta este corecta, deoarece Skip List-urile sunt mereu sortate crescator. a treia varianta nu prea stiu ce inseamna?? :) 
+5. TODO
+6. TODO
+7. Afiseaza toate valorile listei in ordine inversa (a doua varianta). 
+
+### <ins>Seria 14</ins>
+1. Se dau <b>n</b> numere intre <b>0</b> si <b>k</b>. Descrieti un algoritm care preproceseaza input-ul in timp <b>O(n + k)</b> si raspunde in <b>O(1)</b> la intrebari de forma: "Se citesc 2 numere <b>0 <= a, b <= k</b>. Cate din cele <b>n</b> numere date ca input se gasesc in intervalul <b>[a..b]</b>?".
+2. Scrieti un algoritm in pseudocod care sa rezolve urmatoarea problema: se da o multime <b>S</b> ce contine <b>n</b> numere naturale distincte si un numar natural <b>x</b>. Decideti daca numarul <b>x</b> poate fi exprimat ca suma de 2 numere distincte din <b>S</b>. Pentru un algoritm <b>O(n<sup>2</sup>)</b>, se primesc 0,25p; pentru <b>O(nlogn)</b> sau <b>O(n)</b>, se primeste punctaj intreg.
+
+### <ins>Seria 14 - rezolvari</ins>
+1. TODO
+2. Pentru o solutie in timp liniar: trecem prin vectorul de numere. Pentru elementul curent <b>nums[i]</b>, il stocam intr-o structura de date care permite cautari rapide (<b>std::unordered_set</b>, <b>std::unordered_map</b>). Stim ca mai avem nevoie de numarul <b>target - nums[i]</b> ca sa putem avea suma respectiva; verificam daca am gasit pana acum elementul <b>target - nums[i]</b> (facem un search in structura noastra de date).
+
+```cpp
+std::vector<int> twoSum(std::vector<int>& nums, int target) {
+        std::unordered_map<int, int> t;
+        std::vector<int> result(2);
+        
+        for (int i = 0; i < nums.size(); ++i) {
+            // exemplu: target-ul este 10 si elementul curent este 3
+            // mai avem nevoie de elementul target-nums[i] = 10-3 = 7
+            const int aux = target - nums[i];
+            
+            // daca avem elementul respectiv, afisam indicii celor 2 elemente
+            if (t.contains(aux)) {
+                result[0] = t[aux];
+                result[1] = i;
+                break;
+            }
+            
+            // nu am avut elementul respectiv; stocam indicele elementului curent
+            t[nums[i]] = i;
+        }
+        
+        return result;
+    }
+```
+
+### <ins>Seria 15</ins>
+1. Inserati intr-un <b>Hash Table</b> valorile <b>{19, 20, 4, 23, 1, 42, 81, 67, 219, 192, 87}</b> folosind functia de dispersie <b>h(x) = x % 20</b> si <b>adresare directa</b> pentru rezolvarea coliziunilor.
+2. Inserati intr-un <b>Skip List</b> urmatoarele valori: <b>{6, 29, 3, 15, 7, 14, 22, 19, 14}</b>. Aruncati cu banul si obtineti valorile <b>{B, S, S, B, S, S, B, S, B, S, S, S, B, S, S, S, S, S, B, S, B, B, S, S, S, S, B}</b>. Cand dati <b>B</b>, va opriti si inserati la nivelul respectiv; altfel, continuati.
+3. Rezolvati (in pseudocod) urmatoarea problema: se dau niste litere acceptate si o lista de cuvinte. Ce cuvinte din lista au doar litere acceptate?
+
+### <ins>Seria 15 - rezolvari</ins>
+1. TODO
+2. Am atasat rezolvarea:
+
+![Image](images/seria15ex2.png)
+
+3. TODO
 
 #### Notes 
 * <b>Seria 13</b>: Linked Lists, Skip Lists, Hash Tables, Bloom Filters.
-* <b>Seria 14</b>: Heapsort, BST? (facem data viitoare).
-* <b>Seria 15</b>: Stack, Queue, Deque, Linked Lists.
+* <b>Seria 14</b>: Heapsort (<b>Tutoriat 1</b>), BST (<b>Tutoriat 3</b>).
+* <b>Seria 15</b>: Stack/Queue/Deque (<b>Tutoriat 1</b>), Linked Lists.
