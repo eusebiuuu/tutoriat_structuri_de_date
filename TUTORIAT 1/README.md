@@ -625,7 +625,7 @@ int main() {
 
 ---
 
-## 10 - Exercitii
+## 10 - Exercitii generale
 1. Valid parantheses problem.
 2. Explain how to implement two stacks in one array $A[1 .. n]$ in such a way that neither stack overﬂows unless the total number of elements in both stacks together is $n$. The **PUSH** and **POP** operations should run in $O(1)$ time.
 3. Given an array, find the next greater element for each element.
@@ -685,7 +685,7 @@ int main() {
     - Sa se scrie o secventa de operatii care are ca rezultat cuvantul <b>"ROSU"</b> in stiva <b>S</b>, cuvantul <b>VERDE</b> in coada <b>C2</b>, iar <b>C1</b> este vida.
 11. Demonstrati ca <b>ln(n!) = Θ(n * ln n)</b>.
 
-### <ins>Seria 14 - rezolvari </ins>
+### <ins>Seria 14 - rezolvari</ins>
 1. Rezolvari pe scurt:
     - <b>log(sqrt(n))</b> = 1/2 * log(n), eliminam constanta => <b>Θ(log(n))</b>.
     - <b>(n + 2<sup>200</sup>)<sup>500</sup></b>, eliminam constanta <b>2<sup>200</sup></b> => <b>Θ(n<sup>500</sup>)</b>.

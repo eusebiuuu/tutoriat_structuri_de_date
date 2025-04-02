@@ -22,7 +22,7 @@
 
 ## 2 - Grafuri
 
-### 2.1 - Introducere
+### <ins>2.1 - Introducere</ins>
 
 Un graf este format dintr-o multime de noduri <b>V</b> si o multime de muchii/arce <b>E</b>. Grafurile <b>neorientate</b> contin muchii (sunt bidirectionale), iar cele <b>orientate</b> contin arce (un arc este unidirectional).
 
@@ -32,7 +32,7 @@ Un <b>graf neorientat</b> se numeste <b>conex</b>, daca exista un lant de la ori
 
 ![Image](images/grafuri.png)
 
-### 2.2 - Arbori binari si binomiali
+### <ins>2.2 - Arbori binari si binomiali</ins>
 Un arbore este un <b>graf conex aciclic</b>; astfel, un arbore cu <b>N</b> noduri va avea mereu <b>N-1</b> muchii. Arborii au o <b>radacina</b> - un nod din care pleaca toate drumurile; putem alege orice nod sa fie radacina, iar in functie de nodul pe care il alegem, inaltimea arborelui variaza (<b>inaltimea unui arbore</b> = numarul maxim de muchii de pe un lant de la radacina la orice frunza).
 
 Un <b>arbore binar</b> este un arbore in care fiecare nod are maxim <b>2</b> copii - <b>left child(L), right child(R)</b>. Un arbore binar se numeste <b>complet</b> daca fiecare nivel este complet (are numar maxim de noduri), in afara de ultimul nivel (care, de obicei, este completat de la stanga la dreapta).
@@ -198,5 +198,5 @@ bool inorder(Node* node, int& prev) {
 
 #### Notes 
 - <b>Seria 13</b>: BSTs (Binary Search Trees).
-- <b>Seria 14</b>: Sortari in timp liniar (Count Sort, Bucket Sort, Radix Sort; toate discutate la Tutoriat 1), limite inferioare pentru sortare.
-- <b>Seria 15</b>: Hash Tables (discutate la Tutoriat 2), introducere in grafuri (notiuni de baza + arbori binari si binomiali).
+- <b>Seria 14</b>: Sortari in timp liniar (Count Sort, Bucket Sort, Radix Sort; toate discutate la <b>Tutoriat 1</b>), limite inferioare pentru sortare.
+- <b>Seria 15</b>: Hash Tables (<b>Tutoriat 2</b>), introducere in grafuri (notiuni de baza + arbori binari si binomiali).
