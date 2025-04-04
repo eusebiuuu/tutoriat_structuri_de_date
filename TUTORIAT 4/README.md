@@ -4,6 +4,9 @@
 - [3 - RMQ (Range Minimum Queries)](#3---rmq-range-minimum-queries)
 - [4 - Binomial Heaps](#4---binomial-heaps)
 - [5 - Fibonacci Heaps](#5---fibonacci-heaps)
+- [6 - Exercitii examen](#6---exercitii-examen)
+    - [Seria 13](#seria-13)
+    - [Seria 13 - rezolvari](#seria-13---rezolvari)
 
 ---
 
@@ -161,6 +164,68 @@
 - <b>Pasul 1</b>: apelam <b>decreaseKey(node, -inf)</b> ca sa micsoram valoarea nodului sa fie <b>-inf</b>.
 - <b>Pasul 2</b>: apelam <b>extractMin()</b> ca sa extragem nodul respectiv.
 - <b>Complexitate: O(n)</b> prima oara, <b>O(logn)</b> ulterior.
+
+---
+
+## Exercitii examen 
+
+### <ins>Seria 13</ins>
+1. Care este inaltimea minima a unui arbore AVL cu 5 noduri? Presupunem ca inaltimea unui arbore cu un nod este 0.
+    - 1
+    - 2
+    - 3
+    - Raspunsul corect este altul.
+2. Care dintre urmatoarele afirmatii sunt adevarate intr-un arbore AVL?
+    - Succesorul unui nod este intotdeauna un nod frunza.
+    - Rotatiile simple sunt uneori folosite pentru a restabili invariantul AVL.
+    - Rotatiile duble sunt uneori folosite pentru a restabili invariantul AVL.
+    - Succesorul unui nod este intotdeauna fie un nod frunza, fie un nod fara copil drept.
+3. Sa consideram urmatorul arbore binar de cautare. Dupa ce am rotit nodul 6 in jurul lui 3:
+    - Nodul 1 este copilul lui 3.
+    - Nodul 4 este copilul lui 3.
+    - Marimea subarborelui nu se schimba, dar radacina sa da.
+    - Raspunsurile de mai sus nu sunt corecte.
+
+![Image](images/exercises/13_3.png)
+
+4. Care dintre urmatoarele afirmatii sunt adevarate intr-un arbore splay?
+    - Subarborele din stanga si din dreapta radacinii au aceeasi inaltime.
+    - Subarborele din stanga si din dreapta fiecarui nod au inaltimi care pot diferi cu cel mult 1 in valoare absoluta.
+    - Raspunsurile nu sunt corecte.
+5. Care este inaltimea maxima a unui arbore AVL cu 4 noduri? Presupunem ca inaltimea unui arbore cu un nod este 0.
+    - 1
+    - 2
+    - 3
+    - Raspunsul corect este altul.
+6. Vrem sa reprezentam multimea **S = {1,2,3}** cu un arbore AVL. In cate moduri diferite putem face acest lucru?
+    - 1
+    - 2
+    - 3
+    - 8
+    - Raspunsul corect este altul.
+
+### <ins>Seria 13 - rezolvari</ins>
+1. Inaltimea minima este **2**. Radacina pe nivelul 0, cu 2 copii pe nivelul 1 si inca 2 noduri pe nivelul 2.
+2. A doua si a treia varianta. Prima si ultima sunt gresite, deoarece succesorul unui nod este intotdeauna fie o frunza, fie un nod fara copil **stang**.
+3. Primele 3 variante. Am atasat rezolvarea:
+
+![Image](images/exercises/13_3_sol.png)
+
+4. TODO
+5. Inaltimea maxima este **2**. Radacina se afla pe nivelul 0, cu 2 copii pe nivelul 1 si inca un nod pe nivelul 2.
+6. Sunt **2** moduri: radacina este 1 sau radacina este 2. Radacina nu poate fi 3.
+
+### <ins>Seria 15</ins>
+1. Ce inaltime poate avea un arbore binar echilibrat cu 15 elemente? Schitati un arbore de inaltime minima si unul de inaltime maxima.
+2. Intr-un heap binomial facem pe rand urmatoarele operatii: **insert(5)**, **insert(14)**, **insert(1)**, **insert(3)**, **deleteMin**, **insert(7)**, **insert(12)**, **insert(9)**, **insert(6)**, **deleteMin**, **deleteMin**. Desenati heap-ul dupa fiecare operatie.
+3. Explicati ce face RMQ si aratati cum functioneaza pe vectorul **{1,235,71,8,11,3,2,9}** si intrebarile **1-7, 5-8**. Ce complexitate au query-urile?
+4. Explicati cum putem raspunde cu RMQ in O(1) cu preprocesare O(nlogn) la query-urile **1-7**, respectiv **4-8** in vectorul **{1,2,3,4,0,5,-2,9,-5,11}**.
+
+### <ins>Seria 15 - rezolvari</ins>
+1. Inaltimea minima este **3**, iar cea maxima este **4**. Am atasat rezolvarea:
+2. 
+3.
+4.
 
 ---
 
