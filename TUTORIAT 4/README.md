@@ -7,6 +7,8 @@
 - [6 - Exercitii examen](#6---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 - rezolvari](#seria-13---rezolvari)
+    - [Seria 15](#seria-15)
+    - [Seria 15 - rezolvari](#seria-15---rezolvari)
 
 ---
 
@@ -167,7 +169,7 @@
 
 ---
 
-## Exercitii examen 
+## 6 - Exercitii examen 
 
 ### <ins>Seria 13</ins>
 1. Care este inaltimea minima a unui arbore AVL cu 5 noduri? Presupunem ca inaltimea unui arbore cu un nod este 0.
@@ -223,9 +225,15 @@
 
 ### <ins>Seria 15 - rezolvari</ins>
 1. Inaltimea minima este **3**, iar cea maxima este **4**. Am atasat rezolvarea:
-2. 
-3.
-4.
+
+![Image](images/exercises/15_1_sol.png)
+
+2. Am atasat rezolvarea:
+
+![Image](images/exercises/15_2_sol.png)
+
+3. TODO
+4. TODO
 
 ---
 
