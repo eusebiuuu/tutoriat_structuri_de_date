@@ -167,7 +167,7 @@
 
 ---
 
-## Exercitii examen 
+## 6 - Exercitii examen 
 
 ### <ins>Seria 13</ins>
 1. Care este inaltimea minima a unui arbore AVL cu 5 noduri? Presupunem ca inaltimea unui arbore cu un nod este 0.
