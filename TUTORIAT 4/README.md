@@ -4,15 +4,27 @@
 - [3 - RMQ (Range Minimum Queries)](#3---rmq-range-minimum-queries)
 - [4 - Binomial Heaps](#4---binomial-heaps)
 - [5 - Fibonacci Heaps](#5---fibonacci-heaps)
+- [6 - Exercitii examen](#6---exercitii-examen)
+    - [Seria 13](#seria-13)
+    - [Seria 13 - rezolvari](#seria-13---rezolvari)
+    - [Seria 15](#seria-15)
+    - [Seria 15 - rezolvari](#seria-15---rezolvari)
 
 ---
 
 ## 1 - AVL Trees 
 
-### <ins>1.1 - Ce este un AVL Tree?</ins>
-- Un <b>AVL Tree</b> este un <b>Binary Search Tree</b> cu o proprietate in plus: pentru orice nod, diferenta dintre inaltimea subarborelui stang si inaltimea subarborelui drept este de maxim un nod. Aceasta proprietate asigura faptul ca inaltimea arborelui ramane mereu aproximativ <b>logn</b> => operatiile de <b>insert/search/delete</b> o sa aiba complexitate <b>O(logn)</b>.
-- Inserarea si stergerea de noduri pot afecta aceasta proprietate, deoarece se modifica inaltimea subarborelui; asadar, ne folosim de <b>rotatii</b> ca sa corectam diferentele de inaltime dintre subarbori.
-
+### <ins>1.1 - Introducere</ins>
+- Un <b>AVL Tree</b> este un <b>Binary Search Tree</b> cu o proprietate in plus: pentru orice nod, diferenta dintre inaltimea subarborelui stang si inaltimea subarborelui drept este de maxim un nod. Aceasta diferenta de inaltimi reprezinta **balance factor-ul** unui nod, care este folosit pentru a asigura faptul ca inaltimea arborelui va ramane mereu aproximativ <b>log(n)</b> => operatiile de <b>insert/search/delete</b> o sa aiba mereu complexitate <b>O(logn)</b>.
+- Inserarea si stergerea de noduri pot afecta aceasta proprietate, deoarece se modifica inaltimile subarborilor; asadar, ne folosim de <b>rotatii</b> ca sa corectam fiecare nod cu un **balance factor** stricat.
+- Orice nod intr-un **AVL Tree** are urmatoarele campuri/atribute:
+    - **<ins>key</ins>**: cheia nodului.
+    - **<ins>val</ins>**: valoarea nodului.
+    - **<ins>height</ins>**: inaltimea subarborelui, care are nodul respectiv ca si radacina. Acest camp este necesar pentru a calcula **balance factor-ul**.
+    - **<ins>left</ins>**: copilul stang.
+    - **<ins>right</ins>**: copilul drept.
+- Am atasat un exemplu de AVL Tree:
+    
 ![Image](images/avl-trees/example.png)
 
 ### <ins>1.2 - Rotatii</ins>
@@ -29,14 +41,26 @@
 - <b>Pasul 1</b>: inseram nodul ca la un BST normal (vezi <b>Tutoriat 3</b>).
 - <b>Pasul 2</b>: incepand de la nodul inserat anterior, mergem in sus spre radacina, cautand primul nod care este dezechilibrat, pe care il vom nota cu <b>A</b>. Odata ce l-am localizat pe <b>A</b>, obtinem fiul, pe care il notam cu <b>B</b>, care se afla in drum spre nodul inserat. Apoi, obtinem fiul lui <b>B</b>, pe care il notam cu <b>C</b>, care se afla in drum spre nodul inserat (important sa nu ne abatem de la drum).
 - <b>Pasul 3</b>: Odata ce am obtinut nodurile <b>A</b>, <b>B</b> si <b>C</b>, determinam cazul in care ne aflam si aplicam rotatiile necesare. Ne folosim de inaltimile subarborilor lui <b>A</b>:
-    - <b>left_subtree_height - right_subtree_height > 1</b>: ne aflam in <b>Left-Left</b> sau <b>Left-Right</b>. Ca sa ne dam seama, comparam valoarea nodului inserat cu valoarea lui <b>B</b>.
-    - <b>left_subtree_height - right_subtree_height < -1</b>: ne aflam in <b>Right-Right</b> sau <b>Right-Left</b>. Ca sa ne dam seama, comparam valoarea nodului inserat cu valoarea lui <b>B</b>.
+    - <b>balance_factor > 1</b>: ne aflam in <b>Left-Left</b> sau <b>Left-Right</b>. Ca sa ne dam seama, comparam valoarea nodului inserat cu valoarea lui <b>B</b>.
+    - <b>balance_factor < -1</b>: ne aflam in <b>Right-Right</b> sau <b>Right-Left</b>. Ca sa ne dam seama, comparam valoarea nodului inserat cu valoarea lui <b>B</b>.
 - <b>Pasul 4</b>: am identificat cazul; aplicam una sau doua rotatii (in functie de caz), iar arborele devine din nou echilibrat.
+- **Complexitate O(logn)**.
 
 ### <ins>1.5 - Delete</ins>
+- **Pasul 1**: localizam nodul (daca exista) folosind operatia de **search**. 
+- **Pasul 2**: in caz ca exista, aplicam operatia **delete** de la BST-uri normale (**Tutoriat 3**).
+- **Pasul 3**: incepand de la parintele nodului sters (si mergand in sus catre radacina), verificam **balance factor-ul** fiecarui nod; in caz ca exista un dezechilibru, vom aplica rotatiile necesare. Exista **4** cazuri pentru acest pas:
+    - **balance_factor(node) > 1**: ne aflam in **Left-Left** sau **Left-Right**. Ca sa ne dam seama:
+        - **balance_factor(node->left) >= 0**: **Left-Left**.
+        - **balance_factor(node->left) < 0**: **Left-Right**.
+    - **balance_factor(node) < 1**: ne aflam in **Right-Right** sau **Right-Left**. Ca sa ne dam seama:
+        - **balance_factor(node->right) < 0**: **Right-Right**.
+        - **balance_factor(node->right) >= 0**: **Right-Left**.
+- **Pasul 4**: repetam **pasul 3** pentru fiecare nod dezechilibrat, aplicand rotatiile necesare pentru a restabili echilibrul.
+- **Complexitate O(logn)**.
 
 ### <ins>1.6 - Alte operatii</ins>
-
+- Alte operatii ar mai fi **tree-walks** si **successor/predecessor**, dar acestea sunt identice cu cele de la **BST-uri**.
 ---
 
 ## 2 - Splay Trees 
@@ -125,7 +149,8 @@
     - <b><ins>left</ins></b>: un pointer catre nodul din stanga (sau catre finalul listei, daca ne aflam la inceput si e lista circulara).
     - <b><ins>right</ins></b>: un pointer catre nodul din dreapta (sau catre inceputul listei, daca ne aflam la final si e listsa circulara).
     - <b><ins>mark</ins></b>: o valoare booleana, implicit, <b>false</b>. Daca se sterge copilul unui nod, nodul respectiv devine <b>marked</b>, adica <b>mark=true</b>.
-    - <b><ins>degree</ins></b>: numarul de copii pentru un nod (implicit <b>0</b>). Un nod are maxim gradul <b>log(n)</b> (demonstratie naspa cu chestii fibonacci).
+    - <b><ins>degree</ins></b>: numarul de copii pentru un nod (implicit <b>0</b>).
+- <b>IMPORTANT</B>: un arbore de ordin/grad <b>d</b> (radacina are <b>degree=d</b>) are marimea de maxim <b>log(n)</b> noduri (demonstratie naspa cu numere fibonacci).
 - Am atasat un exemplu de structura pentru un Fibonacci Heap.
 
 ![Image](images/fibonacci-heap/structure.png)
@@ -159,6 +184,74 @@
 - <b>Pasul 1</b>: apelam <b>decreaseKey(node, -inf)</b> ca sa micsoram valoarea nodului sa fie <b>-inf</b>.
 - <b>Pasul 2</b>: apelam <b>extractMin()</b> ca sa extragem nodul respectiv.
 - <b>Complexitate: O(n)</b> prima oara, <b>O(logn)</b> ulterior.
+
+---
+
+## 6 - Exercitii examen 
+
+### <ins>Seria 13</ins>
+1. Care este inaltimea minima a unui arbore AVL cu 5 noduri? Presupunem ca inaltimea unui arbore cu un nod este 0.
+    - 1
+    - 2
+    - 3
+    - Raspunsul corect este altul.
+2. Care dintre urmatoarele afirmatii sunt adevarate intr-un arbore AVL?
+    - Succesorul unui nod este intotdeauna un nod frunza.
+    - Rotatiile simple sunt uneori folosite pentru a restabili invariantul AVL.
+    - Rotatiile duble sunt uneori folosite pentru a restabili invariantul AVL.
+    - Succesorul unui nod este intotdeauna fie un nod frunza, fie un nod fara copil drept.
+3. Sa consideram urmatorul arbore binar de cautare. Dupa ce am rotit nodul 6 in jurul lui 3:
+    - Nodul 1 este copilul lui 3.
+    - Nodul 4 este copilul lui 3.
+    - Marimea subarborelui nu se schimba, dar radacina sa da.
+    - Raspunsurile de mai sus nu sunt corecte.
+
+![Image](images/exercises/13_3.png)
+
+4. Care dintre urmatoarele afirmatii sunt adevarate intr-un arbore splay?
+    - Subarborele din stanga si din dreapta radacinii au aceeasi inaltime.
+    - Subarborele din stanga si din dreapta fiecarui nod au inaltimi care pot diferi cu cel mult 1 in valoare absoluta.
+    - Raspunsurile nu sunt corecte.
+5. Care este inaltimea maxima a unui arbore AVL cu 4 noduri? Presupunem ca inaltimea unui arbore cu un nod este 0.
+    - 1
+    - 2
+    - 3
+    - Raspunsul corect este altul.
+6. Vrem sa reprezentam multimea **S = {1,2,3}** cu un arbore AVL. In cate moduri diferite putem face acest lucru?
+    - 1
+    - 2
+    - 3
+    - 8
+    - Raspunsul corect este altul.
+
+### <ins>Seria 13 - rezolvari</ins>
+1. Inaltimea minima este **2**. Radacina pe nivelul 0, cu 2 copii pe nivelul 1 si inca 2 noduri pe nivelul 2.
+2. A doua si a treia varianta. Prima si ultima sunt gresite, deoarece succesorul unui nod este intotdeauna fie o frunza, fie un nod fara copil **stang**.
+3. Primele 3 variante. Am atasat rezolvarea:
+
+![Image](images/exercises/13_3_sol.png)
+
+4. TODO
+5. Inaltimea maxima este **2**. Radacina se afla pe nivelul 0, cu 2 copii pe nivelul 1 si inca un nod pe nivelul 2.
+6. Sunt **2** moduri: radacina este 1 sau radacina este 2. Radacina nu poate fi 3.
+
+### <ins>Seria 15</ins>
+1. Ce inaltime poate avea un arbore binar echilibrat cu 15 elemente? Schitati un arbore de inaltime minima si unul de inaltime maxima.
+2. Intr-un heap binomial facem pe rand urmatoarele operatii: **insert(5)**, **insert(14)**, **insert(1)**, **insert(3)**, **deleteMin**, **insert(7)**, **insert(12)**, **insert(9)**, **insert(6)**, **deleteMin**, **deleteMin**. Desenati heap-ul dupa fiecare operatie.
+3. Explicati ce face RMQ si aratati cum functioneaza pe vectorul **{1,235,71,8,11,3,2,9}** si intrebarile **1-7, 5-8**. Ce complexitate au query-urile?
+4. Explicati cum putem raspunde cu RMQ in O(1) cu preprocesare O(nlogn) la query-urile **1-7**, respectiv **4-8** in vectorul **{1,2,3,4,0,5,-2,9,-5,11}**.
+
+### <ins>Seria 15 - rezolvari</ins>
+1. Inaltimea minima este **3**, iar cea maxima este **4**. Am atasat rezolvarea:
+
+![Image](images/exercises/15_1_sol.png)
+
+2. Am atasat rezolvarea:
+
+![Image](images/exercises/15_2_sol.png)
+
+3. TODO
+4. TODO
 
 ---
 
