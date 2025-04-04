@@ -40,12 +40,30 @@
 ---
 
 ## 2 - Splay Trees 
+- Un splay tree este un arbore binar de cautare (**nu este balansat!!!**) ce permite accesarea rapida a ultimelor elemente inserate.
+- La fel ca ceilalti arbori binari de cautare, complexitatea accesarii, stergerii si inserarii este $O(log n)$ **in medie** (care este worst case-ul?). Totusi, ele depind foarte mult de **entropia** input-ului, adica cat de mult se vor repeta query-urile si ce pattern au ele.
+- Important de precizat este ca, fata de ceilalti BST, acestia isi pot schimba structura si pe operatiile de accesare.
+- Pentru a putea detalia cum se realizeaza mai exact operatiile pe arbore, trebuie sa introducem conceptul de **splaying**.
+- Atunci cand un element este accesat el va fi mutat aproape de radacina prin operatia de **splay**. Aceasta consta intr-o serie de pasi ce presupun mutarea elementului respectiv, nivel dupa nivel, pana la radacina. Acesti pasi sunt de 3 tipuri, depinzand de pozitia nodului accesat (nodul $p$ este parintele nodului curent $x$):
+1. $p$ este radacina (**Zig step**):
+![](./images/splay_trees/zig.png)
+2. $p$ nu este radacina si $p$ si $x$ sunt ambii pe partea stanga / dreapta a unui nod $g$:
+![](./images/splay_trees/zig_zig.png)
+3. $p$ nu este radacina si $p$ si $x$ sunt pe aceeasi parte, insa unul este fiu stang, iar celalalt fiu drept:
+![](./images/splay_trees/zig_zag.png)
+**IMPORTANT**: Exemplele descriu cazuri in care pe partea stanga se incepe operatia, insa algoritmii sunt simetrici, adica este aceeasi idee daca privim din dreapta in stanga.
+> **Intrebare**: care sunt cazurile in care se va realiza **zig step**??
+- **Join**: Operatia de join intre 2 splay trees $S$ si $T$, in care toate valorile nodurilor din $S$ sunt mai mici decat cele din $T$, se poate face realizand operatia de **splaying** in arborele $S$, aducandu-l pe cel mai mare in radacina (astfel avand fiul drept `null`), iar mai apoi adaugand ca fiu drept pe radacina arborelui din $T$.
+- **Inserare**: Operatia de inserare se realizeaza ca intr-un BST normal, doar ca dupa ce am adaugat elementul, facem **splaying** pe el si il facem radacina
+- **Stergerea**: Operatia de stergere se realizeaza ca intr-un BST, doar ca parintelui lui i se va face splaying spre radacina
+> **Cerinta**: Dati exemplu de o secventa de inserari si accesari pentru care complexitatea este $O(n^2)$. Pentru a vizualiza operatiile, puteti accesa urmatorul [site](https://www.cs.usfca.edu/~galles/visualization/SplayTree.html).
 
----
 
 ## 3 - RMQ (Range Minimum Queries)
-
----
+- Descriere problema: fie un sir de $n$ numere $A$ ordonate aleator. Dorim sa facem interogari pe el de forma $(a, b)$, iar rezultatul sa fie numarul minim din $A$ in intervalul determinat de pozitiile $a$ si $b$ ($a < b$).
+- Pentru moment vom presupune ca nu se pot face update-uri pe elementele din sir (pentru asta va fi nevoie sa folosim niste structuri de date pe care le invatam mai tarziu sau ceva mai ineficient despre care gasiti mai multe informatii [aici](https://cp-algorithms.com/data_structures/sqrt_decomposition.html)).
+- Pentru acestea vom folosi un **sparse table**. Ideea din spatele ei e intentia de a reprezenta segmente din array de tipul $[i, j]$ sub forma $min_elem[i][e_1], min_elem[i + 2 ^ {e_1}][e_2] ...$ cu semnificatia ca $min_elem[i][j]$ reprezinta valoarea minima din intervalul $[i, i + 2 ^ j - 1]$. Astfel, se poate descompune un interval in puteri de 2 si sa se inlantuiasca pana se acopera tot intervalul; in acest mod complexitatea de timp este $O(log_2(j - i))$.
+- Pentru mai multe informatii si implementari consultati site-ul [asta](https://cp-algorithms.com/data_structures/sparse-table.html).
 
 ## 4 - Binomial Heaps 
 

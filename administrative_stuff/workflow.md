@@ -1,9 +1,11 @@
 - **Go through the theory materials**
-  - indications: practical examples, intuition, drawings
+  - Format: text, drawing, video
+  - Intuition & practical examples
+  - Questions and exercises throughout
   - Add table of contents
-  - Cormen book
   - C++ STL equivalents
   - Implementari OOP
+  - Cormen book
 - Find practice exercises for the created materials
   - Cormen
   - LeetCode

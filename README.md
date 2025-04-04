@@ -7,11 +7,21 @@
 ---
 
 ## Table of contents
+- [TUTORIAT STRUCTURI DE DATE (SERIILE 13, 14 si 15)](#tutoriat-structuri-de-date-seriile-13-14-si-15)
+  - [Table of contents](#table-of-contents)
   - [Informatii generale](#informatii-generale)
   - [Continutul tutoriatului](#continutul-tutoriatului)
     - [Tutoriat 1](#tutoriat-1)
     - [Tutoriat 2](#tutoriat-2)
     - [Tutoriat 3](#tutoriat-3)
+    - [Tutoriat 4](#tutoriat-4)
+    - [Tutoriat 5](#tutoriat-5)
+    - [Tutoriat 6](#tutoriat-6)
+  - [Tutoriat 7](#tutoriat-7)
+    - [Tutoriat 8](#tutoriat-8)
+    - [Tutoriat 9](#tutoriat-9)
+    - [Tutoriat 10](#tutoriat-10)
+    - [Tutoriat 11](#tutoriat-11)
 
 ## Informatii generale
 * Materialele pe care le vom discuta vor include **toata materia** de la **toate cele 3 serii**.
@@ -31,7 +41,7 @@
 * <b>Structuri de date</b>: Arrays, Vectors, Stacks, Queues, Deques, Heaps, Priority Queues.
 
 ### Tutoriat 2
-* <b>Structuri de date</b>: Linked Lists, Skip Lists, Hash Tables, Bloom Filters.
+* <b>Structuri de date</b>: Linked Lists, Skip Lists, Hash Tables, Bloom Filters, LRU algorithm.
 
 ### Tutoriat 3
 * <b>Structuri de date</b>: Binary Search Trees (BSTs).
@@ -41,3 +51,36 @@
 ### Tutoriat 4 
 * <b>Structuri de date</b>: AVL Trees, Splay Trees, Binomial Heaps, Fibonacci Heaps.
 * <b>RMQ</b> (Range Minimum Queries).
+
+---
+
+(orientativ)
+
+### Tutoriat 5
+- Red-black trees
+- Arbori de intervale
+- Arbori indexati binar
+
+### Tutoriat 6
+- Sparse tables
+- Cartesian Tree
+- Algoritmul Huffman & Huffman encodings
+
+## Tutoriat 7
+- Trie
+- Suffix trees
+
+### Tutoriat 8
+- Arbori partiali de cost minim: DSU & Kruskal & Prim
+
+### Tutoriat 9
+- Geometry: convex hull trick, segment intersections
+- B-Trees
+- Aho-Corasick Automata
+- Suffix arrays
+
+### Tutoriat 10
+Pregatire examen
+
+### Tutoriat 11
+Pregatire examen
