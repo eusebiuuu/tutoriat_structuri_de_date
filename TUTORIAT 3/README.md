@@ -172,7 +172,10 @@ bool inorder(Node* node, int& prev) {
 ```
 
 5. TODO
-6. TODO
+6. Am atasat rezolvarea (si am presupus ca este neorientat):
+
+![Image](images/14_6.png)
+
 7. Demonstratii scurte:
     - <b>Succesorul lui X nu are fiu stang</b>: ca sa ii gasim succesorul (cel mai mic nod mai mare decat X), mergem in nodul din dreapta si gasim cea mai mica valoare din subarborele stang. Prin definitie, cel mai mic nod din subarborele stang este cel mai din stanga nod => vom merge in stanga pana cand nu mai putem => succesorul nu va avea fiu stang.
     - <b>Predecesorul lui X nu are fiu drept</b>: ca sa ii gasim predecesorul (cel mai mare nod mai mic decat X), mergem in nodul din stanga si gasim cea mai mare valoare din subarborele drept. Prin definitie, cel mai mare nod din subarborele drept este cel mai din dreapta nod => vom merge in dreapta pana cand nu mai putem => predecesorul nu va avea fiu drept.
@@ -189,8 +192,11 @@ bool inorder(Node* node, int& prev) {
 
 ![Image](images/seria15ex1.png)
 
-2. TODO
-3. TODO
+2. **Diametrul** unui arbore binar reprezinta distanta maxima dintre 2 noduri oarecare. Am atasat desenul:
+
+![Image](images/15_2.png)
+
+3. Aplicam formula cu **numere Catalan**: numarul de arbori binari distincti cu **n** noduri este **(2n)! / ((n+1)! * n!)** => pentru **6** noduri, avem **132** de posibilitati. Pentru fiecare structura posibila, putem plasa nodurile in **6!** feluri diferite => **6! * 132 = 95 040**.
 4. Proprietatea arborilor binari: orice nod are maxim <b>2</b> copii. Daca vrem un arbore de inaltime <b>maxima</b>, vrem sa folosim toate nodurile sa mergem cat mai mult in jos => inaltimea maxima este <b>23</b>. Daca vrem un arbore de inaltime <b>minima</b>, punem cat mai multe noduri pe fiecare nivel. Pe nivelul <b>i</b> exista <b>2<sup>i</sup></b> noduri; <b>2<sup>0</sup> + 2<sup>1</sup> + 2<sup>2</sup> + 2<sup>3</sup> < 23 < 2<sup>0</sup> + 2<sup>1</sup> + 2<sup>2</sup> + 2<sup>3</sup> + 2<sup>4</sup></b> => inaltimea minima este <b>4</b>.
 5. TODO
 
