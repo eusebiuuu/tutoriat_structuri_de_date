@@ -44,10 +44,6 @@
     - **Cazul 3**: nodul **P** este colorat cu **rosu**. Exista cateva subcazuri:
         - **Cazul 3.1**: nodul **S** este colorat cu **negru** sau este **NULL**. Aplcam rotatii pe nodurile **G-P-T** in functie de caz (**LL/RR/LR/RL**); noua radacina a subarborelui o coloram cu **negru**, iar cei 2 copii vor fi colorati cu **rosu**.
         - **Cazul 3.2**: nodul **S** este colorat cu **rosu**. Coloram nodurile **P** si **S** cu negru, iar pe **G** cu **rosu**. Verificam, din nou, cazurile pe **G** in mod recursiv (deoarece parintele lui **G** ar putea fi un nod **rosu**).
-    
-![Image](images/rb-trees/insert_case1.png)
-
-![Image](images/rb-trees/insert_case2.png)
 
 ---
 
