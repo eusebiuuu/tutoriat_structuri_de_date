@@ -1,6 +1,6 @@
 # Table of contents
 - [1 - Red-Black Trees](#1---red-black-trees)
-- [2 - Interval Trees](#2---interval-trees)
+- [2 - Segment Trees](#2---segment-trees)
 - [3 - Lowest Common Ancestor](#3---lowest-common-ancestor)
 - [4 - Exercitii examen](#4---exercitii-examen)
     - [Seria 13](#seria-13)
@@ -12,7 +12,7 @@
 
 ---
 
-## 1 - Red-Black Trees 
+## <ins>1 - Red-Black Trees</ins>
 ### <ins>1.1 - Introducere</ins>
 - Un **Red-Black Tree** este un **BST**, in care fiecare nod are o proprietate in plus: **culoarea**, care poate sa fie **red** sau **black**. Exista cateva reguli pentru colorarea nodurilor, care ne asigura ca arborele va ramane mereu "echilibrat", iar operatiile vor fi **O(logn)**.
 - Orice nod va avea urmatoarele campuri/atribute/proprietati:
@@ -42,8 +42,10 @@
     - **Cazul 1**: nodul **T** este radacina => il recoloram cu **negru**.
     - **Cazul 2**: nodul **P** este colorat cu **negru** => proprietatile nu sunt incalcate.
     - **Cazul 3**: nodul **P** este colorat cu **rosu**. Exista cateva subcazuri:
-        - **Cazul 3.1**: nodul **S** este colorat cu **negru** sau este **NULL**. Aplcam rotatii pe nodurile **G-P-T** in functie de caz (**LL/RR/LR/RL**); noua radacina a subarborelui o coloram cu **negru**, iar cei 2 copii vor fi colorati cu **rosu**.
+        - **Cazul 3.1**: nodul **S** este colorat cu **negru** sau este **NULL**. Aplicam rotatii pe nodurile **G-P-T** in functie de caz (**LL/RR/LR/RL**); noua radacina a subarborelui o coloram cu **negru**, iar cei 2 copii vor fi colorati cu **rosu**.
         - **Cazul 3.2**: nodul **S** este colorat cu **rosu**. Coloram nodurile **P** si **S** cu negru, iar pe **G** cu **rosu**. Verificam, din nou, cazurile pe **G** in mod recursiv (deoarece parintele lui **G** ar putea fi un nod **rosu**).
+
+![Image](images/rb-trees/insert.png)
 
 ---
 
@@ -63,7 +65,35 @@
 
 --- 
 
-## 2 - Interval Trees 
+## <ins>2 - Segment Trees</ins>
+### <ins>2.1 - Introducere</ins>
+- Un **Segment Tree** imparte un **array** in mai multe **subintervale**, reprezentate intr-un **arbore binar complet**. Acest lucru ne permite sa raspundem la **range query-uri** in mod eficient (suma unor elemente consecutive, elementul minim dintr-un range specificat, etc.). De asemenea, avem posibilitatea de a modifica cate un element (**array[i] = x**), sau un interval intreg (putem modifica fiecare element din intervalul **[l..r]**).
+- Fiind un **arbore binar complet**, fiecare nivel **k** are maxim **2<sup>k</sup>** noduri, iar inaltimea arborelui este **log(n)**.
+- Nodurile reprezinta intervale; radacina contine tot vectorul - intervalul de baza **[0, n-1]**, iar pe masura ce inaintam in noduri, obtinem subintervale mai mici. Frunzele contin intervale ce acopera un singur element.
+- Un nod oarecare dintr-un **Segment Tree** va avea urmatoarele campuri/atribute/proprietati:
+    - Intervalul pe care il stocheaza: **[left, right]**.
+    - Copilul stang: **[left, (left + right) / 2]**.
+    - Copilul drept: **[((left + right) / 2) + 1, right]**.
+    - O valoare specifica intervalului. De exemplu, intr-un **Sum Segment Tree**, stocam suma intervalelor.
+- Complexitatea de spatiu este liniara: pentru a stoca un array cu **N** elemente, avem nevoie de **4*N** noduri in arbore.
+- Constructia unui **Segment Tree** este un proces recursiv: pentru a obtine valoarea asociata intervalului **[left, right]**, avem nevoie de cele 2 subintervale asociate (valorile copiilor nodului respectiv). Totusi, inainte de a construi un **Segment Tree**, trebuie sa avem in vedere 2 lucruri:
+    - Valoarea care va fi stocata la fiecare interval/nod: aceasta ar putea fi minimul intervalului, sau suma intervalului, etc.
+    - Operatia de **merge**, care combina valorile a 2 intervale. De exemplu, intr-un **Sum Segment Tree**, ca sa obtinem suma unui interval, trebuie sa adunam sumele celor 2 copii ai sai.
+
+### <ins>2.2 - Exemplu de Sum Query</ins>
+- Sa presupunem ca ni se dau 2 indecsi **left** si **right**; sarcina este sa obtinem suma corespunzatoare intervalului **[left, right]** in complexitate **O(logn)**.
+- Cum gestionam situatia cand arborele nu contine intervalul respectiv? Sa presupunem ca ne aflam la nodul **[a, b]** si avem nevoie de suma pentru **[left, right]**:
+    - **Cazul 1**: intervalul **[a, b]** este inclus in **[left, right]** => returnam valoarea asociata lui **[a, b]**.
+    - **Cazul 2**: verificam care nod dintre copiii lui **[a, b]** se intersecteaza cu **[left, right]** (ar putea fi ambii copii); pentru nodurile care au o intersectie, apelam recursiv procesul.
+
+![Image](images/segment-trees/sum-segment-tree-example.png)
+
+### <ins>2.3 - Exemplu de Update Query</ins>
+- Sa presupunem ca vrem sa schimbam un element din vector **v[i] = x**. Aceasta modificare ar putea afecta anumite query-uri; de exemplu, exista o sansa ridicata sa se schimbe suma pentru orice interval care contine index-ul **i**.
+- Strategia este sa gasim si sa actualizam valoarea fiecarui interval care contine index-ul respectiv.
+- **Algoritmul de cautare**: incepem din radacina. Evident, aceasta contine index-ul respectiv (deci va trebui sa actualizam valoarea radacinii). La fiecare pas, doar unul din copii contine index-ul (subintervalul stang sau subintervalul drept); identificam copilul potrivit si apelam recursiv procesul. Noua valoare a unui nod depinde de valorile copiilor => va trebui sa mergem in recursivitate pana cand ne lovim de cazul de baza, iar apoi urcam.
+
+![Image](images/segment-trees/update-query.png)
 
 ---
 
