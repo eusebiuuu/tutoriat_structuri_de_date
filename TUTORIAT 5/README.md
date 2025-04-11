@@ -10,7 +10,7 @@
     - [2.2 - Exemplu de Sum Query](#22---exemplu-de-sum-query)
     - [2.3 - Exemplu de Update Query](#23---exemplu-de-update-query)
     - [2.4 - Implementare](#24---implementare)
-  - [3 - Lowest Ancestor & Lowest Common Ancestor](#3---lowest-ancestor---lowest-common-ancestor)
+  - [3 - Lowest Ancestor & Lowest Common Ancestor](#3---lowest-ancestor--lowest-common-ancestor)
     - [3.1 - Lowest Ancestor](#31---lowest-ancestor)
     - [3.2 - Lowest Common Ancestor](#32---lowest-common-ancestor)
   - [4 - Exercitii examen](#4---exercitii-examen)
@@ -52,7 +52,7 @@
 - **Pasul 2**: notam nodul inserat cu **T**, parintele sau cu **P**, bunicul cu **G** si fratele lui **P** cu **S**. Cand inseram un nod, implicit va fi colorat cu **rosu**, iar acest lucru ar putea afecta structura arborelui. Identificam cazul si actionam corespunzator:
     - **Cazul 1**: nodul **T** este radacina => il recoloram cu **negru**.
     - **Cazul 2**: nodul **P** este colorat cu **negru** => proprietatile nu sunt incalcate.
-    - **Cazul 3**: nodul **P** este colorat cu **rosu**. Exista cateva subcazuri:
+    - **Cazul 3**: nodul **P** este colorat cu **rosu**. Exista doua subcazuri:
         - **Cazul 3.1**: nodul **S** este colorat cu **negru** sau este **NULL**. Aplicam rotatii pe nodurile **G-P-T** in functie de caz (**LL/RR/LR/RL**); noua radacina a subarborelui o coloram cu **negru**, iar cei 2 copii vor fi colorati cu **rosu**.
         - **Cazul 3.2**: nodul **S** este colorat cu **rosu**. Coloram nodurile **P** si **S** cu negru, iar pe **G** cu **rosu**. Verificam, din nou, cazurile pe **G** in mod recursiv (deoarece parintele lui **G** ar putea fi un nod **rosu**).
 
@@ -63,14 +63,14 @@
 ### <ins>1.4 - Delete</ins>
 - **Pasul 1**: stergem nodul ca intr-un BST normal.
 - **Pasul 2**: notam nodul sters cu **T**, fratele sau cu **S** si parintele sau cu **P** (**OBSERVATIE**: nodul sters mereu o sa fie o frunza sau un nod cu un copil, datorita modului in care functioneaza stergerea la BST-uri). Introducem o noua notiune de **double-black (DB)**: daca am sters un nod colorat cu **negru**, se modifica **black-height-ul** arborelui si trebuie sa "plimbam" culoarea stearsa prin arbore, pana ii gasim o noua pozitie. Ca sa scapam de **DB** si sa reparam proprietatile, exista urmatoarele cazuri:
-    - **Cazul 1**: nodul **T** este o **frunza rosie** => nu facem nimic, deoarece nu sunt incalcate proprietati.
-    - **Cazul 2**: nodul **T** este colorat cu **rosu** si are un singur fiu => nu facem nimic, deoarece nu sunt incalcate proprietati.
-    - **Cazul 3**: nodul **T** este radacina => ne oprim. Chiar daca este colorat cu **negru**, nu se intampla nimic daca il stergem. De asemenea, **DB-ul** se anuleaza in radacina (de tinut minte pentru urmatoarele cazuri). 
-    - **Cazul 4**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu **negru**, iar copiii lui **S** sunt **NULL** sau colorati cu **negru**. Il coloram pe **S** cu **rosu**; daca **P** este **rosu**, il coloram cu **negru**, si daca este deja colorat cu **negru** il facem **DB** si aplicam recursiv verificarea pe el.
-    - **Cazul 5**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu **negru**, iar copilul lui **S** mai apropiat de **T** este colorat cu **rosu**. Notam copilul respectiv cu **C**. Dam swap intre culorile lui **S** si **C** si aplicam o rotatie ca sa il tragem pe **S** mai departe de **T** (adica spre celalalt copil - fratele lui **C**). In final, aplicam **cazul 6**.
-    - **Cazul 6**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu **negru**, iar copilul lui **S** mai indepartat de **T** este colorat cu **rosu**. Notam copilul respectiv cu **C**. Dam swap intre culorile lui **S** si **P**, il coloram pe **C** cu **negru** si aplicam o rotatie ca sa il tragem pe **P** in directia lui **T**. 
-    - **Cazul 7**: nodul **T** este colorat cu **negru**, iar nodul **S** este colorat cu **rosu**. Nodul **T** devine **DB**. Dam swap la culorile lui **P** si **S**, si aplicam o rotatie ca sa il tragem pe **P** in directia lui **T**. Aplicam din nou recursiv verificarea de caz pe **T**, deoarece inca este **DB**.
-- **Observatie**: cand verificam **cazurile 5 si 6**, mai intai verificam copilul indepartat; daca este colorat cu **rosu**, avem **cazul 6**. Altfel, il verificam pe cel apropiat.
+    - **Cazul 1**: nodul **T** este radacina => ne oprim. Chiar daca este colorat cu **negru**, nu se intampla nimic daca il stergem. De asemenea, de tinut minte pentru urmatoarele cazuri ca **DB-ul** se anuleaza in radacina.
+    - **Cazul 2**: nodul **T** este o **frunza rosie** => nu facem nimic, deoarece nu sunt incalcate proprietati.
+    - **Cazul 3**: nodul **T** este colorat cu **rosu** si are un singur fiu => nu facem nimic, deoarece nu sunt incalcate proprietati.
+    - **Cazul 4**: nodul **T** este colorat cu **negru** si are un singur fiu colorat cu **rosu** => fiul lui **T** va fi colorat cu **negru** (**DB-ul** se duce in fiu).
+    - **Cazul 5**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu **negru**, iar copiii lui **S** sunt **NULL** sau colorati cu **negru**. Il coloram pe **S** cu **rosu**; daca **P** este **rosu**, il coloram cu **negru**, si daca este deja colorat cu **negru** il facem **DB** si aplicam recursiv verificarea pe el.
+    - **Cazul 6**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu **negru**, iar copilul lui **S** mai apropiat de **T** este colorat cu **rosu** (**observatie**: mai intai verificam copilul indepartat; daca acesta este colorat cu **rosu**, ignoram culoarea celui apropiat si devine **cazul 7**). Notam copilul respectiv cu **C**. Dam swap intre culorile lui **S** si **C** si aplicam o rotatie ca sa il tragem pe **S** mai departe de **T** (adica spre celalalt copil - fratele lui **C**). In final, aplicam **cazul 7**.
+    - **Cazul 7**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu **negru**, iar copilul lui **S** mai indepartat de **T** este colorat cu **rosu**. Notam copilul respectiv cu **C**. Dam swap intre culorile lui **S** si **P**, il coloram pe **C** cu **negru** si aplicam o rotatie ca sa il tragem pe **P** in directia lui **T**. 
+    - **Cazul 8**: nodul **T** este colorat cu **negru**, iar nodul **S** este colorat cu **rosu**. Nodul **T** devine **DB**. Dam swap la culorile lui **P** si **S**, si aplicam o rotatie ca sa il tragem pe **P** in directia lui **T**. Aplicam din nou recursiv verificarea de caz pe **T**, deoarece inca este **DB**.
 
 ![Image](images/rb-trees/delete.png)
 
