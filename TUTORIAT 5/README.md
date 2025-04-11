@@ -10,7 +10,9 @@
     - [2.2 - Exemplu de Sum Query](#22---exemplu-de-sum-query)
     - [2.3 - Exemplu de Update Query](#23---exemplu-de-update-query)
     - [2.4 - Implementare](#24---implementare)
-  - [3 - Lowest Common Ancestor](#3---lowest-common-ancestor)
+  - [3 - Lowest Ancestor & Lowest Common Ancestor](#3---lowest-ancestor---lowest-common-ancestor)
+    - [3.1 - Lowest Ancestor](#31---lowest-ancestor)
+    - [3.2 - Lowest Common Ancestor](#32---lowest-common-ancestor)
   - [4 - Exercitii examen](#4---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 - rezolvari](#seria-13---rezolvari)
@@ -18,7 +20,6 @@
     - [Seria 14 - rezolvari](#seria-14---rezolvari)
     - [Seria 15](#seria-15)
     - [Seria 15 - rezolvari](#seria-15---rezolvari)
-      - [Notes](#notes)
 
 ---
 
@@ -149,7 +150,20 @@ public:
 
 ---
 
-## 3 - Lowest Common Ancestor 
+## <ins>3 - Lowest Ancestor & Lowest Common Ancestor</ins>
+
+### <ins>3.1 - Lowest Ancestor</ins>
+- Reprezinta o problema de algoritmica pe arbori.
+- **Cerinta**: se da un nod intr-un arbore si un numar intreg **k**. Afisati stramosul de nivel **K** al nodului dat. Stramosul de nivel **0** este nodul respectiv, cel de nivel **1** este parintele, cel de nivel **2** este bunicul, etc.
+- **Solutie 1**: cel mai evident mod de a rezolva problema este de a parcurge mereu arborele, cautand stramosul respectiv. Complexitatea nu este optima, in cel mai rau caz fiind **O(h)**; de asemenea, la un moment dat, parcurgerile se vor repeta incontinuu.
+- **Solutie 2**: putem raspunde in timp **O(1)**, daca pentru fiecare nod **i** stocam stramosul de nivel **j** in **D[i][j] = t**. Avand **n** noduri si inaltimea arborelui **h**, pentru fiecare nod trebuie sa retinem **h** stramosi => matricea va ocupa spatiu **O(n*h)**.
+- **Solutie 3**: ne folosim de **sqrt decomposition**. Calculam **pas=sqrt(n)**, iar pentru fiecare query de tipul **(nod=x, nivel=k)**, verificam de cat de multe ori intra **pas** in **k**. Daca **k=5** si **pas=3**, atunci stramosul de ordin **k** pentru **x** ar fi query-ul **parent[parent[jump[x]]]**, deoarece sarim peste **pas** noduri cu **jump** si apoi mai parcurgem **2** noduri cu **parent**. Alt exemplu - pentru **(nod=x, k=3, pas=4**), ar trebui sa returnam **parent[parent[parent[x]]]**, deoarece **pas** nu intra in **k**. Preprocesarea datelor ia timp **O(n)**, folosim spatiu **O(n)**, iar query-urile au **O(sqrt(n))**.
+- **Solutie 4**: ne folosim de puteri de **2**. Pentru fiecare nod, retinem stramosii de nivel **1, 2, 4, 8, 16...**. Ideea este la fel ca la solutia anterioara, dar in loc sa avem un pas fixat, ne folosim de cea mai mare putere de **2** care intra in **k**. Preprocesarea datelor ia timp **O(nlogn)**, spatiul folosit este **O(nlogn)** (care poate fi redus la **O(n)** cu talent), iar query-urile au timp **O(logn)**.
+
+### <ins>3.2 - Lowest Common Ancestor</ins>
+- Reprezinta o problema de algoritmica pe arbori.
+- **Cerinta**: se dau **2** noduri distincte intr-un arbore. Sa se gaseasca cel mai apropiat stramos comun.
+- **Idee**: problema de **LCA** poate fi tradusa/modificata sa devina o problema de **RMQ**.
 
 ```cpp
 class LCA {
@@ -243,5 +257,5 @@ class LCA {
 #### Notes 
 - **Seria 13**: Red-Black Trees **(R.I.P.)**.
 - **Seria 14**: RMQ (Range Minimum Queries, din nou).
-- **Seria 15**: Interval Trees (arbori de intervale), LCA (Lowest Common Ancestor), RMQ (Range Minimum Queries).
+- **Seria 15**: Segment Trees (arbori de intervale), LA (Lowest Ancestor) & LCA (Lowest Common Ancestor), RMQ (Range Minimum Queries).
     
