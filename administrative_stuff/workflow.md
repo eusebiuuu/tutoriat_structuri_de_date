@@ -16,18 +16,10 @@
 - Teaching plan:
   - Prepare the presentation devices:
     - writing board
-    - video proiector
+    - video proiector & adaptor alta sala
   - Materials recap
   - Foile de prezenta
+  - Recap with questions about taught topics
   - Presentation based on written materials & continuous feedback & continuous talk
 
 ---
-
-- Teaching plan:
-  - Prepare the presentation devices:
-    - writing board
-    - video proiector
-  - Materials recap
-  - Foile de prezenta
-  - Tutoriat 2
-  - Presentation based on written materials & clarity & feedback

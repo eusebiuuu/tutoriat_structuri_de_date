@@ -1,14 +1,24 @@
 # Table of contents
-- [1 - Red-Black Trees](#1---red-black-trees)
-- [2 - Segment Trees](#2---segment-trees)
-- [3 - Lowest Common Ancestor](#3---lowest-common-ancestor)
-- [4 - Exercitii examen](#4---exercitii-examen)
+- [Table of contents](#table-of-contents)
+  - [1 - Red-Black Trees](#1---red-black-trees)
+    - [1.1 - Introducere](#11---introducere)
+    - [1.2 - Search](#12---search)
+    - [1.3 - Insert](#13---insert)
+    - [1.4 - Delete](#14---delete)
+  - [2 - Segment Trees](#2---segment-trees)
+    - [2.1 - Introducere](#21---introducere)
+    - [2.2 - Exemplu de Sum Query](#22---exemplu-de-sum-query)
+    - [2.3 - Exemplu de Update Query](#23---exemplu-de-update-query)
+    - [2.4 - Implementare](#24---implementare)
+  - [3 - Lowest Common Ancestor](#3---lowest-common-ancestor)
+  - [4 - Exercitii examen](#4---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 - rezolvari](#seria-13---rezolvari)
     - [Seria 14](#seria-14)
-    - [Seria 14 - rezolvari](#seria-15---rezolvari)
+    - [Seria 14 - rezolvari](#seria-14---rezolvari)
     - [Seria 15](#seria-15)
     - [Seria 15 - rezolvari](#seria-15---rezolvari)
+      - [Notes](#notes)
 
 ---
 
@@ -94,6 +104,48 @@
 - **Algoritmul de cautare**: incepem din radacina. Evident, aceasta contine index-ul respectiv (deci va trebui sa actualizam valoarea radacinii). La fiecare pas, doar unul din copii contine index-ul (subintervalul stang sau subintervalul drept); identificam copilul potrivit si apelam recursiv procesul. Noua valoare a unui nod depinde de valorile copiilor => va trebui sa mergem in recursivitate pana cand ne lovim de cazul de baza, iar apoi urcam.
 
 ![Image](images/segment-trees/update-query.png)
+
+### <ins>2.4 - Implementare</ins>
+```cpp
+template <typename T> class SegmentTree {
+private:
+  vector<T> tree;
+public:
+  SegmentTree(int n, int val = 0) {
+      tree.resize(4 * n + 4, val);
+  }
+
+  void update(int node, int l, int r, int pos, T val) {
+      if (l == r) {
+          tree[node] = val;
+          return;
+      }
+      int mid = (l + r) / 2;
+      if (pos <= mid) {
+          update(2 * node, l, mid, pos, val);
+      } else {
+          update(2 * node + 1, mid + 1, r, pos, val);
+      }
+      tree[node] = tree[2 * node] + tree[2 * node + 1];
+  }
+
+  T query(int node, int l, int r, int st, int fn) {
+      if (st > fn) return 0;
+      if (st <= l and r <= fn) {
+          return tree[node];
+      }
+      int mid = (l + r) / 2;
+      T ans1 = 0, ans2 = 0; // instead of 0 add the identity element of the operation
+      if (st <= mid) {
+          ans1 = query(2 * node, l, mid, st, fn);
+      }
+      if (fn > mid) {
+          ans2 = query(2 * node + 1, mid + 1, r, st, fn);
+      }
+      return ans1 + ans2;
+  }
+};
+```
 
 ---
 
