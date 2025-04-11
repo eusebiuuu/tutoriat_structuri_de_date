@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.erd": "json",
+        "*.vuerd": "json",
+        "vector": "cpp"
+    }
+}
