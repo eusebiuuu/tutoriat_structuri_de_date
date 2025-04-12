@@ -619,9 +619,69 @@ int main() {
 
 ---
 
-## 9 - Heap
+## <ins>9 - Heap</ins>
+### <ins>9.1 - Introducere</ins>
+- Un heap este un **arbore binar complet**: fiecare nod are maxim **2** copii, iar nivelul **K** trebuie sa aiba numar maxim de noduri ca sa putem trece la nivelul **K+1** (de asemenea, se completeaza de la stanga la dreapta).
+- Intr-un **max-heap**, fiecare nod este mai **mare** decat copiii sai. Intr-un **min-heap**, fiecare nod este mai **mic** decat copiii sai. Ca si consecinta, **radacina** mereu o sa aiba cea mai mica (sau cea mai mare) valoare.
+- Un heap poate fi reprezentat ca un **array**:
+    - **t[0]** este radacina.
+    - **t[i]** reprezinta un nod oarecare (nodul cu index-ul **i**).
+    - **t[i/2]** reprezinta parintele nodului **i**.
+    - **t[2*i + 1]** este copilul stang al lui **i**.
+    - **t[2*i + 2]** este copilul drept al lui **i**.
+- Ultimul nod care **NU** este o frunza se afla la indexul **n/2 - 1**. Astfel, frunzele se gasesc de la **n/2** pana la **n-1**. Demonstratie:
+    - Un nod **NU** este o frunza daca are cel putin un copil. Asadar, nu este o frunza daca are cel putin copilul stang.
+    - Ca un nod **i** sa aiba copil stang, trebuie sa indeplineasca inegalitatea **2*i + 1 <= n - 1**, unde **2*i + 1** este index-ul copilului stang, iar **n** este numarul de noduri (**n-1** este ultimul nod).
+    - Il scoatem pe **i** si obtinem inegalitatea **i <= (n-2)/2**, adica **i <= n/2 - 1**. Asta inseamna ca toate nodurile care au cel putin copilul stang se duc pana in index-ul **n/2 - 1** => frunzele incep de la **n/2**.
 
-![Image](images/data-structures/heap.png)
+![Image](images/heap/heap_example.png)
+
+### <ins>9.2 - Heapify</ins>
+- Reprezinta operatie de rearanjare a unui heap, astfel incat sa indeplineasca proprietatea de **min-heap** (sau **max-heap**). O sa consideram ca vorbim despre un **min-heap**.
+- Ideea principala: ne aflam la nodul **parent = i**, care este parintele nodurilor **left = 2*i + 1** si **right = 2*i + 2**. Verificam daca parintele indeplineste proprietatea de **min-heap**: daca <b>v[parent] < v[left]</b> si <b>v[parent] < v[right]</b>, proprietatea este indeplinita. Altfel, trebuie sa dam swap intre parinte si cel mai mic copil: consideram **smallest** ca fiind index-ul celui mai mic dintre copii, si efectuam **swap(v[parent], v[smallest])**.
+- Acesta este un proces care se propaga recursiv in jos: odata ce am dat swap la pozitia parintelui cu pozitia copilului, trebuie sa verificam mai departe daca este indeplinita proprietatea pe noua pozitie a parintelui. Asadar, se apeleaza recursiv **heapify(smallest)**. Procesul se opreste cand dam de niste noduri care indeplinesc proprietatea, sau cand dam de o frunza.
+- **Complexitate O(logn)**: este posibil sa mergem pe toata inaltimea arborelui, care este **log(n)** (deoarece este un arbore binar complet). 
+
+### <ins>9.3 - BuildHeap</ins>
+- Pentru exemplele de mai jos, o sa folosim proprietatea de **min-heap**.
+- Operatia **heapify** este folosita pentru a aranja elementele unui vector, astfel incat sa devina heap. Deoarece nu este destul sa o apelam recursiv doar pentru un singur nod (de exemplu, daca o apelam o singura data din radacina si se propaga in subarborele stang, subarborele drept tot ar putea fi stricat), trebuie sa o apelam pentru fiecare nod in parte (in afara de frunze).
+- In ce ordine luam nodurile? De sus in jos (**top-bottom manner**) sau de jos in sus (**bottom-top manner**)?
+    - **Top-bottom**: sa presupunem ca aplicam **heapify** pe radacina. Odata ce s-a terminat heapify-ul de pe radacina, trebuie sa trecem la urmatorul nod => nu o sa mai fim niciodata pe radacina (nu o sa se mai intample swap-uri cu aceasta). Acest lucru va rezulta intr-un heap aranjat gresit, deoarece minimul ar putea sa se afle in continuare intr-un subarbore al radacinii.
+    - **Bottom-top**: aplicam **heapify** incepand cu ultimul nod care nu este o frunza, adica index-ul **n/2 - 1**. Asadar, pentru un subarbore oarecare, stim deja ca toti arborii din componenta sa au fost reparati => in cel mai rau caz, radacina subarborelui respectiv incalca proprietatea. Tot ce trebuie sa facem este sa reparam radacina subarborelui cu **heapify**. La final, obtinem un heap aranjat corect.
+- **Complexitate O(n)**: intuitia spune ca ar trebui sa fie **O(nlogn)**, deoarece avem **n/2 - 1** apeluri asupra unei functii care are complexitatea **O(logn)**. Totusi, nu fiecare apel o sa fie **O(logn)**.
+    - Sa presupunem ca heap-ul are inaltime **h**. Pe ultimul nivel o sa avem doar frunze, care sunt irelevante.
+    - Pe penultimul nivel **h-1** o sa avem **2<sup>h-1</sup>** noduri. In cazul in care unul dintre aceste noduri incalca proprietatea de **min-heap**, o sa fie mutat mai jos cu un singur nivel (o sa ajunga pe ultimul nivel). Asadar, pentru **2<sup>h-1</sup>** noduri o sa avem maxim o singura operatie.
+    - Pe antepenultimul nivel **h-2** o sa avem **2<sup>h-2</sup>** noduri. Un nod de pe acest nivel poate fi mutat cu maxim 2 nivele mai jos => pentru **2<sup>h-2</sup>** noduri o sa avem maxim doua operatii.
+    - Aplicand logica asta pentru fiecare nivel, obtinem o suma care ne da numarul maxim de operatii efectuate: <b>(0 * 2<sup>h</sup>) + (1 * 2<sup>h-1</sup>) + (2 * 2<sup>h-2</sup>) + ... + ((h-1) * 2<sup>1</sup>) + (h * 2<sup>0</sup>)</b>. In aceasta suma, termenul general are formula **T = k * 2<sup>h-k</sup>**. Mai departe o sa fie doar **analiza matematica** ca sa demonstram.
+        - Rescriind, obtinem <b>T = k * 2<sup>h</sup> * 2<sup>-k</sup></b>. Mai intai hai sa calculam formula pentru suma cu termenul general **X = k * 2<sup>-k</sup>**. 
+        - Pentru suma de mai sus, ar fi util sa stim suma cu termenul general <b>k * x<sup>k</sup></b>, unde stim ca <b>x < 1</b>. Totusi, pentru aceasta ar fi util sa stim si suma cu termenul general <b>x<sup>k</sup></b> (<b>x < 1</b>). Asadar, notam si calculam: **S = sum(x<sup>k</sup>, 1<=k<=h) = x<sup>0</sup> + x<sup>1</sup> + ... + x<sup>h</sup>**. Inmultim cu **x** => **xS = x<sup>1</sup> + ... + x<sup>h+1</sup>**. Calculam **S - xS = (x<sup>0</sup> + ... + x<sup>h</sup>) - (x<sup>1</sup> + ... + x<sup>h+1</sup>) = 1 - x<sup>h+1</sup>**. In final, <b>S*(1-x) = 1 - x<sup>h+1</sup></b> => **S = (1 - x<sup>h+1</sup>) / (1 - x)**, cu **x != 1**.
+        - Acum revenim la suma cu termenul general <b>k * x<sup>k</sup></b>. Folosind forma initiala a sumei calculate anterior **x<sup>k</sup> (x < 1)**, derivam si obtinem   <b>sum((x<sup>k</sup>)') = sum(k * x<sup>k-1</sup>)</b>. Inmultim cu **x** => <b>x * sum((x<sup>k</sup>))' = sum(k * x<sup>k</sup>)</b>, fix suma pe care vrem sa o calculam. Inlocuim **x<sup>k</sup>** cu formula calculata anterior si obtinem <b>sum(k * x<sup>k</sup>) = x * ((1 - x<sup>h+1</sup>) / (1 - x))'</b>. Ca sa ne usuram munca, putem inlocui **x=1/2**; derivam si obtinem <b>sum(k * 2<sup>-k</sup>) = 2 - ((h+2) / 2<sup>h</sup>)</b>.
+        - A mai ramas de calculat suma originala, care are acum formula finala **2<sup>h</sup> * {2 - [(h+2) / 2<sup>h</sup>)]}**. Facem inmultirea si obtinem <b>sum(k * 2<sup>h</sup> * 2<sup>-k</sup>) = 2<sup>h+1</sup> - h - 2</b>.
+        - Stim ca **h = log<sub>2</sub>n** (inaltimea unui arbore binar complet) => suma devine **2 * 2<sup>log<sub>2</sub>n</sup> - log<sub>2</sub>n - 2 = 2*n - log<sub>2</sub>n - 2**.
+        - In concluzie, numarul total de operatii este <b>O(2*n - log<sub>2</sub>n - 2) = O(n)</b>.
+
+![Image](images/heap/buildheap.png)
+
+### <ins>9.4 - Search</ins>
+- Sa presupunem ca vrem sa gasim elementul **10**, iar in radacina avem valoarea **5**. Daca valorile copiilor sunt **<10** (de exemplu, **8** si **9**), nu avem de unde sa stim in ce subarbore se afla elementul **10**. Asadar, va trebui sa verificam majoritatea elementelor din arbore ca sa stim daca exista o anumita valoare.
+- **Complexitate O(n)**.
+
+### <ins>9.5 - Insert</ins>
+- **Pasul 1**: inseram la final (pe ultimul nivel, completand stanga-dreapta).
+- **Pasul 2**: este posibil ca nodul inserat sa incalce proprietatea de **min-heap** (sa fie mai mic decat parintele). Cat timp nodul respectiv este mai mic decat parintele sau, dam swap (un fel de **heapify** de jos in sus).
+- **Complexitate O(logn)**.
+
+### <ins>9.6 - Extract min/max</ins>
+- Observatie: daca vrem doar sa vedem valoarea minima (fara sa o scoatem), atunci este **O(1)**.
+- **Pasul 1**: valoarea minima se afla in radacina. Dam swap intre radacina si ultimul nod, iar apoi stergem ultimul nod.
+- **Pasul 2**: este posibil ca noua radacina sa incalce proprietatea de **min-heap**. Aplicam **heapify** pe radacina, ca sa ii gasim pozitia adecvata.
+- **Complexitate O(logn)**.
+
+### <ins>9.7 - Delete</ins>
+- **Pasul 1**: gasim nodul pe care vrem sa il stergem.
+- **Pasul 2**: dam swap intre nodul respectiv si ultimul nod, iar apoi stergem ultimul nod.
+- **Pasul 3**: aplicam **heapify** pe pozitia unde a avut loc stergerea. Observatie: stergerea este exact la fel ca **extragerea minimului**, singura diferenta fiind pozitia unde are loc extragerea.
+- **Complexitate O(logn)**: stergerea in sine este **O(logn)**, dar pana gasim nodul... cautarea este **O(n)**.
 
 ---
 
