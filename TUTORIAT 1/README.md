@@ -67,6 +67,7 @@
 - **Exercitiu:** Dati exemplu de un algoritm aflat in $\Theta(n ^ 3)$
 - Complexitate de spatiu ocupat se face similar si este intuitiva dupa ce ati inteles-o pe cea de timp, de multe ori fiind cea mai usoara de aflat; un exemplu ar fi ca daca in cadrul programului avem o matrice de dimensiune $n ^ 2$ si un vector de dimensiune $10n$ atunci algoritmul va fi in $O(n ^ 2)$, chiar $\Theta(n ^ 2)$; daca sirul avea dimensiunea $m$ atunci complexitate finala era $O(n ^ 2 + m)$, la fel ca la timp ;)
 
+---
 
 ## 3 - Teorema master
 - Algoritmii se clasifica in 2 clase: cei iterativi si cei recursivi
@@ -87,6 +88,7 @@
 
 - Din cate se poate observa, cele 3 cazuri **nu acopera toate posibilitatile**, deoarece intre cazul 1 si cazul 2 si cazul 2 si cazul 3, diferentele dintre complexitati trebuie sa fie polinomiale (adica sa fie de forma $n ^ d$ (luati $k = 0$ in cazul 2)); deci daca am avea $f(n) = O(n ^ c + m)$ atunci nu am intra in niciun caz, deci nu  putem rezolva problema cu teorema Master
 
+---
 
 ## 4 - Algoritmi de sortare
 
@@ -717,9 +719,9 @@ int main() {
 ### <ins>Seria 13 - rezolvari</ins>
 1. Ultima varianta.
 2. Prima varianta.
-3. Raspunsurile nu sunt corecte. Am atasat rezolvarea:
+3. In **3** moduri. Am atasat rezolvarea:
 
-![Image](images/seria13ex3.png)
+![Image](images/exercises/13_3.png)
 
 ### <ins>Seria 14</ins>
 1. Exprimati functiile urmatoare in notatie Θ:
@@ -756,7 +758,7 @@ int main() {
 2. TODO
 3. Am atasat rezolvarea:
 
-![Image](images/seria14ex3.png)
+![Image](images/exercises/14_3.png)
 
 4. TODO
 5. TODO
@@ -787,17 +789,17 @@ int main() {
 3. Verificati exemplul grafic de la <b>Merge Sort</b> de mai devreme.
 4. Am atasat rezolvarea: 
 
-![Image](images/seria15ex4.png)
+![Image](images/exercises/15_4.png)
 
 5. TODO
 6. Complexitatea este <b>O(n)</b>, deoarece trebuie sa trecem prin toate elementele ca sa gasim minimul. Elementele dintr-un <b>Deque</b> nu au vreo proprietate/ordine care sa ne ajute la cautare.
 7. Am atasat rezolvarea:
 
-![Image](images/seria15ex7.png)
+![Image](images/exercises/15_7.png)
 
 8. Am atasat rezolvarea:
 
-![Image](images/seria15ex8.png)
+![Image](images/exercises/15_8.png)
 
 9. EXPLICATIE: ne folosim de o <b>stiva</b>, in care punem ultimul element din vector. Apoi, trecem prin celelalte elemente (de la indexul <b>n-2</b> la <b>0</b>): cat timp elementul curent este mai mic decat varful stivei, afisam perechea (dintre element si varful stivei) si scoatem un element de pe stiva. Odata ce stiva devine goala sau elementul curent devine mai mare, il adaugam pe stiva si trecem la urmatorul element. La final, este posibil sa fi ramas elemente in plus pe stiva, care nu au un element mai mic spre stanga; le scoatem si le afisam cu <b>-1</b> sau orice alta valoare sugestiva.
 
@@ -835,6 +837,8 @@ std::vector<int> t = {1, 4, 2, 2, 4, 1, 5, 6, 1};
 std::unordered_set<int> aux(t.begin(), t.end());
 t = std::vector<int>(aux.begin(), aux.end());
 ```
+
+---
 
 #### Notes 
 * <b>Seria 13</b>: Algoritmi de sortare (Merge Sort, Insert Sort, Heap Sort, Quick Sort, Select Sort; Comparison Sorts), Heaps (implementare ca Array; Heapify(), BuildHeap()), Priority Queues (insert, pop), Arrays, Vectors, Stacks (+array-based implementation), Queues, Deques.
