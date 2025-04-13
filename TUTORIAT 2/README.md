@@ -265,7 +265,7 @@ int main() {
 
 ---
 
-## 3 - Hash Tables
+## <ins>3 - Hash Tables</ins>
 ### <ins>Introducere</ins>
 - Un **hash table** este o structura de date ce consta in perechi (key, value) si care permite accesarea, stergerea si inserarea elementelor, foarte eficient, intr-un mod similar unui dictionar
 - Informal, ea reprezinta o generalizare a vectorilor in sensul ca, in loc sa se acceseze cu indexul pozitiei la care se afla, elementele sunt acesate in functie de o cheie, care poate fi un numar, un simbol sau chiar o alta structura de date, pastrandu-se, in general, complexitatile de accesare; deci, se poate observa ca au o aplicabilitate mult mai larga decat vectorii, desi vin la pachet cu anumite probleme, care le fac utilizabile doar in anumite cazuri, pe care le vom analiza mai jos
@@ -312,7 +312,7 @@ int main() {
 ### <ins>Implementari C++</ins>
 - In C++, hash table-ul este implementat sub numele de `std::unordered_map`. Mai multe detalii [aici](https://en.cppreference.com/w/cpp/container/unordered_map)
 
-## Exercitiu: Least recently used algorithm (LRU)
+## <ins>Exercitiu: Least recently used algorithm (LRU)</ins>
 - Problema: dorim sa simulam cat mai bine un cache, adica sa cream un algoritm care sa foloseasca anumite structuri de date ce imita cat mai bine functionalitatile unui cache: atunci cand cautam un element, fie il gasim si punem elementul la inceput, fie nu il gasim, caz in care il adaugam si stergem cel mai nefolosit element daca se depaseste dimensiunea fixa a cache-ului.
 - **Incercari si intuitie**
 - Solutie: se va folosi o lista simplu inlantuita de dimensiune fixa pentru a reprezenta cache-ul efectiv si pentru a avea O(1) la stergere efectiva + inserare la inceput. De asemenea, se va mai folosi un hash table pentru a stoca ca valori pointerii din lista inlantuita pentru a putea fi accesati in $O(1)$ atunci cand dorim sa stergem un element.
@@ -393,13 +393,45 @@ int main() {
 
 ```
 
-## 4 - Bloom Filters
+## <ins>4 - Bloom Filters</ins>
+### <ins>4.1 - Introducere</ins>
+- Un **Bloom Filter** este o structura de date probabilista (deoarece exista sanse de 
+**false positives**). Este adecvat pentru scenariile unde este in regula sa avem **false 
+positives**, dar ar fi o problema sa avem **false negatives**; de exemplu - nu este o
+problema sa avem o alarma falsa pentru un eveniment care nu are loc, dar ar putea fi o problema
+majora sa ignoram un eveniment care se intampla, cum ar fi un incendiu.
+- **Bloom Filterul** se foloseste de **hashing functions** si **bit-arrays**.
+- **Nu se pot sterge valori!** Se pot cauta valori (existand sanse de **false positives**)
+si se pot insera valori.
+- Complexitatile de timp si de spatiu depind de functiile de hashing si de dimensiunea
+bit array-ului.
 
-![Image](images/bloomfilters.png)
+### <ins>4.2 - Search</ins>
+- **Pasul 1**: se primeste un input - de exemplu, stringul **"kit"**.
+- **Pasul 2**: se aplica toate functiile de hashing pe inputul respectiv. De exemplu, daca
+avem functiile **f**, **g** si **h**, sa presupunem ca obtinem valorile **f("kit") = 5**,
+**g("kit") = 11** si **h("kit") = 15**.
+- **Pasul 3**: valorile obtinute in urma hashingului vor fi folosite ca si indecsi in bit array. 
+Daca toti bitii gasiti au valoarea **1**, cel mai probabil exista valoarea respectiva (dar 
+ar putea sa nu existe). Daca cel putin unul din biti are valoarea **0**, atunci 
+este cert faptul ca nu exista valoarea.
+
+![Image](images/bloom-filters/search.png)
+
+### <ins>4.3 - Insert</ins>
+- **Pasul 1**: se primeste un input - de exemplu, stringul **cat**.
+- **Pasul 2**: se aplica toate functiile de hashing pe inputul respectiv. De exemplu, 
+daca avem functiile **f**, **g** si **h**, sa presupunem ca obtinem valorile **f("cat") = 4**,
+**g("cat") = 9** si **h("cat") = 13**.
+- **Pasul 3**: valorile obtinute in urma hashing-ului vor fi folosite ca si indecsi
+in bit array. In cazul in care un bit are valoarea **0**, il setam sa fie **1**, iar daca 
+un bit are deja valoarea **1**, nu il schimbam.
+
+![Image](images/bloom-filters/insert.png)
 
 ---
 
-## 5 - Exercitii examen
+## <ins>5 - Exercitii examen</ins>
 
 ### <ins>Seria 13</ins>
 1. Se considera urmatoarele elemente: <b>(4322, 1334, 1471, 9679, 1989, 6171, 6173, 4199)</b> si functia de hash <b>h(x) = x mod 100</b>. Care dintre urmatoarele afirmatii sunt adevarate?
@@ -506,9 +538,11 @@ std::vector<int> twoSum(std::vector<int>& nums, int target) {
 
 ![Image](images/seria15ex2.png)
 
-3. TODO
+3. TODO 
 
-#### Notes 
+---
+
+#### <ins>Notes</ins> 
 * <b>Seria 13</b>: Linked Lists, Skip Lists, Hash Tables, Bloom Filters.
 * <b>Seria 14</b>: Heapsort (<b>Tutoriat 1</b>), BST (<b>Tutoriat 3</b>).
 * <b>Seria 15</b>: Stack/Queue/Deque (<b>Tutoriat 1</b>), Linked Lists.
