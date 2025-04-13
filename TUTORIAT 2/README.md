@@ -24,7 +24,7 @@
 
 ---
 
-## 1 - Linked Lists
+## <ins>1 - Linked Lists</ins>
 - Listele sunt structuri de date ce presupun o inlantuire de elemente in asa fel incat accesarea sa poata fi facuta direct **doar** dintr-un element vecin (predecesor sau succesor); **elementele nu se pot accesa print indecsi** ca la vectori
 - In cazul in care un element poate fi accesat doar dinspre predecesorul sau, atunci lista este **simplu inlantuita**, altfel, daca se poate accesa si dinspre predecesor si dinspre succesor, atunci se numeste **dublu inlantuita**
 - Conventia generala este ca, atunci cand un element nu are un succesor sau predecesor, in locul lui valoarea default este **NULL / NIL**; de multe ori insa, pentru claritatea codului, se utilizeaza un element numit **santinela (engleza: sentinel)** ce pointeaza catre inceputul listei si catre finalul ei (in cazul in care este dublu inlantuita)
@@ -35,7 +35,7 @@
   - Stergerea unui element de pe o pozitie data: desi stergerea este in $O(1)$, cautarea elementului pe care dorim sa-l stergem este $O(n)$, deci complexitatea finala este $O(n)$
 - Implementari in C++ (cu pointeri):
 
-#### Lista simplu inlantuita
+#### <ins>Lista simplu inlantuita</ins>
 ```cpp
 class SinglyLinkedList {
 private:
@@ -79,7 +79,7 @@ public:
 };
 ```
 
-#### Listele dublu inlantuite
+#### <ins>Listele dublu inlantuite</ins>
 ```cpp
 class DoublyLinkedList {
 private:
@@ -125,7 +125,7 @@ public:
 };
 ```
 
-#### Listele circulare
+#### <ins>Listele circulare</ins>
 
 ```cpp
 class CircularLinkedList {
@@ -218,9 +218,50 @@ int main() {
 
 ---
 
-## 2 - Skip Lists
+## <ins>2 - Skip Lists</ins>
+### <ins>2.1 - Introducere</ins>
+- Un **Skip List** este o structura de date **probabilista** (in alte cuvinte, are niste functionalitati bazate pe randomizare), reprezentand o colectie de liste inlantuite, fiecare lista fiind plasata pe un nivel.
+- La nivelul de baza (nivelul **0**) exista o lista inlantuita ce contine toate elementele. Numarul de elemente se injumatateste fata de nivelul anterior de fiecare data cand urcam. Astfel, la nivelul **0** avem o lista cu **n** elemente, la nivelul **1** avem o lista cu **n/2** elemente si asa mai departe => numarul de noduri de pe nivelul **k** este **n/2<sup>k</sup>**, iar numarul de niveluri este aproximativ **log(n)**. 
+- Daca un nod se afla pe nivelul **k**, asta inseamna ca se afla pe fiecare nivel din intervalul **[0, k-1]**.
+- Aceasta structura a nodurilor este utila pentru operatii rapide; cand cautam un element, putem sari peste majoritatea elementelor (folosind nivelurile din varf), ajungand la destinatie din cateva sarituri.
+- **Observatie**: ca sa decidem nivelul maxim al unui nod, ne folosim de randomizare si incercam sa ne apropiem cat mai mult de o distributie cat mai echilibrata a nodurilor (nu putem controla acest lucru in intregime, dar incercam sa ne apropiem de statisticile mentionate anterior).
+- **Skip Listurile** sunt o alternativa buna pentru arborii echilibrati (deoarece sunt mai usor de implementat), iar operatiile sunt rapide, complexitatea de timp find **O(logn)** in medie.
 
-![Image](images/skiplists.png)
+![Image](images/skip-lists/example.png)
+
+### <ins>2.2 - Search</ins>
+- Sa presupunem ca vrem sa gasim nodul **A**.
+- **Pasul 1**: incepem de la cel mai inalt nivel, din **head=NULL** (primul nod).
+- **Pasul 2**: verificam daca urmatorul nod de pe nivelul curent, pe care il notam cu **B**, este mai mare, mai mic, sau egal cu nodul **A**.
+    - **B > A**: nu putem sa mergem in **B**, deoarece am sari peste **A**; trebuie sa coboram un nivel si reluam recursiv pasul 2.
+    - **B < A**: putem merge in **B** (astfel sarind peste niste noduri), deoarece nu sarim peste **A**. Mergem in **B** si reluam recursiv pasul 2.
+    - **B = A**: am gasit nodul pe care il cautam; oprim cautarea.
+- **Pasul 3**: daca ajungem in **inf** (capatul listei) pe nivelul **0**, atunci nodul respectiv nu exista.
+
+![Image](images/skip-lists/search.png)
+
+### <ins>2.3 - Insert</ins>
+- Cand inseram un nod, va trebui sa modificam pointeri de pe mai multe niveluri. Notam nodul de inserat cu **A**.
+- **Pasul 1**: incepem de la cel mai inalt nivel, din **head=NULL** (primul nod).
+- **Pasul 2**: verificam daca urmatorul nod de pe nivelul curent, pe care il notam cu **B**, este mai mare, mai mic, sau egal cu nodul **A**.
+    - **B > A**: salvam pointerul respectiv si coboram un nivel.
+    - **B < A**: mergem in continuare in **B**.
+    - **B = A**: putem anula inserare, deoarece nu dorim duplicate.
+- **Pasul 3**: odata ce am ajuns la nivelul **0** la un pointer care indica o valoare mai mare decat **A**, oprim "cautarea".
+- **Pasul 4**: generam un numar aleator de niveluri. Adaugam nodul pe nivelurile respective, actualizand pointerii pe care i-am salvat anterior (doar pointerii pana la care ajunge nodul, deoarece ar putea avea un nivel mic).
+
+![Image](images/skip-lists/insert.png)
+
+### <ins>2.4 - Delete</ins>
+- Cand stergem un nod, va trebui sa modificam pointerii de pe fiecare nivel care pointeaza catre nodul respectiv. Notam nodul pe care vrem sa il stergem cu **A**.
+- **Pasul 1**: incepem de la cel mai inalt nivel, din **head=NULL** (primul nod).
+- **Pasul 2**: verificam daca urmatorul nod de pe nivelul curent, pe care il notam cu **B**, este mai mare, mai mic, sau egal cu nodul **A**.
+    - **B > A**: coboram un nivel.
+    - **B < A**: mergem in continuare in **B**.
+    - **B = A**: salvam pointerul respectiv si coboram un nivel.
+- **Pasul 3**: daca am ajuns in **inf** pe nivelul **0**, inseamna ca nodul **A** nu exista. Altfel, trecem prin toti pointerii pe care i-am salvat si ii modificam corespunzator.
+
+![Image](images/skip-lists/delete.png)
 
 ---
 
