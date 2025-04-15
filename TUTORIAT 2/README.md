@@ -222,7 +222,7 @@ int main() {
 ### <ins>2.1 - Introducere</ins>
 - Un **Skip List** este o structura de date **probabilista** (in alte cuvinte, are niste functionalitati bazate pe randomizare), reprezentand o colectie de liste inlantuite, fiecare lista fiind plasata pe un nivel.
 - La nivelul de baza (nivelul **0**) exista o lista inlantuita ce contine toate elementele. Numarul de elemente se injumatateste fata de nivelul anterior de fiecare data cand urcam. Astfel, la nivelul **0** avem o lista cu **n** elemente, la nivelul **1** avem o lista cu **n/2** elemente si asa mai departe => numarul de noduri de pe nivelul **k** este **n/2<sup>k</sup>**, iar numarul de niveluri este aproximativ **log(n)**. 
-- Daca un nod se afla pe nivelul **k**, asta inseamna ca se afla pe fiecare nivel din intervalul **[0, k-1]**.
+- Daca un nod se afla pe nivelul **k**, asta inseamna ca se afla pe fiecare nivel din intervalul **[0, k]**.
 - Aceasta structura a nodurilor este utila pentru operatii rapide; cand cautam un element, putem sari peste majoritatea elementelor (folosind nivelurile din varf), ajungand la destinatie din cateva sarituri.
 - **Observatie**: ca sa decidem nivelul maxim al unui nod, ne folosim de randomizare si incercam sa ne apropiem cat mai mult de o distributie cat mai echilibrata a nodurilor (nu putem controla acest lucru in intregime, dar incercam sa ne apropiem de statisticile mentionate anterior).
 - **Skip Listurile** sunt o alternativa buna pentru arborii echilibrati (deoarece sunt mai usor de implementat), iar operatiile sunt rapide, complexitatea de timp find **O(logn)** in medie.
