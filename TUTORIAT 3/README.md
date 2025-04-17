@@ -45,9 +45,78 @@ Un <b>arbore binomial</b> de ordin <b>0</b> este un singur nod (radacina). Un ar
 
 ---
 
-## 3 - Binary Search Trees
+## <ins>3 - Binary Search Trees</ins>
+### <ins>3.1 - Introducere</ins>
+- Un **BST (Binary Search Tree)** este un **arbore binar** (fiecare nod are maxim 
+**2** copii) cu o proprietate in plus: pentru orice nod, subarborele stang contine
+valori strict mai mici, iar subarborele drept contine valori strict mai mari decat
+nodul respectiv.
+- Orice nod va avea urmatoarele campuri/atribute/proprietati:
+    - **key**: cheia nodului.
+    - **val**: valoarea nodului.
+    - **left**: pointer catre copilul stang.
+    - **right**: pointer catre copilul drept.
+- Ideea principala este ca inaltimea arborelui va fi in medie **log(n)**, iar 
+operatiile **search/insert/delete** depind in mod direct de inaltimea arborelui => 
+complexitatile operatiilor sunt, in medie, **O(logn)**. 
 
-![Image](images/bst.png)
+![Image](images/bst/example.png)
+
+### <ins>3.2 - Search</ins>
+- **Pasul 1**: incepem cautarea din radacina.
+- **Pasul 2**: comparam valoarea nodului curent cu valoarea pe care o cautam. Exista 3 cazuri:
+    - sunt egale => am gasit valoarea.
+    - valoarea pe care o cautam este mai mica => cautam recursiv in subarborele stang.
+    - valoarea pe care o cautam este mai mare => cautam recursiv in subarborele drept.
+- **Pasul 3**: daca ajungem intr-un nod **NULL**, valoarea cautata nu exista.
+- **Complexitate O(logn)**.
+
+![Image](images/bst/search.png)
+
+### <ins>3.3 - Insert</ins>
+- **Pasul 1**: aplicam algoritmul de **search** ca sa gasim pozitia unde ar trebui
+sa fie inserata valoarea. Daca gasim valoarea respectiva, nu inseram deoarece nu vrem
+duplicate. Daca ajungem intr-un nod **NULL**, continuam cu inserarea.
+- **Pasul 2**: adaugam noul nod in arbore la pozitia gasita (actualizam pointerii).
+- **Complexitate O(logn)**.
+
+![Image](images/bst/insert.png)
+
+### <ins>3.4 - Delete</ins>
+- **Pasul 1**: aplicam algoritmul de **search** ca sa gasim nodul respectiv.
+- **Pasul 2**: daca valoarea pe care vrem sa o stergem exista, trebuie sa identificam cati copii
+are nodul. Exista 3 cazuri:
+    - **0 copii**: nodul este o frunza => il putem sterge direct.
+    - **1 copil**: pointerul parintelui nodului va fi actualizat sa indice catre copilul nodului,
+    dupa care stergem nodul.
+    - **2 copii**: gasim succesorul nodului (cea mai mica valoare din arbore, care este
+    mai mare decat valoarea noastra). Mergem in radacina subarborelui drept, iar apoi
+    incontinuu spre stanga (pana cand nu mai putem) ca sa obtinem succesorul. Nodul pe
+    care vrem sa il stergem o sa preia valoarea succesorului si aplicam recursiv stergerea
+    pe succesor (care o sa fie un nod cu **0** sau **1** copii).
+- **Complexitate O(logn)**.
+
+![Image](images/bst/delete.png)
+
+### <ins>3.5 - Tree walks</ins>
+- Exista mai multe moduri utile de a parcurge un **BST** - pentru a obtine valorile
+intr-o anumita ordine (de exemplu, ordine crescatoare), sau pentru a traversa efectiv
+nodurile intr-un anumit fel (daca vrem sa stergem, mai intai scapam de frunze).
+- **Parcurgere in inordine**:
+    - Aplicam recursiv parcurgerea pe subarborele stang.
+    - Afisam valoarea curenta.
+    - Aplicam recursiv parcurgerea pe subarborele drept.
+- **Parcurgere in preordine**:
+    - Afisam valoarea curenta.
+    - Aplicam recursiv parcurgerea pe subarborele stang.
+    - Aplicam recursiv parcurgerea pe subarborele drept.
+- **Parcurgere in postordine** (pentru stergere):
+    - Aplicam recursiv parcurgerea pe subarborele stang.
+    - Aplicam recursiv parcurgerea pe subarborele drept.
+    - Afisam valoarea curenta.
+- **Complexitate O(n)** - deoarece trecem prin toate nodurile.
+
+![Image](images/bst/treewalks.png)
 
 ---
 
