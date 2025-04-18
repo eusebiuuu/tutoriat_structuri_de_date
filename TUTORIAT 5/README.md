@@ -25,21 +25,27 @@
 
 ## <ins>1 - Red-Black Trees</ins>
 ### <ins>1.1 - Introducere</ins>
-- Un **Red-Black Tree** este un **BST**, in care fiecare nod are o proprietate in plus: **culoarea**, care poate sa fie **red** sau **black**. Exista cateva reguli pentru colorarea nodurilor, care ne asigura ca arborele va ramane mereu "echilibrat", iar operatiile vor fi **O(logn)**.
+- Un **Red-Black Tree** este un **BST**, in care fiecare nod are o proprietate in 
+plus: **culoarea**, care poate sa fie **red** sau **black**. Exista cateva reguli 
+pentru colorarea nodurilor, ce ne asigura ca arborele va ramane mereu "echilibrat", 
+iar operatiile vor fi **O(logn)**.
 - Orice nod va avea urmatoarele campuri/atribute/proprietati:
     - **<ins>key</ins>**: cheia nodului.
     - **<ins>val</ins>**: valoarea nodului.
-    - **<ins>color</ins>**: culoarea nodului, care poate fi rosu sau negru.
+    - **<ins>color</ins>**: culoarea nodului, care poate fi **rosu/negru**.
     - **<ins>left</ins>**: copilul stang.
     - **<ins>right</ins>**: copilul drept.
     - **<ins>parent</ins>**: parintele nodului.
 - Cum determinam culoarea unui nod?
     - **Radacina** va fi **mereu** colorata cu **negru**.
     - Orice nod **NULL** este colorat cu **negru**.
-    - Daca un nod este colorat cu **rosu**, atunci **copiii** sai sunt neaparat colorati cu **negru**.
-    - **Black-height**: pentru un nod oarecare, orice drum de la nodul respectiv catre o frunza **NULL** va parcurge acelasi numar de noduri colorate cu negru. Exemplu: daca din nodul **X** putem ajunge in 3 frunze diferite **F1**, **F2** si **F3**, atunci drumurile **X->F1**, **X->F2** si **X->F3** parcurg acelasi numar de noduri colorate cu negru. Aceasta este **proprietatea de echilibru**.
+    - Daca un nod este colorat cu **rosu**, atunci copiii sai sunt neaparat 
+    colorati cu **negru**.
+    - **Black-height**: pentru un nod oarecare, orice drum de la nodul respectiv catre 
+    o frunza **NULL** va parcurge acelasi numar de noduri colorate cu negru. Aceasta 
+    este **proprietatea de echilibrare**. **ATENTIE**: este vorba de drumul catre
+    nodurile **NULL**, nu catre nodurile care sunt doar frunze.
 - **Teorema**: un RB-Tree cu **n** noduri are inaltimea maxim **2*log(n+1)**.
-- Am atasat o imagine care exemplifica cum ar trebui sa arate un **RB-Tree**:
 
 ![Image](images/rb-trees/example.png)
 
@@ -62,15 +68,42 @@
 
 ### <ins>1.4 - Delete</ins>
 - **Pasul 1**: stergem nodul ca intr-un BST normal.
-- **Pasul 2**: notam nodul sters cu **T**, fratele sau cu **S** si parintele sau cu **P** (**OBSERVATIE**: nodul sters mereu o sa fie o frunza sau un nod cu un copil, datorita modului in care functioneaza stergerea la BST-uri). Introducem o noua notiune de **double-black (DB)**: daca am sters un nod colorat cu **negru**, se modifica **black-height-ul** arborelui si trebuie sa "plimbam" culoarea stearsa prin arbore, pana ii gasim o noua pozitie. Ca sa scapam de **DB** si sa reparam proprietatile, exista urmatoarele cazuri:
-    - **Cazul 1**: nodul **T** este radacina => ne oprim. Chiar daca este colorat cu **negru**, nu se intampla nimic daca il stergem. De asemenea, de tinut minte pentru urmatoarele cazuri ca **DB-ul** se anuleaza in radacina.
-    - **Cazul 2**: nodul **T** este o **frunza rosie** => nu facem nimic, deoarece nu sunt incalcate proprietati.
-    - **Cazul 3**: nodul **T** este colorat cu **rosu** si are un singur fiu => nu facem nimic, deoarece nu sunt incalcate proprietati.
-    - **Cazul 4**: nodul **T** este colorat cu **negru** si are un singur fiu colorat cu **rosu** => fiul lui **T** va fi colorat cu **negru** (**DB-ul** se duce in fiu).
-    - **Cazul 5**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu **negru**, iar copiii lui **S** sunt **NULL** sau colorati cu **negru**. Il coloram pe **S** cu **rosu**; daca **P** este **rosu**, il coloram cu **negru**, si daca este deja colorat cu **negru** il facem **DB** si aplicam recursiv verificarea pe el.
-    - **Cazul 6**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu **negru**, iar copilul lui **S** mai apropiat de **T** este colorat cu **rosu** (**observatie**: mai intai verificam copilul indepartat; daca acesta este colorat cu **rosu**, ignoram culoarea celui apropiat si devine **cazul 7**). Notam copilul respectiv cu **C**. Dam swap intre culorile lui **S** si **C** si aplicam o rotatie ca sa il tragem pe **S** mai departe de **T** (adica spre celalalt copil - fratele lui **C**). In final, aplicam **cazul 7**.
-    - **Cazul 7**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu **negru**, iar copilul lui **S** mai indepartat de **T** este colorat cu **rosu**. Notam copilul respectiv cu **C**. Dam swap intre culorile lui **S** si **P**, il coloram pe **C** cu **negru** si aplicam o rotatie ca sa il tragem pe **P** in directia lui **T**. 
-    - **Cazul 8**: nodul **T** este colorat cu **negru**, iar nodul **S** este colorat cu **rosu**. Nodul **T** devine **DB**. Dam swap la culorile lui **P** si **S**, si aplicam o rotatie ca sa il tragem pe **P** in directia lui **T**. Aplicam din nou recursiv verificarea de caz pe **T**, deoarece inca este **DB**.
+- **Pasul 2**: notam nodul sters cu **T**, fratele sau cu **S** si parintele sau cu 
+**P** (**OBSERVATIE**: nodul sters mereu o sa fie o frunza sau un nod cu un copil, 
+datorita modului in care functioneaza stergerea la BST-uri). Introducem o noua notiune 
+de **double-black (DB)**: daca am sters un nod colorat cu **negru**, se modifica 
+**black-height-ul** arborelui si trebuie sa "plimbam" culoarea stearsa prin arbore, 
+pana ii gasim o noua pozitie. Ca sa scapam de **DB** si sa reparam proprietatile, 
+exista urmatoarele cazuri:
+    - **Cazul 1**: nodul **T** este radacina => ne oprim. Chiar daca este colorat cu 
+    **negru**, nu se intampla nimic daca il stergem. De asemenea, de tinut minte 
+    pentru urmatoarele cazuri ca **DB-ul** se anuleaza in radacina.
+    - **Cazul 2**: nodul **T** este o **frunza rosie** => nu facem nimic, deoarece nu 
+    sunt incalcate proprietati.
+    - **Cazul 3**: nodul **T** este colorat cu **negru** si are un singur fiu colorat 
+    cu **rosu** => fiul lui **T** va fi colorat cu **negru** (**DB-ul** se duce in fiu).
+    - **Cazul 4**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu 
+    **negru**, iar copiii lui **S** sunt **NULL** sau colorati cu **negru**. Il coloram 
+    pe **S** cu **rosu**; daca **P** este **rosu**, il coloram cu **negru**, si daca 
+    este deja colorat cu **negru** il facem **DB** si aplicam recursiv verificarea pe el.
+    - **Cazul 5**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu 
+    **negru**, iar copilul lui **S** mai apropiat de **T** este colorat cu **rosu** 
+    (**observatie**: mai intai verificam copilul indepartat; daca acesta este colorat 
+    cu **rosu**, ignoram culoarea celui apropiat si devine **cazul 7**). Notam copilul 
+    respectiv cu **C**. Dam swap intre culorile lui **S** si **C** si aplicam o 
+    rotatie ca sa il tragem pe **S** mai departe de **T** (adica spre celalalt copil - 
+    fratele lui **C**). In final, aplicam **cazul 7**.
+    - **Cazul 6**: nodul **T** este colorat cu **negru**, nodul **S** este colorat cu 
+    **negru**, iar copilul lui **S** mai indepartat de **T** este colorat cu **rosu**. 
+    Notam copilul respectiv cu **C**. Dam swap intre culorile lui **S** si **P**, il 
+    coloram pe **C** cu **negru** si aplicam o rotatie ca sa il tragem pe **P** in 
+    directia lui **T**. 
+    - **Cazul 7**: nodul **T** este colorat cu **negru**, iar nodul **S** este colorat 
+    cu **rosu**. Nodul **T** devine **DB**. Dam swap la culorile lui **P** si **S**, 
+    si aplicam o rotatie ca sa il tragem pe **P** in directia lui **T**. Aplicam din 
+    nou recursiv verificarea de caz pe **T**, deoarece inca este **DB**.
+- **Observatie**: nu exista cazul in care nodul **T** este colorat cu **rosu** si are
+un singur fiu, deoarece ar fi gresit **black-heightul** arborelui.
 
 ![Image](images/rb-trees/delete.png)
 
@@ -227,22 +260,22 @@ class LCA {
 ## 4 - Exercitii examen
 
 ### <ins>Seria 13</ins>
-1. Care noduri sunt colorate in mod sigur in negru in arborele de mai jos, daca stim ca trebuie sa fie un arbore red-black? 
-    - 1
-    - 6
-    - 8
-    - 14
+1. Care noduri sunt colorate in mod sigur in negru in arborele de mai jos, daca stim 
+ca trebuie sa fie un arbore red-black? 
 
-![Image](images/13_1.png)
+![Image](images/exercises/13_1.png)
 
-2. Vrem sa reprezentam multimea **S = {1,3,5}** cu un red-black tree. In cate moduri putem face acest lucru? Doi arbori pot difera fie prin forma, fie prin culoare.
-    - 1
-    - 2
-    - 3
-    - 8
-    - Raspunsul corect este altul.
+2. Vrem sa reprezentam multimea **S = {1,3,5}** cu un red-black tree. In cate moduri 
+putem face acest lucru? Doi arbori pot difera fie prin forma, fie prin culoare.
 
 ### <ins>Seria 13 - rezolvari</ins>
+1. Nodul **8** (deoarece este radacina) si nodurile **2, 7, 16**. Am atasat rezolvarea:
+
+![Image](images/exercises/13_1_sol.png)
+
+2. Sunt **6** moduri. Am atasat rezolvarea:
+
+![Image](images/exercises/13_2_sol.png)
 
 ### <ins>Seria 14</ins>
 
