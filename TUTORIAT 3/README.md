@@ -14,13 +14,13 @@
 
 ---
 
-## 1 - Limite inferioare pentru sortare
+## <ins>1 - Limite inferioare pentru sortare</ins>
 
 ![Image](images/lower_bound_sorting.png)
 
 ---
 
-## 2 - Grafuri
+## <ins>2 - Grafuri</ins>
 
 ### <ins>2.1 - Introducere</ins>
 
@@ -120,7 +120,7 @@ nodurile intr-un anumit fel (daca vrem sa stergem, mai intai scapam de frunze).
 
 ---
 
-## 4 - Exercitii examen
+## <ins>4 - Exercitii examen</ins>
 
 ### <ins>Seria 13</ins>
 
@@ -267,11 +267,54 @@ bool inorder(Node* node, int& prev) {
 
 3. Aplicam formula cu **numere Catalan**: numarul de arbori binari distincti cu **n** noduri este **(2n)! / ((n+1)! * n!)** => pentru **6** noduri, avem **132** de posibilitati. Pentru fiecare structura posibila, putem plasa nodurile in **6!** feluri diferite => **6! * 132 = 95 040**.
 4. Proprietatea arborilor binari: orice nod are maxim <b>2</b> copii. Daca vrem un arbore de inaltime <b>maxima</b>, vrem sa folosim toate nodurile sa mergem cat mai mult in jos => inaltimea maxima este <b>23</b>. Daca vrem un arbore de inaltime <b>minima</b>, punem cat mai multe noduri pe fiecare nivel. Pe nivelul <b>i</b> exista <b>2<sup>i</sup></b> noduri; <b>2<sup>0</sup> + 2<sup>1</sup> + 2<sup>2</sup> + 2<sup>3</sup> < 23 < 2<sup>0</sup> + 2<sup>1</sup> + 2<sup>2</sup> + 2<sup>3</sup> + 2<sup>4</sup></b> => inaltimea minima este <b>4</b>.
-5. TODO
+5. Problema poate fi simplificata la 2 cazuri de baza:
+    - **Cazul 1**: suma maxima pentru o frunza este valoarea frunzei respective.
+    - **Cazul 2**: suma maxima pentru un nod cu 1 sau 2 copii este maximul dintre valoarea nodului si
+    suma valorilor copiilor.
+    - Pentru arborele dat, trebuie sa calculam maximul dintre suma obtinuta fara
+    radacina si suma obtinuta cu radacina. Consideram ca functia noastra are 
+    signatura <b>int getMaxSum(Node* node)</b>. Daca includem radacina in suma, nu ii
+    mai putem include copiii (deoarece un nod este adiacent cu copiii sai) => suma cu
+    radacina este formata din radacina si sumele maxime ale nepotilor sai, adica are formula 
+    **(root->val) + getMaxSum(root->left->left) + getMaxSum(root->left->right) + 
+    getMaxSum(root->right->left) + getMaxSum(root->right->right)**. Daca excludem radacina,
+    suma este formata din sumele maxime ale copiilor => **getMaxSum(root->left) + 
+    getMaxSum(root->right)**. Am inclus si rezolvarea in cod:
+
+```cpp
+unordered_map<Node*, int> t; // pentru optimizare (retinem sumele maxime calculate)
+int getMaxSum(Node *root) {
+    if (!root) {
+        return 0;
+    }
+        
+    // optimizare 1
+    if (t[root]) {
+        return t[root];
+    }
+        
+    int sumWithNode = root->data;
+    if (root->left) {
+        sumWithNode += getMaxSum(root->left->left);
+        sumWithNode += getMaxSum(root->left->right);
+    }
+    if (root->right) {
+        sumWithNode += getMaxSum(root->right->left);
+        sumWithNode += getMaxSum(root->right->right);
+    }
+        
+    int sumWithoutNode = 0;
+    sumWithoutNode += getMaxSum(root->left);
+    sumWithoutNode += getMaxSum(root->right);
+        
+    // optimizare 2
+    return t[root] = max(sumWithNode, sumWithoutNode); 
+}
+```
 
 ---
 
-#### Notes 
+#### <ins>Notes </ins>
 - <b>Seria 13</b>: BSTs (Binary Search Trees).
 - <b>Seria 14</b>: Sortari in timp liniar (Count Sort, Bucket Sort, Radix Sort; toate discutate la <b>Tutoriat 1</b>), limite inferioare pentru sortare.
 - <b>Seria 15</b>: Hash Tables (<b>Tutoriat 2</b>), introducere in grafuri (notiuni de baza + arbori binari si binomiali).
