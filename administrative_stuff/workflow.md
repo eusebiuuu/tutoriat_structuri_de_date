@@ -1,9 +1,9 @@
-- **Go through the theory materials**
+- Set the structure & table of contents
+- Go through the theory materials
   - Format: text, drawing, video
   - Intuition & practical examples
   - Questions and exercises throughout
   - Add table of contents
-  - C++ STL equivalents
   - Implementari OOP
   - Cormen book
 - Find practice exercises for the created materials
@@ -11,7 +11,6 @@
   - LeetCode
   - Find exam exercises (seria 13, 14, 15)
 - Push the final version and announce the collaborator
-- Final reviews and modifications
 - Make announcement to **community** about what will be taught next
 - Teaching plan:
   - Prepare the presentation devices:
@@ -21,5 +20,3 @@
   - Foile de prezenta
   - Recap with questions about taught topics
   - Presentation based on written materials & continuous feedback & continuous talk
-
----

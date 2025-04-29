@@ -7,6 +7,8 @@
 ---
 
 ## <ins>Table of contents</ins>
+- [TUTORIAT STRUCTURI DE DATE (SERIILE 13, 14 si 15)](#tutoriat-structuri-de-date-seriile-13-14-si-15)
+  - [Table of contents](#table-of-contents)
   - [Informatii generale](#informatii-generale)
   - [Continutul tutoriatului](#continutul-tutoriatului)
     - [Tutoriat 1](#tutoriat-1)
@@ -51,19 +53,19 @@
 * <b>RMQ</b> (Range Minimum Queries).
 
 ### <ins>Tutoriat 5</ins>
-- **Structuri de date**: Red-Black Trees, Interval Trees.
+- **Structuri de date**: Red-Black Trees, Segment Trees.
 - **LCA** (Lowest Common Ancestor).
 
+### <ins>Tutoriat 6</ins>
+- Exercitii de examen din tutoriatele trecute.
 ---
 
 (orientativ)
 
-### <ins>Tutoriat 6</ins>
+### <ins>Tutoriat 7</ins>
 - **Alegerea medianei in O(n)**.
 - **Coduri Huffman, Coduri Prefix**.
 - ??Cartesian Trees??
-
-### <ins>Tutoriat 7</ins>
 - **Convex Hulls** (infasuratori convexe) - Graham's Scan, Jarvis' March.
 - **Computational geometry**: segment intersections.
 - +altele?

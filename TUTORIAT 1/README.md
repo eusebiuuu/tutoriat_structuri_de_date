@@ -1,21 +1,33 @@
 # Table of contents
-- [1 - Introducere in algoritmica](#1---introducere-in-algoritmica)
-- [2 - Algoritmi si complexitati](#2---algoritmi-si-complexitati)
-- [3 - Teorema master](#3---teorema-master)
-- [4 - Algoritmi de sortare](#4---algoritmi-de-sortare)
-- [5 - Analiza probabilistica](#5---analiza-probabilistica)
-- [6 - Stiva](#6---stiva)
-- [7 - Coada](#7---coada)
-- [8 - Deque](#8---deque)
-- [9 - Heap](#9---heap)
-- [10 - Exercitii generale](#10---exercitii-generale)
-- [11 - Exercitii examen](#10---exercitii)
+- [Table of contents](#table-of-contents)
+  - [1 - Introducere in algoritmica](#1---introducere-in-algoritmica)
+  - [2 - Algoritmi si complexitati](#2---algoritmi-si-complexitati)
+  - [3 - Teorema master](#3---teorema-master)
+  - [4 - Algoritmi de sortare](#4---algoritmi-de-sortare)
+      - [De ce se foloseste Insert Sort?](#de-ce-se-foloseste-insert-sort)
+      - [De ce se foloseste Heap Sort?](#de-ce-se-foloseste-heap-sort)
+      - [De ce s-au ales acele 2 limite pentru apeluri recursive si numar de elemente?](#de-ce-s-au-ales-acele-2-limite-pentru-apeluri-recursive-si-numar-de-elemente)
+  - [5 - Analiza probabilistica](#5---analiza-probabilistica)
+  - [6 - Stiva](#6---stiva)
+  - [7 - Coada](#7---coada)
+  - [8 - Deque](#8---deque)
+  - [9 - Heap](#9---heap)
+    - [9.1 - Introducere](#91---introducere)
+    - [9.2 - Heapify](#92---heapify)
+    - [9.3 - BuildHeap](#93---buildheap)
+    - [9.4 - Search](#94---search)
+    - [9.5 - Insert](#95---insert)
+    - [9.6 - Extract min/max](#96---extract-minmax)
+    - [9.7 - Delete](#97---delete)
+  - [10 - Exercitii generale](#10---exercitii-generale)
+  - [11 - Exercitii examen](#11---exercitii-examen)
     - [Seria 13](#seria-13)
-    - [Seria 13 (rezolvari)](#seria-13---rezolvari)
+    - [Seria 13 - rezolvari](#seria-13---rezolvari)
     - [Seria 14](#seria-14)
-    - [Seria 14 (rezolvari)](#seria-14---rezolvari)
+    - [Seria 14 - rezolvari](#seria-14---rezolvari)
     - [Seria 15](#seria-15)
-    - [Seria 15 (rezolvari)](#seria-15---rezolvari)
+    - [Seria 15 - rezolvari](#seria-15---rezolvari)
+      - [Notes](#notes)
 
 ---
 
@@ -43,17 +55,20 @@
     - de exemplu $\frac{1}{2}n ^ 3 + 100n + 100000 \in O(n ^ 3)$, adica este marginita superior de $O(n ^ 3)$ de la un n incolo
     - de asemenea, avem si ca $n ^ 2 \in O(n ^ 3)$
     - in cazul in care limita nu este stransa, adica in cazul de mai sus, se va nota $o(n)$; **Atentie: chiar daca $n ^ 2 \in o(n^3)$, $n ^ 2 \notin o(n ^ 2)$!!! $f$ trebuie sa fie strict mai mica**
+    - o definitie mai formala, dar utila in practica este urmatoarea: $f(n) \in o(g(n)) \iff \lim_{n \to \infty} \frac{f(n)}{g(n)} = 0$
 2. **Big $\Omega$**
     - fiind data o functie $g(n)$, $f(n) \in \Omega(g(n))$ daca si numai daca $\exists c, n_0 \gt 0 \space astfel \space incat \space 0 \le cg(n) \le f(n), \forall n \ge n_0$
 ![](./images/bigOmega.png)
     - cu alte cuvinte, de la un $n_0$ incolo functia $g$ va fi mai mica decat $f$ (de cele mai multe ori cu o constanta in fata)
     - de exemplu $\frac{4}{11}n ^ 3 + 4n ^ 2 \in \Omega(n ^ 3)$, adica este marginita inferior de $O(n ^ 3)$ de la un $n$ incolo
     - de asemenea, avem si ca $n ^ 2 \in \Omega(n)$
-    - in cazul in care limita nu este stransa, adica in cazul de mai sus, se va nota $\omega(n)$; **Atentie: chiar daca $n ^ 2 \in \omega(n)$, $n ^ 2 \notin \omega(n^2)$!!! $f$ trebuie sa fie strict mai mare**
+    - in cazul in care limita nu este tight bound, adica in cazul de mai sus, se va nota $\omega(n)$; **Atentie: chiar daca $n ^ 2 \in \omega(n)$, $n ^ 2 \notin \omega(n^2)$!!! $f$ trebuie sa fie strict mai mare**
+    - o definitie mai formala, dar utila in practica este urmatoarea: $f(n) \in \omega(g(n)) \iff \lim_{n \to \infty} \frac{f(n)}{g(n)} = \infin$
 3. **Big $\Theta$**
     - fiind data o functie $g(n)$, $f(n) \in \Theta(g(n))$ daca si numai daca $\exists c_1, c_2, n_0 \gt 0 \space astfel \space incat \space c_1g(n) \le f(n) \le c_2g(n), \forall n \ge n_0$
     - in alte cuvinte, clasa de functii $\Theta$ reprezinta toate functiile $f$ care sunt marginite si superior si inferior de functia $g$ (deseori folosindu-se constante in fata)
     - de exemplu, $100n ^ 3 + 4n ^ 2 + 1000 \in \Theta(n ^ 3)$, dar $100n ^ 3 + 4n ^ 2 + 1000 \notin \Theta(n ^ 4) \space sau \space \Theta(n ^ 2)$
+    - o definitie mai formala, dar utila in practica este urmatoarea: $f(n) \in o(g(n)) \iff \lim_{n \to \infty} \frac{f(n)}{g(n)} \in \R_+$
 
 - Exercitiu: Este adevarat ca $2 ^ {n + 1} \in O(2 ^ n)$? Dar $2 ^ {2n} \in O(2 ^ n)$?
 
@@ -755,18 +770,25 @@ int main() {
     - <b>ln(ln n) + ln n</b>: stim ca n > ln n => ln n > ln(ln n) => termenul dominant este <b>ln n</b> => <b>Θ(logn)</b>.
     - <b>n<sup>3</sup>/2000 + n<sup>2</sup> * 2<sup>100000</sup> + 10000 * n + 10</b>: termenul dominant este <b>n<sup>3</sup></b> => <b>Θ(n<sup>3</sup>)</b>.
     - <b>ln<sup>2</sup>n + sqrt(n)</b>: termenul dominant este <b>sqrt(n)</b> (se poate verifica cu limita) => <b>Θ(n<sup>1/2</sup>)</b>.
-2. TODO
+2. $o(f(n)) \cap \omega(f(n)) = \empty$, deoarece cele 2 clase de complexitati cuprind functiile care au upperbound-ul, respectiv lowerbound-ul strict ca fiind $f(n)$. Pentru mai multe detalii, consultati definitiile [aici](#2---algoritmi-si-complexitati).
 3. Am atasat rezolvarea:
 
 ![Image](images/exercises/14_3.png)
 
-4. TODO
-5. TODO
-6. Un heap este un <b>arbore binar complet</b> => pe nivelul <b>k</b> avem maxim <b>2<sup>k</sup></b> noduri, si minim <b>1</b> nod. Daca heap-ul este de inaltime <b>H</b>, atunci pana la nivelul <b>H</b> o sa avem <b>2<sup>0</sup> + 2<sup>1</sup> + ... + 2<sup>H-1</sup> = 2<sup>H</sup> - 1</b> noduri. Daca vrem numar <b>minim</b> de noduri, consideram ca avem un singur nod pe nivelul <b>H</b> => <b>2<sup>H</sup> - 1 + 1 = 2<sup>H</sup></b> noduri in total; altfel, daca vrem numar <b>maxim</b> de noduri, o sa avem <b>2<sup>H</sup></b> noduri pe ultimul nivel => <b>2<sup>H</sup> - 1 + 2<sup>H</sup> = 2 * 2<sup>H</sup> - 1 = 2<sup>H+1</sup></b> noduri in total.
-7. TODO
-8. TODO
-9. TODO
-10. TODO
+4. Pe niciunul dintre primele 2 exemple nu se poate folosi teorema master, deoarece nu se respecta forma acesteia. Ca urmare vom folosi recursivitatea si vom analiza de mana cazurile:
+   - TODO
+   - TODO
+   - aici este evident ca vom avea ca $T(n) = \frac{n\dot(n - 1)}{2}$
+5. Vom folosi definitiile de mai sus, de la complexitati, cu limite:
+![](./images/exercises/14_5.png)
+6. Un heap este un <b>arbore binar complet</b> => pe nivelul <b>k</b> avem maxim <b>2<sup>k</sup></b> noduri, si minim <b>1</b> nod. Daca heap-ul este de inaltime <b>H</b>, atunci pana la nivelul <b>H</b> o sa avem <b>2<sup>0</sup> + 2<sup>1</sup> + ... + 2<sup>H-1</sup> = 2<sup>H</sup> - 1</b> noduri. Daca vrem numar <b>minim</b> de noduri, consideram ca avem un singur nod pe nivelul <b>H</b> => <b>2<sup>H</sup> - 1 + 1 = 2<sup>H</sup></b> noduri in total; altfel, daca vrem numar <b>maxim</b> de noduri, o sa avem <b>2<sup>H</sup></b> noduri pe ultimul nivel => <b>2<sup>H</sup> - 1 + 2<sup>H</sup> = 2 * 2<sup>H</sup> - 1 = 2<sup>H+1</sup> - 1</b> noduri in total.
+7. Rezolvare:
+![](./images/exercises/14_7.png)
+8.  Rezolvare:
+![](./images/exercises/14_8.png)
+9.  Se va folosi radix sort: se va descrie pe scurt algoritmul si se va demonstra ca $f(n) = 3n$ este in $O(n)$
+10. Rezolvare:
+![](./images/exercises/14_10.png)
 11. TODO
 
 ### <ins>Seria 15</ins>
@@ -791,7 +813,7 @@ int main() {
 
 ![Image](images/exercises/15_4.png)
 
-5. TODO
+5. Am putea folosi **count sort**, deoarece numerele sunt indeajuns de mici si, in acelasi timp, indeajuns de multe astfel incat sa conteze chiar si o iteratie in plus prin sir.
 6. Complexitatea este <b>O(n)</b>, deoarece trebuie sa trecem prin toate elementele ca sa gasim minimul. Elementele dintr-un <b>Deque</b> nu au vreo proprietate/ordine care sa ne ajute la cautare.
 7. Am atasat rezolvarea:
 
@@ -829,14 +851,10 @@ int main() {
 ```
 
 10. TODO (la fel ca la 9).
-11. TODO
-12. In <b>C++</b>, se poate folosi <b>std::unordered_set</b> (multimile nu au duplicate). <b>Atentie</b>: e posibil ca ordinea initiala a elementelor sa nu se pastreze! O alternative este <b>std::set</b>. TODO continue explanations
-
-```cpp
-std::vector<int> t = {1, 4, 2, 2, 4, 1, 5, 6, 1};
-std::unordered_set<int> aux(t.begin(), t.end());
-t = std::vector<int>(aux.begin(), aux.end());
-```
+11. Costul ar fi $O(log_2n)$ ca timp si $O(1)$ ca spatiu, pentru ca vom elimina radacina min-heap-ului si apoi vom accesa radacina. Important de precizat este ca in cazul in care se doreste al doilea cel mai mic element in comparatie stricta, complexitatea de timp va fi $O(nlog_2n)$ pentru ca in cel mai rau caz, cand toate sunt egale cu radacina, vom sterge toate elementele
+12. Am avea 2 modalitati de rezolvare:
+    - o prima varianta ar fi sa sortam sirul si sa construim sirul fara duplicate din parcurgerea lui, ignorand un element daca l-am pus deja in sir; daca se doreste pastrarea ordinii se pot stoca elementele in forma (val, idx) iar la final sa se ordoneze din nou in functie de indecsi
+    - o alta varianta ar fi sa folosim hashtable-uri pentru marca elementele deja introduse in sirul fara duplicate, astfel sarind peste elementele care sunt deja in el
 
 ---
 

@@ -1,26 +1,35 @@
 # Table of contents
-- [1 - Linked Lists](#1---linked-lists)
-    - [Lista simplu inlantuita](#lista-simplu-inlantuita)
-    - [Listele dublu inlantuite](#listele-dublu-inlantuite)
-    - [Listele circulare](#listele-circulare)
-- [2 - Skip Lists](#2---skip-lists)
-- [3 - Hash Tables](#3---hash-tables)
+- [Table of contents](#table-of-contents)
+  - [1 - Linked Lists](#1---linked-lists)
+      - [Lista simplu inlantuita](#lista-simplu-inlantuita)
+      - [Listele dublu inlantuite](#listele-dublu-inlantuite)
+      - [Listele circulare](#listele-circulare)
+  - [2 - Skip Lists](#2---skip-lists)
+    - [2.1 - Introducere](#21---introducere)
+    - [2.2 - Search](#22---search)
+    - [2.3 - Insert](#23---insert)
+    - [2.4 - Delete](#24---delete)
+  - [3 - Hash Tables](#3---hash-tables)
     - [Introducere](#introducere)
     - [Functia de hash](#functia-de-hash)
     - [Coliziunile](#coliziunile)
-        - [Chaining](#chaining)
-        - [Open addressing](#open-addressing)
-        - [Perfect hashing](#perfect-hashing)
+      - [Chaining](#chaining)
+      - [Open addressing](#open-addressing)
+      - [Perfect hashing](#perfect-hashing)
     - [Implementari C++](#implementari-c)
-    - [Exercitiu: Least recently used algorithm (LRU)](#exercitiu-least-recently-used-algorithm-lru)
-- [4 - Bloom Filters](#4---bloom-filters)
-- [5 - Exercitii examen](#5---exercitii-examen)
+  - [Exercitiu: Least recently used algorithm (LRU)](#exercitiu-least-recently-used-algorithm-lru)
+  - [4 - Bloom Filters](#4---bloom-filters)
+    - [4.1 - Introducere](#41---introducere)
+    - [4.2 - Search](#42---search)
+    - [4.3 - Insert](#43---insert)
+  - [5 - Exercitii examen](#5---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 - rezolvari](#seria-13---rezolvari)
     - [Seria 14](#seria-14)
     - [Seria 14 - rezolvari](#seria-14---rezolvari)
     - [Seria 15](#seria-15)
     - [Seria 15 - rezolvari](#seria-15---rezolvari)
+      - [Notes](#notes)
 
 ---
 
@@ -489,9 +498,9 @@ void f(struct node* head) {
     - Incarcarea tabelei este de <b>7%</b>: <b>ADEVARAT</b>; aplicam functia pe fiecare element si vom vedea ca se ocupa slot-urile cu indecsii <b>{22, 34, 71, 79, 89, 73, 99}</b>. Functia este <b>mod 100</b> => avem indecsii de la <b>0</b> la <b>99</b> (<b>100</b> slot-uri) => <b>load factor-ul</b> este <b>7 / 100 = 7%</b>.
 2. Load factor-ul este <b>x</b>. Se tripleaza numarul de slot-uri => devine <b>x/3</b>. Se dubleaza numarul de elemente => devine <b>2x/3</b> => al doilea raspuns.
 3. Raspunsurile nu sunt corecte (ar fi al 5-lea nod).
-4. Probabilitatea ca un nod sa aiba un singur pointer (sa fie pe primul nivel) este de <b>100%</b>. Probabilitatea sa ajunga pe urmatorul nivel este de <b>1/2</b>, adica <b>50%</b>; asadar, prima varianta e gresita. A doua varianta este corecta, deoarece Skip List-urile sunt mereu sortate crescator. a treia varianta nu prea stiu ce inseamna?? :) 
-5. TODO
-6. TODO
+4. Probabilitatea ca un nod sa aiba un singur pointer (sa fie pe primul nivel) este de <b>100%</b>. Probabilitatea sa ajunga pe urmatorul nivel este de <b>1/2</b>, adica <b>50%</b>; asadar, prima varianta e gresita. A doua varianta este corecta, deoarece Skip List-urile sunt mereu sortate crescator. a treia varianta nu este corecta, deoarece, nivelurile nodurilor fiind alese probabilistic, spatierea dintre ele nu este garantata niciodata.
+5. Raspunsul corect este $\Theta(n)$, deoarece in cel mai rau caz sunt toate cele 4 niveluri pline, iar in cel mai bun caz doar un singur nivel.
+6. $H_1$ este foarte similara cu $h$ asa ca s-ar comporta la fel, spre deosebire de $H_2$ care are cateva modificari ce ar putea imbunatati hashing-ul. Deci raspunsul este **Doar $H_2$**.
 7. Afiseaza toate valorile listei in ordine inversa (a doua varianta). 
 
 ### <ins>Seria 14</ins>
