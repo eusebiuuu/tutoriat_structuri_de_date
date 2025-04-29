@@ -508,7 +508,7 @@ void f(struct node* head) {
 2. Scrieti un algoritm in pseudocod care sa rezolve urmatoarea problema: se da o multime <b>S</b> ce contine <b>n</b> numere naturale distincte si un numar natural <b>x</b>. Decideti daca numarul <b>x</b> poate fi exprimat ca suma de 2 numere distincte din <b>S</b>. Pentru un algoritm <b>O(n<sup>2</sup>)</b>, se primesc 0,25p; pentru <b>O(nlogn)</b> sau <b>O(n)</b>, se primeste punctaj intreg.
 
 ### <ins>Seria 14 - rezolvari</ins>
-1. TODO
+1. Se va folosi un vector de frecvente $f$ de lungime $k$, astfel incat $f_i$ reprezinta numarul de elemente egale cu $i$ din sirul dat. Aceasta preprocesare este in $O(n)$. Dupa aceea, vom folosi tehnica de sume partiale pentru a afla numarul de numere din sir mai mici sau egale decat $i$ in $f_i$ iterand prin sirul $f$ cu $i$ de la 1 la n si calculand noul $f$ cu formula $f_i = f_i + f_{i - 1}$. Aceasta preprocesare are complexitatea $O(k)$. Astfel, pentru a afla raspunsul la o interogare de tipul $(a, b)$ cu formula $f_b - f_{a - 1}$.
 2. Pentru o solutie in timp liniar: trecem prin vectorul de numere. Pentru elementul curent <b>nums[i]</b>, il stocam intr-o structura de date care permite cautari rapide (<b>std::unordered_set</b>, <b>std::unordered_map</b>). Stim ca mai avem nevoie de numarul <b>target - nums[i]</b> ca sa putem avea suma respectiva; verificam daca am gasit pana acum elementul <b>target - nums[i]</b> (facem un search in structura noastra de date).
 
 ```cpp
