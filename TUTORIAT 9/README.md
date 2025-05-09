@@ -4,7 +4,7 @@
     - [1.2 - Search](#12---search)
     - [1.3 - Insert](#13---insert)
     - [1.4 - Delete](#14---delete)
-- [2 - MST (Minimum Spanning Trees)](#2---mst--minimum-spanning-trees)
+- [2 - MST (Minimum Spanning Trees)](#2---mst-minimum-spanning-trees)
     - [2.1 - Introducere](#21---introducere)
     - [2.2 - Algoritmul lui Kruskal](#22---algoritmul-lui-kruskal)
     - [2.3 - Algoritmul lui Prim](#23---algoritmul-lui-prim)
