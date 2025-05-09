@@ -4,7 +4,7 @@
     - [1.2 - Graham's Scan](#12---grahams-scan)
     - [1.3 - Jarvis' March](#13---jarvis-march)
 - [2 - Alegerea medianei](#2---alegerea-medianei)
-- [3 - Coduri Huffman](3---coduri-huffman)
+- [3 - Coduri Huffman](#3---coduri-huffman)
 - [4 - Exercitii examen](#4---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 - rezolvari](#seria-13---rezolvari)

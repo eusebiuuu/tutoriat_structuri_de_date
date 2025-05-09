@@ -19,21 +19,29 @@
 
 ---
 
-## <ins>1 - Convex Hulls (infasuratori convexe)</ins>
+## <ins>1 - B-Trees</ins>
 
 ### <ins>1.1 - Introducere</ins>
 
-### <ins>1.2 - Graham's Scan</ins>
+### <ins>1.2 - Search</ins>
 
-### <ins>1.3 - Jarvis' March</ins>
+### <ins>1.3 - Insert</ins>
+
+### <ins>1.4 - Delete</ins>
 
 --- 
 
-## <ins>2 - Alegerea medianei</ins>
+## <ins>2 - MST (Minimum Spanning Trees)</ins>
+
+### <ins>2.1 - Introducere</ins>
+
+### <ins>2.2 - Algoritmul lui Kruskal</ins>
+
+### <ins>2.3 - Algoritmul lui Prim</ins>
 
 ---
 
-## <ins>3 - Coduri Huffman</ins>
+## <ins>3 - Aho-Corasick Algorithm</ins>
 
 ---
 
