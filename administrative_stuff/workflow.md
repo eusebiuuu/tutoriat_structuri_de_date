@@ -1,4 +1,4 @@
-- Set the structure & table of contents
+- Set the structure (use special file) & table of contents
 - Go through the theory materials
   - Format: text, drawing, video
   - Intuition & practical examples

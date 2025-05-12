@@ -58,29 +58,27 @@
 
 ### <ins>Tutoriat 6</ins>
 - Exercitii de examen din tutoriatele trecute.
----
-
-(orientativ)
 
 ### <ins>Tutoriat 7</ins>
 - **Alegerea medianei in O(n)**.
 - **Coduri Huffman, Coduri Prefix**.
-- ??Cartesian Trees??
 - **Convex Hulls** (infasuratori convexe) - Graham's Scan, Jarvis' March.
 - **Computational geometry**: segment intersections.
-- +altele?
 
 ### <ins>Tutoriat 8</ins>
-- **Structuri de date**: Order Statistic Trees.
-- +altele?
+- **Structuri de date**: Order Statistic Trees. Interval Trees
+- BST-uri construite aleator
 
 ### <ins>Tutoriat 9</ins>
 - **Structuri de date**: B-Trees.
 - **Aho-Corasick algorithm**.
+- **MST** (Minimum Spanning Tree): algoritmul lui **Kruskal**, algoritmul lui **Prim**.
+
+---
 
 ### <ins>Tutoriat 10</ins>
-- **MST** (Minimum Spanning Tree): algoritmul lui **Kruskal**, algoritmul lui **Prim**.
 - **Structuri de date**: Treaps, Suffix Trees.
+- **Cartesian Trees**
 
 ### <ins>Tutoriat 11</ins>
 - **Structuri de date**: Suffix Arrays.
