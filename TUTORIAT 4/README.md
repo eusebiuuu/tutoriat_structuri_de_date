@@ -233,7 +233,7 @@
 
 4. TODO
 5. Inaltimea maxima este **2**. Radacina se afla pe nivelul 0, cu 2 copii pe nivelul 1 si inca un nod pe nivelul 2.
-6. Sunt **2** moduri: radacina este 1 sau radacina este 2. Radacina nu poate fi 3.
+6. Exista un singur mod: radacina este **2**, fiul stang este **1**, iar fiul drept este **3**.
 
 ### <ins>Seria 15</ins>
 1. Ce inaltime poate avea un arbore binar echilibrat cu 15 elemente? Schitati un arbore de inaltime minima si unul de inaltime maxima.
