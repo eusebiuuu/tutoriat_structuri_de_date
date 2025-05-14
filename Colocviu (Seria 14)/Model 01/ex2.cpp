@@ -55,7 +55,6 @@ class MyHeap {
         }
     }
 
-    // Comparison function: first by difference, then by key
     [[nodiscard]] static bool compare(const Node &a, const Node &b) {
         if (a.getDifference() != b.getDifference())
             return a.getDifference() < b.getDifference();
