@@ -22,10 +22,42 @@
 ## <ins>1 - Convex Hulls (infasuratori convexe)</ins>
 
 ### <ins>1.1 - Introducere</ins>
+- O **multime convexa** este o multime de puncte, astfel incat daca luam orice segment determinat de oricare 2 puncte din multimea respectiva, punctele de pe segment vor fi incluse in totalitate in multime.
+- Multimile finite de puncte cu cel putin 2 elemente nu sunt convexe => au nevoie de o **acoperire/infasuratoare convexa** (**convex hull**). Sa presupunem ca avem o multime finita de puncte **P**; o **acoperire convexa** are urmatoarele definitii echivalente:
+    - Cel mai mic poligon convex care contine **P**.
+    - Cea mai "mica" (in sensul incluziunii) multime convexa care contine **P**.
+    - Intersectia tuturor multimilor care contin **P**.
+- Avand o multime finita de puncte, vom trece prin 2 algoritmi pentru a determina un poligon convex de dimensiune minima care sa includa toate punctele din multimea respectiva => o **acoperire convexa**.
+    - **Input**: o multime de cel putin 3 puncte necoliniare din **R<sup>2</sup>**.
+    - **Output**: o lista care sa contina varfurile ce determina frontiera acoperirii convexe, in sens trigonometric.
+- Inainte de a trece prin algoritmii respectivi, **orientarea unui triplet de puncte** este un concept esential pentru a ii putea intelege.
 
-### <ins>1.2 - Graham's Scan</ins>
+![Image](images/convex-hulls/example.png)
 
-### <ins>1.3 - Jarvis' March</ins>
+### <ins> 1.2 - Orientarea unui triplet de puncte</ins>
+- Fiind date **3** puncte, exista trei posibilitati in ceea ce priveste orientarea lor:
+    - Punctele sunt **coliniare**.
+    - Orientarea este in sens **orar** (sensul acelor de ceasornic).
+    - Orientarea este in sens **antiorar** (**trigonometric**).
+- Pentru a determina orientarea unui triplet de puncte **A(x<sub>1</sub>, y<sub>1</sub>), B(x<sub>2</sub>, y<sub>2</sub>), C(x<sub>3</sub>, y<sub>3</sub>)**, calculam pantele dreptelor **AB** si **AC** (reamintim: **panta unei drepte** reprezinta variatia verticala in raport cu variatia orizontala). Notam **slope(AB) = (y<sub>2</sub> - y<sub>1</sub>) / (x<sub>2</sub> - x<sub>1</sub>)** si **slope(AC) = (y<sub>3</sub> - y<sub>1</sub>) / (x<sub>3</sub> - x<sub>1</sub>)**. Exista trei cazuri:
+    - **slope(AB) == slope(AC)**: nu se schimba directia => punctele sunt coliniare.
+    - **slope(AB) - slope(AC) > 0**: panta lui **AB** este mai mare => sens trigonometric.
+    - <b>slope(AB) - slope(AC) < 0</b>: panta lui **AC** este mai mare => sens orar.
+- Totusi, cand scriem asta in cod, este mai adecvat sa evitam impartirile (deoarece numitorul poate fi **0**, iar impartirile sunt mai lente). Rescriem relatia: **slope(AB) ? slope(AC)** <=> **(y<sub>2</sub> - y<sub>1</sub>) / (x<sub>2</sub> - x<sub>1</sub>) ? (y<sub>3</sub> - y<sub>1</sub>) / (x<sub>3</sub> - x<sub>1</sub>)** <=> <b>(y<sub>2</sub> - y<sub>1</sub>) * (x<sub>3</sub> - x<sub>1</sub>) ? (y<sub>3</sub> - y<sub>1</sub>) * (x<sub>2</sub> - x<sub>1</sub>)</b> <=> <b>(y<sub>2</sub> - y<sub>1</sub>) * (x<sub>3</sub> - x<sub>1</sub>) - (y<sub>3</sub> - y<sub>1</sub>) * (x<sub>2</sub> - x<sub>1</sub>) ? 0</b>. Daca relatia este egala cu 0, punctele sunt coliniare; daca este mai mare decat 0, avem sens trigonometric, iar daca este mai mica decat 0, avem sens orar.
+
+![Image](images/convex-hulls/point-orientation.png)
+
+### <ins>1.3 - Graham's Scan</ins>
+- **Pasul 1**: Gasim punctul care se afla cel mai jos (are cea mai mica coordonata **y**). Daca sunt mai multe asemenea puncte, il putem selecta pe cel mai din stanga-jos. 
+- **Pasul 2**: Calculam pantele
+- **Pasul 3**: Folosim o stiva initial goala, in care punem punctul gasit la pasul anterior.
+- **Complexitate O(nlogn)**.
+
+### <ins>1.4 - Jarvis' March</ins>
+- Este un algoritm de tip **incremental**: nu necesita o sortare/prelucrare a datelor.
+- **Pasul 1**: Initial, lista de puncte pentru poligonul convex este goala. Vom incepe cu un punct care sigur va fi un varf al poligonului; acest varf ar putea fi cel mai din stanga, sau cel mai de jos, sau cel mai de stanga-jos.
+- **Pasul 2**: la fiecare pas, actualizam lista prin determinarea succesorului ("cel mai la dreapta" punct).
+- **Complexitate O(n*h)**, unde **h** este numarul de puncte de pe frontiera acoperirii convexe.
 
 --- 
 
