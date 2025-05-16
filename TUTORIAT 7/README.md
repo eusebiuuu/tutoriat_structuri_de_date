@@ -49,7 +49,7 @@
 
 ### <ins>1.3 - Graham's Scan</ins>
 - **Pasul 1**: Gasim punctul care se afla cel mai jos (are cea mai mica coordonata **y**). Daca sunt mai multe asemenea puncte, il selectam pe cel care se afla cel mai in stanga-jos. Motivul pentru care il selectam este pentru ca acest punct mereu va face parte din poligonul convex final.
-- **Pasul 2**: Sortam punctele ramase in functie de unghiul polar format cu punctul gasit anterior (vrem sa luam punctele in sens trigonometric, in functie de unghi). Primul punct din lista sortata o sa faca mereu parte din poligonul final (pana acum avem 2 puncte selectate).
+- **Pasul 2**: Sortam punctele ramase in functie de unghiul format cu punctul gasit anterior (punctul de baza al poligonului): notam punctul gasit cu **A** si doua puncte aleatoare cu **B** si **C**. Mergand in sens trigonometric, daca ne lovim mai intai de dreapta **AB**, ar trebui sa avem ordinea **{A, B, C}**; altfel, **{A, C, B}**. Daca **AB** si **AC** coincid, atunci punctul mai apropiat de **A** o sa vina primul.
 - **Pasul 3**: Incepem cu o stiva, care este initial goala. Incepem sa trecem prin punctele ramase din lista sortata. Pentru punctul curent, verificam daca respecta sensul trigonometric in raport cu ultimele 2 puncte adaugate in poligon (vom avea variabilele **prev**, **curr**, **next**). Cat timp proprietatea nu este respectata, scoatem un nod de pe stiva, actualizam variabilele si verificam proprietatea. Odata ce proprietatea este respectata, adaugam nodul curent pe stiva, actualizam variabilele si trecem la urmatorul punct din lista. Repetam acest pas pana cand am trecut prin toate punctele.
 - **Complexitate timp O(nlogn)**:
     - **O(n)**: gasim punctul din stanga-jos.
@@ -60,6 +60,12 @@
 ![Image](images/convex-hulls/grahams-scan.png)
 
 ### <ins>1.4 - Jarvis' March</ins>
+- Este un algoritm de tip **incremental**: nu necesita o sortare/prelucrare a datelor.
+- **Pasul 1**: Initial, lista de puncte pentru poligonul convex este goala. Vom incepe cu un punct care sigur va fi un varf al poligonului; acest varf ar putea fi cel mai din stanga, sau cel mai de jos, sau cel mai de stanga-jos.
+- **Pasul 2**: la fiecare pas, notam ultimul punct adaugat in poligon cu **P**. Vrem sa gasim un punct **Q**, astfel incat pentru orice punct **R** ramas in poligon, orientarea **P-Q-R** o sa fie in sens trigonometric. Il adaugam pe **Q** in poligon, iar la urmatorul pas noul **P** o sa fie acest **Q** gasit. Algoritmul se incheie cand inchidem ciclul poligonului.
+- **Complexitate O(m*n)**: **m** este numarul de puncte de pe poligonul convex format, iar **n** este numarul total de puncte din input. Pentru fiecare punct **m** de pe poligon, am verificat restul de **n-2** puncte.
+
+![Image](images/convex-hulls/jarvis-march.png)
 
 --- 
 
