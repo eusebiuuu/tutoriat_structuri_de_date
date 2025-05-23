@@ -33,7 +33,7 @@
 
 ![Image](images/convex-hulls/example.png)
 
-### <ins> 1.2 - Orientarea unui triplet de puncte</ins>
+### <ins>1.2 - Orientarea unui triplet de puncte</ins>
 - Fiind date **3** puncte, exista trei posibilitati in ceea ce priveste orientarea lor:
     - Punctele sunt **coliniare**.
     - Orientarea este in sens **orar** (sensul acelor de ceasornic).
