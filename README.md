@@ -74,16 +74,17 @@
 - **Aho-Corasick algorithm**.
 - **MST** (Minimum Spanning Tree): algoritmul lui **Kruskal**, algoritmul lui **Prim**.
 
----
-
 ### <ins>Tutoriat 10</ins>
-- **Structuri de date**: Treaps, Suffix Trees.
-- **Cartesian Trees**
+- Rezolvare modele examen
 
 ### <ins>Tutoriat 11</ins>
-- **Structuri de date**: Suffix Arrays.
-- +altele?
+- **Structuri de date**: Suffix Trees.
+- **Structuri de date**: Tries.
+- Modele examen
+
+---
 
 ### <ins>Tutoriat 12</ins>
-- **Structuri de date**: Tries.
+- **Structuri de date**: Suffix Arrays. Treaps.
+- **Cartesian trees**
 - +altele?

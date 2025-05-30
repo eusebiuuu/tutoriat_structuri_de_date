@@ -1,20 +1,22 @@
 # Table of contents
-- [1 - Convex Hulls (infasuratori convexe)](#1---convex-hulls-infasuratori-convexe)
-	- [1.1 - Introducere](#11---introducere)
+- [Table of contents](#table-of-contents)
+  - [1 - Convex Hulls (infasuratori convexe)](#1---convex-hulls-infasuratori-convexe)
+    - [1.1 - Introducere](#11---introducere)
     - [1.2 - Orientarea unui triplet de puncte](#12---orientarea-unui-triplet-de-puncte)
-	- [1.3 - Graham's Scan](#13---grahams-scan)
-	- [1.4 - Jarvis' March](#14---jarvis-march)
-- [2 - Alegerea medianei in O(n). Mediane si statistici de ordine](#2---alegerea-medianei-in-on-mediane-si-statistici-de-ordine)
-	- [Notiuni teoretice](#notiuni-teoretice)
+    - [1.3 - Graham's Scan](#13---grahams-scan)
+    - [1.4 - Jarvis' March](#14---jarvis-march)
+  - [2 - Alegerea medianei in O(n). Mediane si statistici de ordine](#2---alegerea-medianei-in-on-mediane-si-statistici-de-ordine)
+    - [Notiuni teoretice](#notiuni-teoretice)
     - [Formularea problemei](#formularea-problemei)
-- [3 - Coduri Huffman](#3---coduri-huffman)
-- [4 - Exercitii examen](#4---exercitii-examen)
+  - [3 - Coduri Huffman](#3---coduri-huffman)
+  - [4 - Exercitii examen](#4---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 - rezolvari](#seria-13---rezolvari)
     - [Seria 14](#seria-14)
     - [Seria 14 - rezolvari](#seria-14---rezolvari)
     - [Seria 15](#seria-15)
     - [Seria 15 - rezolvari](#seria-15---rezolvari)
+      - [Notes](#notes)
 
 ---
 
@@ -134,7 +136,12 @@ int main() {
     return 0;
 }
 ```
----
+
+- Totusi, metoda prezentata mai sus este nedeterminista pentru ca depindem de un pivot generat aleator. Este oare posibil sa il facem determinist? DA.
+- Rationamentul este acelasi cu cel de la algoritmul nedeterminist, doar ca modul de alegere al pivotului este diferit.
+- Concret, pe sirul marginit de $l$ si $r$ il vom imparti in grupe de cate 5 elemente, iar din fiecare vom afla mediana (sortare). Pe sirul format din aceste mediane vom calcula mediana (mediana medianelor) folosind tot acest algorim (doar ca pe $\frac{n}{5}$ elemente), iar acesta va deveni pivotul nostru.
+- Se poate demonstra matematica ca algerea numarului 5 ca elemente dintr-un singur grup asigura echilibrul dintre complexitatilor de partitionare si sortare.
+- Pentru mai multe detalii consultati [acest document](./k_ordered_statistic.pdf)
 
 ## <ins>3 - Coduri Huffman</ins>
 - Fie urmatoarea problema: avem un text format din diferite simboluri pe care dorim sa-l codificam binar. Totusi, vrem sa facem acest lucru cat mai eficient i.e. folosind cat mai putina memorie. Aceasta problema este exact cea de la ASC din sem 1.

@@ -1,4 +1,4 @@
-- Set the structure (use special file) & table of contents
+- Set the tasks & table of contents
 - Go through the theory materials
   - Format: text, drawing, video
   - Intuition & practical examples
@@ -8,7 +8,6 @@
   - Cormen book
 - Find practice exercises for the created materials
   - Cormen
-  - LeetCode
   - Find exam exercises (seria 13, 14, 15)
 - Push the final version and announce the collaborator
 - Make announcement to **community** about what will be taught next
