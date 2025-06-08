@@ -48,7 +48,7 @@
 - B-trees
 - MST: Kruskal & Prim
 
-## Material care nu e pentru seria 14
+## Materia care nu e pentru seria 14
 - Bloom Filters
 - Skip Lists
 - Convex hull
