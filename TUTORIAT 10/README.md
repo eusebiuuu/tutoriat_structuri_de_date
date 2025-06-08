@@ -30,6 +30,8 @@
 - Un **Suffix Tree** este un tip de arbore folosit pentru a reprezenta sufixele unui sir. Diferenta fata de **Suffix Tries** este ca muchiile pot reprezenta grupuri de litere, nu doar cate o singura litera => economisim memorie.
 - TODO cel mai lung subsir comun + ukkonen's algorithm?
 
+![Image](images/suffix-tree.png)
+
 ---
 
 ## <ins>3 - Suffix Arrays</ins>
