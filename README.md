@@ -9,6 +9,7 @@
 ## <ins>Table of contents</ins>
 - [Informatii generale](#informatii-generale)
 - [Continutul tutoriatului](#continutul-tutoriatului)
+  - [Materie seria 13](#materia-pentru-seria-13)
   - [Tutoriat 1](#tutoriat-1)
   - [Tutoriat 2](#tutoriat-2)
   - [Tutoriat 3](#tutoriat-3)
@@ -31,6 +32,15 @@
 * Toate cursurile si materialele predate de profesori sunt bazate in principal pe cartea **Introduction to Algorithms, 3rd edition, Th. Cormen si alti baieti**.
 
 ---
+
+## Materia pentru seria 13
+- Structuri de date de baza: Stacks, Queues, Deques, Heaps, Linked Lists, Skip Lists
+- Hash Tables, Bloom Filters
+- Arbori: BSTs, AVL Trees, Splay Trees, Red-Black Trees, Order Statistics Trees, B-Trees
+- Geometrie computationala: Convex Hulls (infasuratori convexe) - Graham's Scan, Jarvis' March
+- MSTs: algoritmul lui Kruskal, algoritmul lui Prim
+
+## 
 
 ## <ins>Continutul tutoriatului</ins>
 ### <ins>Tutoriat 1</ins>
