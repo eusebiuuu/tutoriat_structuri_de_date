@@ -29,7 +29,6 @@
     - [Seria 14 - rezolvari](#seria-14---rezolvari)
     - [Seria 15](#seria-15)
     - [Seria 15 - rezolvari](#seria-15---rezolvari)
-      - [Notes](#notes)
 
 ---
 
@@ -549,10 +548,3 @@ std::vector<int> twoSum(std::vector<int>& nums, int target) {
 ![Image](images/seria15ex2.png)
 
 3. TODO 
-
----
-
-#### <ins>Notes</ins> 
-* <b>Seria 13</b>: Linked Lists, Skip Lists, Hash Tables, Bloom Filters.
-* <b>Seria 14</b>: Heapsort (<b>Tutoriat 1</b>), BST (<b>Tutoriat 3</b>).
-* <b>Seria 15</b>: Stack/Queue/Deque (<b>Tutoriat 1</b>), Linked Lists.

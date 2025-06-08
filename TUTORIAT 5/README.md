@@ -1,18 +1,19 @@
 # Table of contents
-- [1 - Red-Black Trees](#1---red-black-trees)
+- [Table of contents](#table-of-contents)
+  - [1 - Red-Black Trees](#1---red-black-trees)
     - [1.1 - Introducere](#11---introducere)
     - [1.2 - Search](#12---search)
     - [1.3 - Insert](#13---insert)
     - [1.4 - Delete](#14---delete)
-- [2 - Segment Trees](#2---segment-trees)
+  - [2 - Segment Trees](#2---segment-trees)
     - [2.1 - Introducere](#21---introducere)
     - [2.2 - Exemplu de Sum Query](#22---exemplu-de-sum-query)
     - [2.3 - Exemplu de Update Query](#23---exemplu-de-update-query)
     - [2.4 - Implementare](#24---implementare)
-- [3 - Lowest Ancestor & Lowest Common Ancestor](#3---lowest-ancestor--lowest-common-ancestor)
+  - [3 - Lowest Ancestor \& Lowest Common Ancestor](#3---lowest-ancestor--lowest-common-ancestor)
     - [3.1 - Lowest Ancestor](#31---lowest-ancestor)
     - [3.2 - Lowest Common Ancestor](#32---lowest-common-ancestor)
-- [4 - Exercitii examen](#4---exercitii-examen)
+  - [4 - Exercitii examen](#4---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 - rezolvari](#seria-13---rezolvari)
 
@@ -272,10 +273,4 @@ putem face acest lucru? Doi arbori pot difera fie prin forma, fie prin culoare.
 
 ![Image](images/exercises/13_2_sol.png)
 
----
-
-#### <ins>Notes</ins>
-- **Seria 13**: Red-Black Trees **(R.I.P.)**.
-- **Seria 14**: RMQ (Range Minimum Queries, din nou).
-- **Seria 15**: Segment Trees (arbori de intervale), LA (Lowest Ancestor) & LCA (Lowest Common Ancestor), RMQ (Range Minimum Queries).
     

@@ -1,10 +1,30 @@
 # Table of contents
-- [1 - AVL Trees](#1---avl-trees)
-- [2 - Splay Trees](#2---splay-trees)
-- [3 - RMQ (Range Minimum Queries)](#3---rmq-range-minimum-queries)
-- [4 - Binomial Heaps](#4---binomial-heaps)
-- [5 - Fibonacci Heaps](#5---fibonacci-heaps)
-- [6 - Exercitii examen](#6---exercitii-examen)
+- [Table of contents](#table-of-contents)
+  - [1 - AVL Trees](#1---avl-trees)
+    - [1.1 - Introducere](#11---introducere)
+    - [1.2 - Rotatii](#12---rotatii)
+    - [1.3 - Search](#13---search)
+    - [1.4 - Insert](#14---insert)
+    - [1.5 - Delete](#15---delete)
+    - [1.6 - Alte operatii](#16---alte-operatii)
+  - [2 - Splay Trees](#2---splay-trees)
+  - [3 - RMQ (Range Minimum Queries)](#3---rmq-range-minimum-queries)
+  - [4 - Binomial Heaps](#4---binomial-heaps)
+    - [4.1 - Introducere](#41---introducere)
+    - [4.2 - Union](#42---union)
+    - [4.3 - Extract min](#43---extract-min)
+    - [4.4 - Decrease key (un nod ia o valoare mai mica)](#44---decrease-key-un-nod-ia-o-valoare-mai-mica)
+    - [4.5 - Insert](#45---insert)
+    - [4.6 - Delete](#46---delete)
+  - [5 - Fibonacci Heaps](#5---fibonacci-heaps)
+    - [5.1 - Introducere](#51---introducere)
+    - [5.2 - Insert](#52---insert)
+    - [5.3 - Find minimum](#53---find-minimum)
+    - [5.4 - Union](#54---union)
+    - [5.5 - Extract minimum](#55---extract-minimum)
+    - [5.6 - Decrease key](#56---decrease-key)
+    - [5.7 - Delete](#57---delete)
+  - [6 - Exercitii examen](#6---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 - rezolvari](#seria-13---rezolvari)
     - [Seria 15](#seria-15)
@@ -253,9 +273,3 @@
 3. TODO
 4. TODO
 
----
-
-#### Notes 
-- <b>Seria 13</b>: AVL Trees, Splay Trees.
-- <b>Seria 14</b>: Range Minimum Queries (RMQ).
-- <b>Seria 15</b>: Binomial Heaps, Fibonacci Heaps.

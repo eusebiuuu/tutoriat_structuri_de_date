@@ -16,7 +16,6 @@
     - [Seria 14 - rezolvari](#seria-14---rezolvari)
     - [Seria 15](#seria-15)
     - [Seria 15 - rezolvari](#seria-15---rezolvari)
-      - [Notes](#notes)
 
 ---
 
@@ -173,10 +172,3 @@ int main() {
 ### <ins>Seria 15</ins>
 
 ### <ins>Seria 15 - rezolvari</ins>
-
----
-
-#### <ins>Notes</ins>
-- **Seria 13**: Convex Hulls (Graham's Scan, Jarvis' March).
-- **Seria 14**: Alegerea medianei in **O(n)** (algoritm aleator, algoritm determinist).
-- **Seria 15**: BSTs (**Tutoriat 3**), coduri Huffman.

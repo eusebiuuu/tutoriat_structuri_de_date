@@ -7,20 +7,24 @@
 ---
 
 ## <ins>Table of contents</ins>
-- [Informatii generale](#informatii-generale)
-- [Continutul tutoriatului](#continutul-tutoriatului)
-  - [Materie seria 13](#materia-pentru-seria-13)
-  - [Tutoriat 1](#tutoriat-1)
-  - [Tutoriat 2](#tutoriat-2)
-  - [Tutoriat 3](#tutoriat-3)
-  - [Tutoriat 4](#tutoriat-4)
-  - [Tutoriat 5](#tutoriat-5)
-  - [Tutoriat 6](#tutoriat-6)
-  - [Tutoriat 7](#tutoriat-7)
-  - [Tutoriat 8](#tutoriat-8)
-  - [Tutoriat 9](#tutoriat-9)
-  - [Tutoriat 10](#tutoriat-10)
-  - [Tutoriat 11](#tutoriat-11)
+- [TUTORIAT STRUCTURI DE DATE (SERIILE 13, 14 si 15)](#tutoriat-structuri-de-date-seriile-13-14-si-15)
+  - [Table of contents](#table-of-contents)
+  - [Informatii generale](#informatii-generale)
+  - [Materie seria 13](#materie-seria-13)
+  - [Materie seria 14](#materie-seria-14)
+  - [Materie seria 15](#materie-seria-15)
+  - [Continutul tutoriatului](#continutul-tutoriatului)
+    - [Tutoriat 1](#tutoriat-1)
+    - [Tutoriat 2](#tutoriat-2)
+    - [Tutoriat 3](#tutoriat-3)
+    - [Tutoriat 4](#tutoriat-4)
+    - [Tutoriat 5](#tutoriat-5)
+    - [Tutoriat 6](#tutoriat-6)
+    - [Tutoriat 7](#tutoriat-7)
+    - [Tutoriat 8](#tutoriat-8)
+    - [Tutoriat 9](#tutoriat-9)
+    - [Tutoriat 10](#tutoriat-10)
+    - [Tutoriat 11](#tutoriat-11)
 
 ---
 
@@ -33,14 +37,34 @@
 
 ---
 
-## Materia pentru seria 13
+## Materie seria 13
+- Sortari: Merge Sort, Insert Sort, Heap Sort, Quick Sort, Select Sort
+- Clase de complexitati
 - Structuri de date de baza: Stacks, Queues, Deques, Heaps, Linked Lists, Skip Lists
 - Hash Tables, Bloom Filters
 - Arbori: BSTs, AVL Trees, Splay Trees, Red-Black Trees, Order Statistics Trees, B-Trees
 - Geometrie computationala: Convex Hulls (infasuratori convexe) - Graham's Scan, Jarvis' March
 - MSTs: algoritmul lui Kruskal, algoritmul lui Prim
 
-## 
+## Materie seria 14
+- Sortari: Merge Sort, Insert Sort, Heap Sort, Quick Sort, Select Sort
+- Clase de complexitati & Teorema master
+- Analiza probabilistica
+- Structuri de date de baza: Stacks, Queues, Deques, Heaps, Linked Lists
+- Hash Tables
+- Arbori: BSTs, Huffman trees, Interval Trees, Suffix Trees
+- Random: Range Minimum Queries (RMQ), Limite inferioare pentru sortare, Alegerea medianei in **O(n)**
+- Advanced Data Structures and Algorithms (seria 14 moment): Suffix Tries, Suffix Arrays, Cartesian Trees, Aho-Corasick Algorithm
+
+## Materie seria 15
+- Algoritmi de sortare: Merge Sort + in-place, Heap Sort, Quick Sort, Count Sort, Bucket Sort, Radix Sort, Block Sort, Intro Sort, Tim Sort
+- Clase de complexitati
+- Structuri de date de baza: Stacks, Queues, Deques, Heaps, Linked Lists, Skip Lists
+- Hash Tables
+- Arbori: BSTs, Arbori binari, arbori binomiali, Huffman trees, AVL Trees, Interval Trees, B-Trees, BST-uri construite aleator
+- Heaps: Binomial heaps, Fibonacci heaps
+- Range Queries Data Structures: Segment Trees (arbori de intervale), Fenwick Trees
+- Random: LCA (Lowest Common Ancestor), RMQ (Range Minimum Queries)
 
 ## <ins>Continutul tutoriatului</ins>
 ### <ins>Tutoriat 1</ins>

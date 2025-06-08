@@ -1,8 +1,9 @@
 # Table of contents
-- [1 - BST-uri construite aleator](#1---bst-uri-construite-aleator)
-- [2 - Order Statistics Trees](#2---order-statistics-trees)
-- [3 - Interval Trees](#3---interval-trees)
-- [4 - Exercitii examen](#4---exercitii-examen)
+- [Table of contents](#table-of-contents)
+  - [1 - BST-uri construite aleator](#1---bst-uri-construite-aleator)
+  - [2 - Order Statistics Trees](#2---order-statistics-trees)
+  - [3 - Interval Trees](#3---interval-trees)
+  - [4 - Exercitii examen](#4---exercitii-examen)
     - [Seria 13](#seria-13)
     - [Seria 13 - rezolvari](#seria-13---rezolvari)
     - [Seria 14](#seria-14)
@@ -37,10 +38,3 @@
 ### <ins>Seria 15</ins>
 
 ### <ins>Seria 15 - rezolvari</ins>
-
----
-
-#### <ins>Notes</ins>
-- <ins>**Seria 13**</ins>: Order Statistics Trees, Interval Trees.
-- <ins>**Seria 14**</ins>: Hash Tables (**Tutoriat 2**), Coduri Huffman (**Tutoriat 7**).
-- <ins>**Seria 15**</ins>: BST-uri construite aleator, AVL Trees (**Tutoriat 4**), Skip Lists (**Tutoriat 2**).

@@ -852,10 +852,3 @@ int main() {
 12. Am avea 2 modalitati de rezolvare:
     - o prima varianta ar fi sa sortam sirul si sa construim sirul fara duplicate din parcurgerea lui, ignorand un element daca l-am pus deja in sir; daca se doreste pastrarea ordinii se pot stoca elementele in forma (val, idx) iar la final sa se ordoneze din nou in functie de indecsi
     - o alta varianta ar fi sa folosim hashtable-uri pentru marca elementele deja introduse in sirul fara duplicate, astfel sarind peste elementele care sunt deja in el
-
----
-
-#### Notes 
-* <b>Seria 13</b>: Algoritmi de sortare (Merge Sort, Insert Sort, Heap Sort, Quick Sort, Select Sort; Comparison Sorts), Heaps (implementare ca Array; Heapify(), BuildHeap()), Priority Queues (insert, pop), Arrays, Vectors, Stacks (+array-based implementation), Queues, Deques.
-* <b>Seria 14</b>: Algoritmi de sortare (Merge Sort, Quick Sort), clase de complexitati, teorema master, probabilitati (birthday paradox, secretary problem).
-* <b>Seria 15</b>: Algoritmi de sortare (Merge Sort + in-place, Heap Sort, Quick Sort, Count Sort, Bucket Sort, Radix Sort, Block Sort, Intro Sort, Tim Sort), clase de complexitati, Heaps, Arrays, Vectors.

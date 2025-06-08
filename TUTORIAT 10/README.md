@@ -1,7 +1,12 @@
 # Table of contents
-- [1 - Suffix Tries](#1---suffix-tries)
-- [2 - Suffix Trees](#2---suffix-trees)
-- [3 - Suffix Arrays](#3---suffix-arrays)
+- [Table of contents](#table-of-contents)
+  - [1 - Suffix Tries](#1---suffix-tries)
+    - [1.1 - Introducere](#11---introducere)
+    - [1.2 - Aplicatii](#12---aplicatii)
+  - [2 - Suffix Trees](#2---suffix-trees)
+    - [2.1 - Introducere](#21---introducere)
+  - [3 - Suffix Arrays](#3---suffix-arrays)
+    - [3.1 - Introducere](#31---introducere)
 
 ---
 
@@ -38,8 +43,3 @@
 ### <ins>3.1 - Introducere</ins>
 - Un **Suffix Array** este un vector care retine pozitiile la care incep toate sufixele unui sir, sortate lexicografic dupa sufixe. De exemplu - pentru sirul **abcba** avem sufixele **{0:abcba, 1:bcba, 2:cba, 3:ba, 4:a}**. Odata ce le sortam, obtinem **{4:a, 0:abcba, 3:ba, 1:bcba, 2:cba}**. Astfel, suffix array-ul pentru sirul **abcba** este **{4, 0, 3, 1, 2}**.
 - TODO metode de constructie?
-
----
-
-#### <ins>Notes</ins>
-- **Seria 14**: Suffix Tries, Suffix Trees, Suffix Arrays.

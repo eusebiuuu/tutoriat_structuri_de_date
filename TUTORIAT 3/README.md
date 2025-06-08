@@ -1,16 +1,22 @@
 # Table of contents
-- [1- Limite inferioare pentru sortare](#1---limite-inferioare-pentru-sortare)
-- [2- Grafuri](#2---grafuri)
-    - [Introducere](#21---introducere)
-    - [Arbori binari si binomiali](#22---arbori-binari-si-binomiali)
-- [3 - Binary Search Trees](#3---binary-search-trees)
-- [4 - Exercitii examen](#4---exercitii-examen)
+- [Table of contents](#table-of-contents)
+  - [1 - Limite inferioare pentru sortare](#1---limite-inferioare-pentru-sortare)
+  - [2 - Grafuri](#2---grafuri)
+    - [2.1 - Introducere](#21---introducere)
+    - [2.2 - Arbori binari si binomiali](#22---arbori-binari-si-binomiali)
+  - [3 - Binary Search Trees](#3---binary-search-trees)
+    - [3.1 - Introducere](#31---introducere)
+    - [3.2 - Search](#32---search)
+    - [3.3 - Insert](#33---insert)
+    - [3.4 - Delete](#34---delete)
+    - [3.5 - Tree walks](#35---tree-walks)
+  - [4 - Exercitii examen](#4---exercitii-examen)
     - [Seria 13](#seria-13)
-    - [Seria 13 (rezolvari)](#seria-13---rezolvari)
+    - [Seria 13 - rezolvari](#seria-13---rezolvari)
     - [Seria 14](#seria-14)
-    - [Seria 14 (rezolvari)](#seria-14---rezolvari)
+    - [Seria 14 - rezolvari](#seria-14---rezolvari)
     - [Seria 15](#seria-15)
-    - [Seria 15 (rezolvari)](#seria-15---rezolvari)
+    - [Seria 15 - rezolvari](#seria-15---rezolvari)
 
 ---
 
@@ -312,9 +318,3 @@ int getMaxSum(Node *root) {
 }
 ```
 
----
-
-#### <ins>Notes </ins>
-- <b>Seria 13</b>: BSTs (Binary Search Trees).
-- <b>Seria 14</b>: Sortari in timp liniar (Count Sort, Bucket Sort, Radix Sort; toate discutate la <b>Tutoriat 1</b>), limite inferioare pentru sortare.
-- <b>Seria 15</b>: Hash Tables (<b>Tutoriat 2</b>), introducere in grafuri (notiuni de baza + arbori binari si binomiali).
