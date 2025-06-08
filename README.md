@@ -7,24 +7,21 @@
 ---
 
 ## <ins>Table of contents</ins>
-- [TUTORIAT STRUCTURI DE DATE (SERIILE 13, 14 si 15)](#tutoriat-structuri-de-date-seriile-13-14-si-15)
-  - [Table of contents](#table-of-contents)
-  - [Informatii generale](#informatii-generale)
-  - [Materia pentru seria 13](#materia-pentru-seria-13)
-  - [Material care nu e pentru seria 14](#material-care-nu-e-pentru-seria-14)
-  - [Continutul tutoriatului](#continutul-tutoriatului)
-    - [Tutoriat 1](#tutoriat-1)
-    - [Tutoriat 2](#tutoriat-2)
-    - [Tutoriat 3](#tutoriat-3)
-    - [Tutoriat 4](#tutoriat-4)
-    - [Tutoriat 5](#tutoriat-5)
-    - [Tutoriat 6](#tutoriat-6)
-    - [Tutoriat 7](#tutoriat-7)
-    - [Tutoriat 8](#tutoriat-8)
-    - [Tutoriat 9](#tutoriat-9)
-    - [Tutoriat 10](#tutoriat-10)
-    - [Tutoriat 11](#tutoriat-11)
-    - [Tutoriat 12](#tutoriat-12)
+- [Informatii generale](#informatii-generale)
+- [Continutul tutoriatului](#continutul-tutoriatului)
+  - [Tutoriat 1](#tutoriat-1)
+  - [Tutoriat 2](#tutoriat-2)
+  - [Tutoriat 3](#tutoriat-3)
+  - [Tutoriat 4](#tutoriat-4)
+  - [Tutoriat 5](#tutoriat-5)
+  - [Tutoriat 6](#tutoriat-6)
+  - [Tutoriat 7](#tutoriat-7)
+  - [Tutoriat 8](#tutoriat-8)
+  - [Tutoriat 9](#tutoriat-9)
+  - [Tutoriat 10](#tutoriat-10)
+  - [Tutoriat 11](#tutoriat-11)
+
+---
 
 ## <ins>Informatii generale</ins>
 * Materialele pe care le vom discuta vor include **toata materia** de la **toate cele 3 serii**.
@@ -34,30 +31,6 @@
 * Toate cursurile si materialele predate de profesori sunt bazate in principal pe cartea **Introduction to Algorithms, 3rd edition, Th. Cormen si alti baieti**.
 
 ---
-
-## Materia pentru seria 13
-- Structuri de date: Arrays, Vectors, Stacks, Queues, Heaps
-- Clase de complexitati
-- Algoritmi de sortare: Count Sort, Quick Sort, Merge Sort, Heap Sort, Bubble Sort, Select Sort
-- Linked Lists, Skip Lists, Hash Tables, Bloom Filters.
-- Binary Search Trees (BSTs).
-- AVL Trees, Splay Trees.
-- Red-Black Trees
-- Convex hull
-- Computational geometry: segment intersections
-- B-trees
-- MST: Kruskal & Prim
-
-## Materia care nu e pentru seria 14
-- Bloom Filters
-- Skip Lists
-- Convex hull
-- Computational geometry: segment intersections
-- B-trees
-- MST: Kruskal & Prim
-- Splay Trees
-- Red-Black Trees
-- Order Statistic Trees
 
 ## <ins>Continutul tutoriatului</ins>
 ### <ins>Tutoriat 1</ins>
@@ -83,34 +56,24 @@
 - **LCA** (Lowest Common Ancestor).
 
 ### <ins>Tutoriat 6</ins>
-- Exercitii de examen din tutoriatele trecute.
+- skip (am facut modele de examen).
 
 ### <ins>Tutoriat 7</ins>
 - **Alegerea medianei in O(n)**.
 - **Coduri Huffman, Coduri Prefix**.
-- **Convex Hulls** (infasuratori convexe) - Graham's Scan, Jarvis' March.
-- **Computational geometry**: segment intersections.
+- **Computational Geometry**: Convex Hulls (infasuratori convexe) - Graham's Scan, Jarvis' March + (TODO) segment intersections.
 
 ### <ins>Tutoriat 8</ins>
-- **Structuri de date**: Order Statistic Trees. Interval Trees
-- BST-uri construite aleator
+- **Structuri de date**: Order Statistics Trees (TODO), Interval Trees (TODO).
+- BST-uri construite aleator (TODO).
 
 ### <ins>Tutoriat 9</ins>
 - **Structuri de date**: B-Trees.
-- **Aho-Corasick algorithm**.
+- **Aho-Corasick algorithm** (TODO).
 - **MST** (Minimum Spanning Tree): algoritmul lui **Kruskal**, algoritmul lui **Prim**.
 
 ### <ins>Tutoriat 10</ins>
-- Rezolvare modele examen
+- **Structuri de date**: Suffix Tries/Trees/Arrays.
 
 ### <ins>Tutoriat 11</ins>
-- **Structuri de date**: Suffix Trees.
-- **Structuri de date**: Tries.
-- Modele examen
-
----
-
-### <ins>Tutoriat 12</ins>
-- **Structuri de date**: Suffix Arrays. Treaps.
-- **Cartesian trees**
-- +altele?
+- (TODO) treaps, cartesian trees si ce a mai ramas
